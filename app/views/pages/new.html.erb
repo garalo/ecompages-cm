@@ -1,0 +1,35 @@
+<h1>New page</h1>
+
+<% form_tag :action => 'create' do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "Create" %>
+<% end %>
+
+<fieldset><legend>Adding Image</legend>
+<p>
+<% form_tag( { :action => 'add_image'}, :multipart => true ) do %> 
+	<%= text_field 'imageobject', 'name' %> <br/>
+		<%= file_column_field "imageobject", "image" %> <br/>
+		<%= submit_tag "Upload" %> 
+<% end %>
+</p>
+</fieldset>
+
+<fieldset><legend>Listing Images</legend>
+
+<% for img in @images %>
+
+<%= img.name %> <br/>
+Image URL:
+<%= text_field('emb','code', 
+						"size"=> 50,
+						"value"=>"http://www.quanjumps.com/pro#{url_for_file_column(img, 'image')}") %> <br/>
+<%= image_tag(url_for_file_column(img, "image"),:alt=>"Click to view large picture",:style=>"border:solid 1px #cccccc;") %> | 
+	
+<%= link_to image_tag("/images/trash.gif"), { :action => 'delete_image', :id => img }, :confirm => 'Are you sure to remove this image?', :method => :post %> <br/>
+	
+<% end %>
+</fieldset>
+
+
+<%= link_to 'Back', :action => 'list' %>

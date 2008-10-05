@@ -1,0 +1,13 @@
+<div style="padding:5px">
+	
+	<% if session[:account_type] == 0 %>
+	<p>
+Thank you for your account application. We will reply within 2 to 3 working days.
+</p>
+	<% else %>
+	<p>
+Thank you for your account application. Click <%= link_to "here",:action=>'login',:controller=>'go' %> to login.
+</p>
+	<% end %>
+	
+</div>

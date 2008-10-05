@@ -1,0 +1,14 @@
+<h2><%= @account.contact_name %></h2>
+<hr>
+
+<br/>
+
+<% form_tag :action => 'update_account', :id => @account do %>
+  <%= render :partial => 'account' %>
+	<br/>
+  <%= submit_tag 'Save' %> <%= link_to 'Cancel', :action => 'accounts' %>
+<% end %>
+    
+<br/>
+
+

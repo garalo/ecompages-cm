@@ -1,0 +1,8 @@
+<h2>Editing charity</h2>
+<hr/>
+
+<% form_tag :action => 'update', :id => @charity do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %> <%= link_to 'Cancel', :action => 'list' %>
+<% end %>
+

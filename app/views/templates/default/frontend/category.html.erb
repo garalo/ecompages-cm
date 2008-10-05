@@ -1,0 +1,103 @@
+<div>  
+	<%= show_category_structure(@category, @category.id) %>:<br/>
+	
+        <br/>
+
+	<% is_internal_node = false %>
+	<% is_internal_node = true if @category.sub_categories.size > 0 %>
+		
+	<% count = 1 %>
+	<% for sub in @category.sub_categories %>
+		<%= "" if count != 1 %> 
+		<%= blank_space(2)%> <%= link_to sub.name,:action=>'category',:id=>sub.id %> (<%= sub.products.size%>) 
+		
+		<% # 22 Nov 2007, TODO: check this later %>
+		
+		<% if is_internal_node %>
+			<% for subcat_prod in sub.products %>
+				<% @products <<  subcat_prod %>
+			<% end %>
+		<% end %>
+		
+		<% count +=1 %>
+                <br/>
+	<% end %>
+	
+</div>	
+
+<br/>
+
+<% if @products.size == 0 %>
+	
+	<div style="padding:15px;">
+		<p>
+		We apologise that there are no search results available at this time. Please feel free to submit an obligation free product quotation request or contact us by phone or email and we will endeavour to assist you as soon as possible.	
+		</p>
+	<h3>Submit Product Quotation Request</h3>
+	<% form_tag(:action=> "contact_us",:controller=>'go') do %>
+	<table>
+		<tr>
+	    <td>Contact Name:</td><td> <%= text_field("contact","name", "size"=>"20")%></td>
+		</tr>
+		<tr>
+	    <td>Email:</td><td><%= text_field("contact","email","size"=>"20")%></td>
+	  	</tr>
+		<tr>
+	    <td>Phone:</td><td><%= text_field("contact","phone","size"=>"20")%> (optional)</td>
+	  	</tr>
+		<tr>
+	    <td>Note:</td><td><%= text_area("contact","note")%></td>
+	  	</tr>
+	</table>
+	    <%= submit_tag "Send"%>
+	<% end %>
+	
+	<br/>
+	<%= link_to("Contact Us", :action=> "contact_us",:controller=>'go')%>
+	
+	</div>
+<% end %>
+
+<% if @products.size > 2 %>
+<div class= "hr_div">  
+	(Sort by: 
+	<%= link_to("Latest listings",:action=>'category',:sort=>'latest',:id=>session[:category_id])%> | 
+	<%= link_to("Lowest price",:action=>'category',:sort=>'lprice',:id=>session[:category_id])%> | 
+	<%= link_to("Highest price",:action=>'category',:sort=>'hprice',:id=>session[:category_id])%> | 
+	<%= link_to("Title",:action=>'category',:sort=>'title')%>
+	)
+</div>
+<% end %>
+
+
+<% i = 1 %>
+<table width="100%" cellspacing="0" cellpadding="0">
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+<% for p in @products %>
+	
+	<tr>
+	
+		<td width="130px;">
+			<div class="product_listing_image">
+			<%= show_product_image(p, "medium") %>
+			</div>
+		</td>
+			
+		<td width="70%">
+			<p class="product_listing_title"><%=link_to p.title, :action=>'product',:id=>p %>
+			</p>
+		</td>
+		
+		<td><p class="product_listing_price"><%= show_price(p, @account) %> </p></td>
+	</tr>
+	<% i+=1 %>
+<% end %>
+</table>
+
+
+<h3><%= will_paginate(@products)%></h3>
+

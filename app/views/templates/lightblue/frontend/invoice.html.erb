@@ -1,0 +1,154 @@
+<div class="header_div"><b>Company Info</b></div>
+<table>
+	<tr>
+		<td width="50%" valign="top">
+			<h3>Company</h3>
+			<%=Shop.company_name %> <br/><br/>
+			<b>Website:</b> <%=Shop.business_website %><br/><br/>
+			<b>Tel:</b> <%=Shop.business_phone %> <br/><br/>
+			
+			<h3>Address</h3>
+			<%=simple_format Shop.business_address %>
+			<br/>
+			
+		</td>
+		<td width="50%"  valign="top">
+			<h3>Invoice Number <%= @order.id %> (Date: <%= @order.time_created.to_date %>)</h3>
+			
+			<h3>Payment Options</h3>
+			<b>Direct Credit Bank Account: </b><br/>
+			<%=Shop.business_bank_account %>
+
+		</td>
+	</tr>
+</table>
+<br/>	
+	
+<div class="header_div"><b>Customer Info</b></div>
+<table>
+	<tr>
+		<td width="50%"  valign="top">
+			<h3>Invoice Address</h3>
+			<%= @account.contact_name %>
+			<%= text_with_br @account.business_address %>
+			<h3>Contact Information</h3>
+			<b>Tel:</b> <%= @account.phone %> <br/>
+			<b>Mobile:</b> <%= @account.cellphone %> <br/>
+			<b>Email:</b> <%= @account.email %> <br/>
+		</td>
+		<td  valign="top">
+			<h3>Delivery Address</h3>
+			<% if @account.shipping_address.blank? %>
+				<%= text_with_br @account.business_address %>
+			<% else %>
+				<%= text_with_br @account.shipping_address %>
+			<% end %>
+			<br/>
+			<%=h @order.postcode%>
+			<h3>Additional Note</h3>
+			<i><%= text_with_br @order.note %></i>
+		</td>
+	</tr>
+</table>
+<br/>
+
+<div class="header_div"><b>Order Summary</b></div>
+<table>
+	<tr>
+		<th width="50%">Product</th>
+		<th>Quantity</th>
+		<th>Shipped</th>
+		<th>Back Order</th>
+		<th>Price</th>
+	</tr>
+<% for item in @order.items %>
+	<tr>
+		<td><%= item.product.title %></td>
+		<td><%= item.quantity %></td>
+		<td>
+			
+			<%= item.quantity_shipped %>
+			
+		</td>
+		<td><%= (item.quantity - item.quantity_shipped) %></td>
+		<td><%= number_to_currency(item.price_in_order * item.quantity) %> (<%= number_to_currency(item.price_in_order) %> x <%= item.quantity %>)</td>
+	</tr>
+<% end %>
+
+<tr>
+	<td colspan=5> </td>
+</tr>
+
+<tr>
+	<td colspan=4>Sub total</td>
+	<td><span><%= number_to_currency @order.sub_total %></span>
+	</td>
+</tr>
+<tr>
+	<td colspan=4><%=Shop.tax_code_name %></td>
+	<td><span><%= number_to_currency @order.tax %></span>
+	</td>
+</tr>
+<tr>
+	<td colspan=4>Total for product(s)</td>
+	<td><span><%= number_to_currency @order.total %></span>
+	</td>
+</tr>
+</table>
+<br/>
+
+<div class="header_div"><b>Order Status</b></div>
+<table>
+	<tr>
+		<td><strong>Ship Date (dd/mm/yyyy)</strong></td>
+		<td>
+			
+			<%= @order.date_shipped %>
+		</td>
+	</tr>
+	<tr>
+		<td><strong>Estimated Date of Arrival (dd/mm/yyyy)</strong></td>
+		<td>
+			
+			<%= @order.arrival_date %>
+		</td>
+	</tr>
+	<tr>
+		<td width="50%"><strong>Serial/Track Number(s)</strong></td>
+		<td>
+			
+			<%= text_with_br @order.track_numbers %>
+		</td>
+	</tr>
+	
+	<tr>
+		<td width="30%"><strong>Order Status</strong></td>
+		<td> <%= @order.status %></td>
+	</tr>
+	
+		
+</table>
+<br/>
+
+<div class="header_div"><b>Shipping & Freight Costs</b></div>
+<table>
+	
+	<tr>
+		<td width="50%"><strong>System suggested freight options:</strong></td>
+		<td>
+		
+			
+			<%= text_with_br @order.suggested_freight_options %>
+		</td>
+	</tr>
+	<tr>
+		<td><strong>System suggested freight cost:</strong></td>
+		<td>
+				
+				$<%= @order.suggested_freight_cost %>
+		</td>
+	</tr>
+</table>
+<br/>
+
+<h3>Total: <%= number_to_currency @order.total_with_freight %> (including <%=Shop.tax_code_name %>)</h3

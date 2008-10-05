@@ -1,0 +1,23 @@
+<h2>Category Manager</h2>
+<hr/>
+<br/>
+
+<div class="explaination">
+	<h2>How to re-order a category?</h2>
+         <p>Drag and Drop a category below to re-order.</p>
+</div>	
+
+
+<ul id="list">
+<% for c in @categories %>
+	<li id="item_<%= c.id %>"><%= c.name %></li>
+<% end %>
+</ul>
+<br/>
+<p id="list-info"></p>
+
+
+<%= sortable_element 'list', 
+      :update => 'list-info',  
+      :complete => visual_effect(:highlight, 'list'), 
+      :url => { :action => "ajax_category_sort" } %>

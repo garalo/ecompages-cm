@@ -1,0 +1,102 @@
+<div style="padding:5px;">
+
+
+<h2><%= @product.title %></h2>
+
+
+<table width="100%">
+	
+	<tr>
+		<td colspan="2">
+			
+			<% if @account and session[:cart].size > 0 %>
+			<div id ="show-hide-link">
+				<a href="#show.cart#" onclick="show_cart();"><%=image_tag "/images/viewcart.gif"%></a>
+			</div>
+			<div id = "cart-area" style="display:none;">
+					<%= show_cart(session[:cart], @account) %>
+			</div>
+			<% end %>
+			
+			<% form_tag(:action=> "add_to_cart",:pid=>@product.id) do %>
+
+	<%= image_tag "cart.gif"%> <strong>Quantity:</strong> <%= text_field("cart","quantity", "value"=>"1", "size"=>"2")%>  
+	 <%= submit_tag "Add to Cart" %> 
+			<% end %>
+			
+		</td>
+	</tr>	
+	
+	
+<tr>
+	<td valign="top" width="45%">
+
+		<span style="font-size:10px;">Click to see large image</span> <br/>
+
+		<% for img in @product.images %>
+		<%=link_to ( image_tag(url_for_file_column(img, "image", "medium")),
+								{:action=>'view_image', :controller=>'go', :id=>img.id},
+					:popup=>[@product.title, 'width=640,height=480'])
+		%>
+		
+		<% end %>
+		
+		<p><br/></p>
+		
+		<table>
+		<tr>
+			<td><strong>In stock:</strong></td>
+			<td><%= @product.stock_level %></td>
+		</tr>
+		<tr>
+			<td><strong>Our price:</strong></td>
+			<td>
+				<% if @account.blank? %>
+					<%= show_price(@product, @account) %> (including GST)
+				<% else %>
+					<% if @account.account_type == 0 %>
+						<%= show_price(@product, @account) %> (excluding GST)
+					<% else %>
+						<%= show_price(@product, @account) %> (including GST)
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td><strong>Condition:</strong></td>
+			<td><%= show_product_condition(@product) %></td>
+		</tr>
+		<tr>
+			<td><strong>Warranty:</strong></td>
+			<td><%= show_product_warranty(@product) %></td>
+		</tr>
+		<tr>
+			<td><strong>Deliverable:</strong></td>
+			<td><%= show_product_delivery(@product) %></td>
+		</tr>
+		<tr>
+			<td><strong>Estimated Freight:</strong></td>
+			<td><%= show_freight_option(@product) %></td>
+		</tr>	
+		<% if @product.donation > 0 and Shop.allow_donation == 1 %>
+		<tr>
+			
+			<td colspan="2">
+			<i>A charitable donation of <%=number_to_currency @product.donation %> will be made on purchasing of this product.</i>
+			</td>
+		<tr>
+		<% end %>
+		</table>
+	</td>
+	
+	<td valign="top">
+			<h2><u>Specifications:</u></h2>
+			<%= text_with_br @product.details %>
+	</td>
+		
+	</tr>
+
+</table>
+
+</div>
+

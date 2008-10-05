@@ -1,0 +1,116 @@
+<div style="padding:5px;">
+
+
+<h2><%= @product.title %></h2>
+
+<table width="100%">
+	
+	<tr>
+		<td colspan="2">
+			
+			<% if @account and session[:cart].size > 0 %>
+			<div id ="show-hide-link">
+				<a href="#show.cart#" onclick="show_cart();"><%=image_tag "/images/viewcart.gif"%></a>
+			</div>
+			<div id = "cart-area" style="display:none;">
+					<%= show_cart(session[:cart], @account) %>
+			</div>
+			<% end %>
+			
+			<% form_tag(:action=> "add_to_cart",:pid=>@product.id) do %>
+
+	<%= image_tag "cart.gif"%> <strong>Quantity:</strong> <%= text_field("cart","quantity", "value"=>"1", "size"=>"2")%>  
+	 <%= submit_tag "Add to Cart" %> 
+			<% end %>
+			
+		</td>
+	</tr>	
+	
+	
+<tr>
+	<td width="50%" valign="top">
+		
+		<% if @product.images.length > 1 %>
+		<span style="font-size:10px;">Click to see larger image</span> <br/>
+		<% end %>
+		
+		<div style="width:150px;border:0px solid #eaeaea;background:#f7f7f7;text-align:center;">
+		
+		<% for img in @product.images %>
+		<a href="#show.change#"  onclick="show_image('<%= img.id %>');">
+		<%= image_tag(url_for_file_column(img, "image", "medium"),:alt=>"Click to view large picture",:style=>"border:solid 1px #cccccc;")%></a> <br/>
+		<% end %>
+		</div>
+		<br/>
+		<table>
+		<tr>
+			<td><strong>In stock:</strong></td>
+			<td><%= @product.stock_level %></td>
+		</tr>
+		<tr>
+			<td><strong>Our price:</strong></td>
+			<td>
+				<% if @account.blank? %>
+					<%= show_price(@product, @account) %> (GST inc.)
+				<% else %>
+					<% if @account.account_type == 0 %>
+						<%= show_price(@product, @account) %> (GST Exc.)
+					<% else %>
+						<%= show_price(@product, @account) %> (GST inc.)
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td><strong>Condition:</strong></td>
+			<td><%= show_product_condition(@product) %></td>
+		</tr>
+		<tr>
+			<td><strong>Warranty:</strong></td>
+			<td><%= show_product_warranty(@product) %></td>
+		</tr>
+		<tr>
+			<td><strong>Deliverable:</strong></td>
+			<td><%= show_product_delivery(@product) %></td>
+		</tr>
+		<tr>
+			<td><strong>Estimated Freight:</strong></td>
+			<td><%= show_freight_option(@product) %></td>
+		</tr>	
+		<% if @product.donation > 0 and Shop.allow_donation == 1 %>
+		<tr>
+			
+			<td colspan="2">
+			<i>A charitable donation of <%=number_to_currency @product.donation %> will be made on purchasing of this product.</i>
+			</td>
+		<tr>
+		<% end %>
+		</table>
+		
+		
+	</td>
+	
+	
+	<td width="70%">
+		<div id= "large-image" style="border:1px solid #eaeaea;background:#f7f7f7;text-align:center;">
+			<%= show_first_image(@product) %>
+		</div>
+	</td>
+	
+	</tr>	
+	
+	
+	
+	
+	<tr>
+		
+		<td colspan="2">
+			<hr/>
+			<h2><u>Specifications:</u></h2>
+			<%= text_with_br @product.details %>
+		</td>
+	</tr>
+
+</table>
+
+</div>

@@ -1,0 +1,56 @@
+<h2>Your Shopping Cart </h2>
+<br/>
+
+<% if @cart.size > 0 %>
+  <table class="carttable">
+    <tr>
+      <th></th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Remove</th>
+    </tr>
+  
+        <% for item in @cart.items %>
+            <% p = Product.find(item.product_id) %>
+            <% final_price = p.price_for_account(@account) %>
+            <% final_price = final_price * item.quantity %>
+      <tr>
+        <td><%= show_product_image(p, "thumb") %></td>
+        <td><%=p.title %></td>
+        <td><%=link_to(image_tag("/images/increase.gif"),{:action=>'add_to_cart', :pid=>p.id}, :method => :post) %>  
+          <%=item.quantity.to_s %> 
+             <%=link_to(image_tag("/images/decrease.gif"),{:action=>'decrease_quantity', :pid=>p.id}, :method => :post) if item.quantity >= 2 %>
+        </td>
+        <td><%=number_to_currency final_price %></td>
+        <td><%= link_to( image_tag("/images/trash.gif"), { :action => 'delete_from_cart', :pid => p.id }, :confirm => 'Are you sure to remove this product from your shopping cart?', :method => :post) %></td>
+      </tr>
+    <% end %>
+  
+    <tr><td></td><td>Sub total</td><td></td><td><%=number_to_currency session[:cart].sub_total %></td><td></td></tr>
+    <tr><td></td><td><%= Shop.tax_code_name %></td><td></td><td><%=number_to_currency session[:cart].tax_amount %></td><td></td></tr>
+    <tr><td></td><td>Total</td><td></td><td><%= number_to_currency session[:cart].total %></td><td></td></tr>
+  
+  </table>
+
+<% else%>  
+  Your shopping cart is empty. <br/>
+<% end %>  
+
+
+<br/>
+<br/>
+
+<h2>You can now</h2>
+<br/>
+<br/>
+<% if @account and @cart.size > 0 %>
+  <%=link_to("Place Order", :action=>'place_order', :securitylevel=>1) %> or <%=link_to("Continue Shopping", :action=>'index') %>
+<% elsif @account and @cart.size == 0 %>
+  <%=link_to("Continue Shopping", :action=>'index') %>
+<% else %>
+    
+  Please <%=link_to("Login", :action=>'login') %> or <%=link_to("Register", :action=>'registration') %> an account.
+  
+<% end %>  
+

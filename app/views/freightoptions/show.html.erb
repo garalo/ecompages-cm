@@ -1,0 +1,8 @@
+<% for column in Freightoption.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @freightoption.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @freightoption %> |
+<%= link_to 'Back', :action => 'list' %>

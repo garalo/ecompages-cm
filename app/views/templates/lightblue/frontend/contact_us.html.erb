@@ -1,0 +1,23 @@
+<div style="padding:15px;">
+<%= @page.value %>
+
+<h3>Contact Form</h3>
+<% form_tag(:action=> "contact_us") do %>
+<table>
+	<tr>
+    <td>Contact Name:</td><td> <%= text_field("contact","name", "size"=>"20")%></td>
+	</tr>
+	<tr>
+    <td>Email:</td><td><%= text_field("contact","email","size"=>"20")%></td>
+  	</tr>
+	<tr>
+    <td>Phone:</td><td><%= text_field("contact","phone","size"=>"20")%> (optional)</td>
+  	</tr>
+	<tr>
+    <td>Note:</td><td><%= text_area("contact","note")%></td>
+  	</tr>
+</table>
+    <%= submit_tag "Send"%>
+<% end %>
+</div>
+

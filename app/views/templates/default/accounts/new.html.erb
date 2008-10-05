@@ -1,0 +1,47 @@
+<style type="text/css">
+
+  ul#split,ul#split li#one{margin:0;padding:0;list-style:none}
+  ul#split li#one{width:700px;margin:0 10px 10px 0}
+  ul#split h3{font: bold 120%/1.3 Arial,sans-serif;margin:0px;padding:5px 0 0;text-align:center;color: #000}
+  ul#split p{margin:0;padding:5px 8px 15px}
+  ul#split div#acct{background: #FFC}
+  li#one h3{background: #CDEB8B}
+  li#one div#acct {border:2px solid #CDEB8B; padding: 5px}
+  
+</style>
+
+<h2>New Account</h2>
+<br/>
+<ul id="split">
+  
+  <li id="one"><h3><%=show_account_type @account %></h3>
+    <div id="acct">
+
+<% form_tag(:action => 'create', :controller=>'accounts') do %>
+
+
+           <% if session[:account_type] == 0 %>
+                     <%= render :partial=>"templates/#{Shop.def_template_name}/accounts/dealer" %>
+                
+           <% else %>
+                 
+                    <%= render :partial=>"templates/#{Shop.def_template_name}/accounts/directbuyer" %>
+           <% end %>
+         
+         
+  <br/>
+  <%= submit_tag "Register" %>
+<% end %>
+    </div>
+  </li>
+</ul>
+
+
+<script type="text/javascript">
+  
+  Nifty("ul#split h3","top");
+  Nifty("ul#split div","none");
+  
+  </script>
+
+<br/>

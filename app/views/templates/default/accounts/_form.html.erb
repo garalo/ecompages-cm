@@ -1,0 +1,49 @@
+
+<%= error_messages_for 'account' %>
+
+<!--[form:account]-->
+<fieldset><legend><strong>Contact Information</strong></legend>
+	<p><label for="account_contact_name">Contact person's name *</label><br/>
+	<%= text_field 'account', 'contact_name'  %></p>
+	
+	<p><label for="account_email">Email (this will be your login user name) *</label><br/>
+	<%= text_field 'account', 'email'  %></p>
+</fieldset>	
+
+<fieldset><legend><strong>Business Information</strong></legend>
+	
+	<p><label for="account_business_name">Business name *</label><br/>
+	<%= text_field 'account', 'business_name'  %></p>
+
+	<p><label for="account_business_address">Business address *</label><br/>
+	<%= text_area 'account', 'business_address',"cols"=>45, "rows"=>4 %></p>
+
+	<p><label for="account_shipping_address">Shipping address (if different from business address)</label><br/>
+	<%= text_area 'account', 'shipping_address' ,"cols"=>45, "rows"=>4 %></p>
+
+	<p><label for="account_phone">Contact Phone *</label><br/>
+	<%= text_field 'account', 'phone'  %></p>
+
+	<p><label for="account_cellphone">Cellphone</label><br/>
+	<%= text_field 'account', 'cellphone'  %></p>
+
+	<p><label for="account_country">Country *</label><br/>
+	<%= text_field 'account', 'country'  %></p>
+	
+</fieldset>
+
+<fieldset><legend><strong>Payment Options</strong></legend>
+	<p><label for="account_bartercard">Use Bartercard</label>
+	<%= check_box("account", "bartercard" , {}, "1", "0") %></p>
+
+
+	<p><label for="account_bbx">Use BBX</label>
+	<%= check_box("account", "bbx" , {}, "1", "0") %></p>
+
+	<p><label for="account_ebank">Use E-Bank</label>
+	<%= check_box("account", "ebank" , {}, "1", "0") %></p>
+</fieldset>	
+
+
+<!--[eoform:account]-->
+

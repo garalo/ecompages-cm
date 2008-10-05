@@ -1,0 +1,13 @@
+
+<%= error_messages_for 'page' %>
+
+<!--[form:page]-->
+<p><label for="page_title"><strong>Page Title:</strong></label> <%= text_field 'page', 'title', "value"=>@page.title %></p>
+<p>
+<%= text_area('page', 'value' , "rows"=>20,"cols"=>55, "id"=>"rich-editable-#{@page.id}") %></p>
+
+<script language="JavaScript">
+	var id = <%= @page.id %>;
+  generate_wysiwyg('rich-editable-'+id);
+</script>
+<!--[eoform:page]-->

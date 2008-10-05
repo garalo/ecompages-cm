@@ -1,0 +1,78 @@
+<style type="text/css">
+ 
+ 
+  ul.postnav,ul.postnav li{margin:0;padding:0;list-style-type:none}
+  ul.postnav li{float:left;font-size:120%;margin-right: 5px;}
+  ul.postnav a{display:block;width:18em;padding:5px 0;font: bold 100% Verdana,Arial,sans-serif;
+    background: #C7FF5A;color: #333;
+    text-decoration:none;text-align:center}
+  ul.postnav a:hover{background: #A8E52F;color:#FFF}
+</style>
+
+
+<h2>Your Shopping Cart </h2>
+
+<% if @cart.size > 0 %>
+  <table class="carttable">
+    <tr>
+      <th></th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Remove</th>
+    </tr>
+  
+        <% for item in @cart.items %>
+            <% p = Product.find(item.product_id) %>
+            <% final_price = p.price_for_account(@account) %>
+            <% final_price = final_price * item.quantity %>
+      <tr>
+        <td><%= show_product_image(p, "thumb") %></td>
+        <td><%=p.title %></td>
+        <td><%=link_to(image_tag("/images/increase.gif"),{:action=>'add_to_cart', :pid=>p.id}, :method => :post) %>  
+          <%=item.quantity.to_s %> 
+             <%=link_to(image_tag("/images/decrease.gif"),{:action=>'decrease_quantity', :pid=>p.id}, :method => :post) if item.quantity >= 2 %>
+        </td>
+        <td><%=number_to_currency final_price %></td>
+        <td><%= link_to( image_tag("/images/trash.gif"), { :action => 'delete_from_cart', :pid => p.id }, :confirm => 'Are you sure to remove this product from your shopping cart?', :method => :post) %></td>
+      </tr>
+    <% end %>
+  
+    <tr><td></td><td>Sub total</td><td></td><td><%=number_to_currency session[:cart].sub_total %></td><td></td></tr>
+    <tr><td></td><td><%= Shop.tax_code_name %></td><td></td><td><%=number_to_currency session[:cart].tax_amount %></td><td></td></tr>
+    <tr><td></td><td>Total</td><td></td><td><%= number_to_currency session[:cart].total %></td><td></td></tr>
+  
+  </table>
+
+<% else%>  
+  Your shopping cart is empty. <br/>
+<% end %>  
+
+<h2>You can now</h2>
+<% if @account and @cart.size > 0 %>
+  
+  <ul class="postnav">
+    <li><%=link_to("Place Order", :action=>'place_order', :securitylevel=>1) %></li>
+  
+    <li><%=link_to("Continue Shopping", :action=>'index') %></li>
+    
+  </ul>
+
+<% elsif @account and @cart.size == 0 %>
+  <%=link_to("Continue Shopping", :action=>'index') %>
+<% else %>
+  <ul class="postnav">
+  <li><%=link_to("Login to Place Order", :action=>'login') %></li>
+  
+  <li><%=link_to("Register an Account", :action=>'registration') %></li>
+  
+</ul>
+  
+<% end %>  
+
+
+<script type="text/javascript">
+
+    Nifty("ul.postnav a","transparent");
+</script>
+

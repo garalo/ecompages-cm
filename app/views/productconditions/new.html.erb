@@ -1,0 +1,8 @@
+<h2>New Product Condition Label</h2>
+<hr>
+<% form_tag :action => 'create' do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "Create" %> <%= link_to 'Cancel', :action => 'list' %>
+<% end %>
+
+

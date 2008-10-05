@@ -1,0 +1,2 @@
+module TabsHelper
+end

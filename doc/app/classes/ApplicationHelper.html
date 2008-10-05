@@ -1,0 +1,904 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ApplicationHelper</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ApplicationHelper</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/helpers/application_helper_rb.html">
+                app/helpers/application_helper.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Methods added to this helper will be available to all templates in the
+application.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000231">blank_space</a>&nbsp;&nbsp;
+      <a href="#M000235">show_account_type</a>&nbsp;&nbsp;
+      <a href="#M000241">show_cart</a>&nbsp;&nbsp;
+      <a href="#M000249">show_category_structure</a>&nbsp;&nbsp;
+      <a href="#M000250">show_category_structure_with_link</a>&nbsp;&nbsp;
+      <a href="#M000239">show_first_image</a>&nbsp;&nbsp;
+      <a href="#M000236">show_freight_option</a>&nbsp;&nbsp;
+      <a href="#M000237">show_island</a>&nbsp;&nbsp;
+      <a href="#M000238">show_isrural</a>&nbsp;&nbsp;
+      <a href="#M000240">show_price</a>&nbsp;&nbsp;
+      <a href="#M000233">show_price_editor</a>&nbsp;&nbsp;
+      <a href="#M000234">show_price_level</a>&nbsp;&nbsp;
+      <a href="#M000244">show_product_condition</a>&nbsp;&nbsp;
+      <a href="#M000243">show_product_delivery</a>&nbsp;&nbsp;
+      <a href="#M000242">show_product_image</a>&nbsp;&nbsp;
+      <a href="#M000245">show_product_warranty</a>&nbsp;&nbsp;
+      <a href="#M000246">show_sub_categories</a>&nbsp;&nbsp;
+      <a href="#M000247">show_sub_categories_for_fontpage_darken</a>&nbsp;&nbsp;
+      <a href="#M000248">show_sub_categories_for_fontpage_no_darken</a>&nbsp;&nbsp;
+      <a href="#M000232">show_tax_setting_for_frontend</a>&nbsp;&nbsp;
+      <a href="#M000251">text_with_br</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000231" class="method-detail">
+        <a name="M000231"></a>
+
+        <div class="method-heading">
+          <a href="#M000231" class="method-signature">
+          <span class="method-name">blank_space</span><span class="method-args">(num)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+TODO: Code clear
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000231-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000231-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 5</span>
+ 5:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">blank_space</span>(<span class="ruby-identifier">num</span>)
+ 6:     <span class="ruby-identifier">html</span> = <span class="ruby-value str">&quot;&quot;</span>
+ 7:     <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">num</span>
+ 8:       <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot; &amp;nbsp;&quot;</span>
+ 9:     <span class="ruby-keyword kw">end</span>
+10:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">html</span>
+11:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000235" class="method-detail">
+        <a name="M000235"></a>
+
+        <div class="method-heading">
+          <a href="#M000235" class="method-signature">
+          <span class="method-name">show_account_type</span><span class="method-args">(account)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000235-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000235-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 76</span>
+76:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_account_type</span>(<span class="ruby-identifier">account</span>)
+77:     <span class="ruby-identifier">t</span> = <span class="ruby-value str">&quot;Unknown&quot;</span>
+78:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">account</span>.<span class="ruby-identifier">account_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+79:       <span class="ruby-identifier">t</span> = <span class="ruby-value str">&quot;Dealer&quot;</span>
+80:     <span class="ruby-keyword kw">end</span>
+81:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">account</span>.<span class="ruby-identifier">account_type</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+82:       <span class="ruby-identifier">t</span> = <span class="ruby-value str">&quot;Direct Buyer&quot;</span>
+83:     <span class="ruby-keyword kw">end</span>
+84:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">t</span>
+85:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000241" class="method-detail">
+        <a name="M000241"></a>
+
+        <div class="method-heading">
+          <a href="#M000241" class="method-signature">
+          <span class="method-name">show_cart</span><span class="method-args">(cart, account)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000241-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000241-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 174</span>
+174:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_cart</span>(<span class="ruby-identifier">cart</span>, <span class="ruby-identifier">account</span>)
+175:     <span class="ruby-identifier">empty_line</span> = <span class="ruby-value str">&quot;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&quot;</span>
+176:     
+177:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">cart</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">cart</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+178:       <span class="ruby-identifier">html</span> = <span class="ruby-value str">&quot;&lt;fieldset&gt;&lt;legend&gt;&quot;</span>
+179:       <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;&lt;strong&gt;&quot;</span>
+180:       <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;#{cart.size} item(s) in your shopping cart &quot;</span>
+181:       
+182:       <span class="ruby-comment cmt">#if @passed</span>
+183:       <span class="ruby-comment cmt">#html += link_to &quot;(Click here to Place an Order)&quot;, :action=&gt;'place_order',:controller=&gt;'go'</span>
+184:       <span class="ruby-comment cmt">#else</span>
+185:       <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-value str">&quot; [Click here to Place Order] &quot;</span>, {<span class="ruby-identifier">:action=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'place_order'</span>,<span class="ruby-identifier">:controller=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'go'</span>, <span class="ruby-identifier">:securitylevel=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">&quot;1&quot;</span>})
+186:       <span class="ruby-comment cmt">#end    </span>
+187:       
+188:       <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;&lt;/strong&gt; &lt;/legend&gt;&quot;</span>
+189:       <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span><span class="ruby-value str">&quot;&lt;table class=carttable&gt;&quot;</span>
+190:       <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span><span class="ruby-value str">&quot;&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Quantity&lt;/th&gt;&lt;th&gt;Price&lt;/th&gt;&lt;th&gt;Remove&lt;/th&gt;&lt;/tr&gt;&quot;</span>
+191:       <span class="ruby-comment cmt">#sub_total = 0</span>
+192:       <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">item</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">cart</span>.<span class="ruby-identifier">items</span>
+193:         <span class="ruby-identifier">p</span> = <span class="ruby-constant">Product</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">item</span>.<span class="ruby-identifier">product_id</span>)
+194:         <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;&lt;tr&gt;&quot;</span>
+195:         <span class="ruby-identifier">del_str</span> = <span class="ruby-identifier">link_to</span>( <span class="ruby-identifier">image_tag</span>(<span class="ruby-value str">&quot;/images/trash.gif&quot;</span>), { <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'delete_from_cart'</span>, <span class="ruby-identifier">:pid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">p</span> }, <span class="ruby-identifier">:confirm</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Are you sure to remove this product from your shopping cart?'</span>, <span class="ruby-identifier">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:post</span>)
+196:         <span class="ruby-identifier">img_str</span> = <span class="ruby-identifier">show_product_image</span>(<span class="ruby-identifier">p</span>, <span class="ruby-value str">&quot;thumb&quot;</span>)
+197:         <span class="ruby-identifier">final_price</span> = <span class="ruby-identifier">p</span>.<span class="ruby-identifier">price_for_account</span>(<span class="ruby-identifier">account</span>)
+198:         <span class="ruby-comment cmt">#final_price = final_price * (1 - account.discount_percentage.to_f/100)</span>
+199:         <span class="ruby-identifier">final_price</span> = <span class="ruby-identifier">final_price</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">quantity</span>
+200:         <span class="ruby-identifier">inc_str</span> = <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">image_tag</span>(<span class="ruby-value str">&quot;/images/increase.gif&quot;</span>),{<span class="ruby-identifier">:action=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'add_to_cart'</span>, <span class="ruby-identifier">:pid=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">p</span>.<span class="ruby-identifier">id</span>}, <span class="ruby-identifier">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:post</span>)
+201:         <span class="ruby-identifier">dec_str</span> = <span class="ruby-value str">&quot;&quot;</span>
+202:         <span class="ruby-identifier">dec_str</span> = <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">image_tag</span>(<span class="ruby-value str">&quot;/images/decrease.gif&quot;</span>),{<span class="ruby-identifier">:action=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'decrease_quantity'</span>, <span class="ruby-identifier">:pid=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">p</span>.<span class="ruby-identifier">id</span>}, <span class="ruby-identifier">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:post</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">quantity</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">2</span>
+203:         <span class="ruby-identifier">quan_str</span> = <span class="ruby-identifier">inc_str</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&amp;nbsp;&amp;nbsp;&amp;nbsp;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">quantity</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&amp;nbsp;&amp;nbsp;&amp;nbsp;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">dec_str</span>
+204:         <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;&lt;td&gt;#{img_str}&lt;/td&gt;&lt;td&gt;#{p.title}&lt;/td&gt;&lt;td&gt;#{quan_str}&lt;/td&gt;&lt;td&gt;#{number_to_currency final_price}&lt;/td&gt;&lt;td&gt;#{del_str}&lt;/td&gt;&quot;</span> 
+205:         <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;&lt;/tr&gt;&quot;</span>
+206:         <span class="ruby-comment cmt">#sub_total += p.price</span>
+207:       <span class="ruby-keyword kw">end</span>
+208:       
+209:       <span class="ruby-comment cmt">#html += empty_line</span>
+210:       <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span><span class="ruby-node">&quot;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;Sub total&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;#{number_to_currency cart.sub_total}&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&quot;</span>
+211:       <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span><span class="ruby-node">&quot;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;#{Shop.tax_code_name}&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;#{number_to_currency cart.tax_amount}&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&quot;</span>
+212:       <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span><span class="ruby-node">&quot;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;Total&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;#{number_to_currency cart.total}&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&quot;</span>
+213:       
+214:       <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span><span class="ruby-value str">&quot;&lt;/table&gt;&quot;</span>
+215:       <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;&lt;/fieldset&gt;&quot;</span>
+216:       
+217:     <span class="ruby-keyword kw">else</span>
+218:       <span class="ruby-value str">&quot;&quot;</span>
+219:     <span class="ruby-keyword kw">end</span>  
+220:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000249" class="method-detail">
+        <a name="M000249"></a>
+
+        <div class="method-heading">
+          <a href="#M000249" class="method-signature">
+          <span class="method-name">show_category_structure</span><span class="method-args">(category, cid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000249-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000249-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 330</span>
+330:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_category_structure</span>(<span class="ruby-identifier">category</span>, <span class="ruby-identifier">cid</span>)
+331:     
+332:     <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">cid</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">id</span>)
+333:       <span class="ruby-identifier">txt</span> = <span class="ruby-identifier">category</span>.<span class="ruby-identifier">name</span>
+334:     <span class="ruby-keyword kw">else</span>
+335:       <span class="ruby-identifier">txt</span> = <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">category</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">:action=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'category'</span>,<span class="ruby-identifier">:id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">category</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">:controller=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'go'</span>)
+336:     <span class="ruby-keyword kw">end</span>  
+337:     
+338:     <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">category</span>.<span class="ruby-identifier">has_parent_category</span>)
+339:       <span class="ruby-identifier">txt</span> = <span class="ruby-identifier">show_category_structure</span>(<span class="ruby-identifier">category</span>.<span class="ruby-identifier">parent_category</span>, <span class="ruby-identifier">cid</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; - &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">txt</span>
+340:     <span class="ruby-keyword kw">else</span>  
+341:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">txt</span>
+342:     <span class="ruby-keyword kw">end</span>
+343:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000250" class="method-detail">
+        <a name="M000250"></a>
+
+        <div class="method-heading">
+          <a href="#M000250" class="method-signature">
+          <span class="method-name">show_category_structure_with_link</span><span class="method-args">(category)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000250-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000250-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 345</span>
+345:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_category_structure_with_link</span>(<span class="ruby-identifier">category</span>)
+346:     
+347:     <span class="ruby-identifier">txt</span> = <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">category</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">:action=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'category'</span>,<span class="ruby-identifier">:id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">category</span>.<span class="ruby-identifier">id</span>,<span class="ruby-identifier">:controller=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'go'</span>)
+348:     
+349:     <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">category</span>.<span class="ruby-identifier">has_parent_category</span>)
+350:       <span class="ruby-identifier">txt</span> = <span class="ruby-identifier">show_category_structure_with_link</span>(<span class="ruby-identifier">category</span>.<span class="ruby-identifier">parent_category</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; - &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">txt</span>
+351:     <span class="ruby-keyword kw">else</span>  
+352:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">txt</span>
+353:     <span class="ruby-keyword kw">end</span>
+354:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000239" class="method-detail">
+        <a name="M000239"></a>
+
+        <div class="method-heading">
+          <a href="#M000239" class="method-signature">
+          <span class="method-name">show_first_image</span><span class="method-args">(product)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000239-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000239-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 113</span>
+113:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_first_image</span>(<span class="ruby-identifier">product</span>)
+114:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">product</span>.<span class="ruby-identifier">images</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+115:       <span class="ruby-identifier">image_tag</span>(<span class="ruby-identifier">url_for_file_column</span>(<span class="ruby-identifier">product</span>.<span class="ruby-identifier">images</span>[<span class="ruby-value">0</span>], <span class="ruby-value str">&quot;image&quot;</span>, <span class="ruby-value str">&quot;large&quot;</span>))
+116:     <span class="ruby-keyword kw">else</span>
+117:       <span class="ruby-identifier">image_tag</span>(<span class="ruby-value str">&quot;/images/no-image.gif&quot;</span>)
+118:     <span class="ruby-keyword kw">end</span>  
+119:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000236" class="method-detail">
+        <a name="M000236"></a>
+
+        <div class="method-heading">
+          <a href="#M000236" class="method-signature">
+          <span class="method-name">show_freight_option</span><span class="method-args">(product)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000236-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000236-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 87</span>
+87:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_freight_option</span>(<span class="ruby-identifier">product</span>)
+88:     <span class="ruby-identifier">fo</span> = <span class="ruby-identifier">product</span>.<span class="ruby-identifier">freightoption</span>
+89:     <span class="ruby-comment cmt">#str = fo.name + &quot; &quot; + number_to_currency(fo.price)</span>
+90:     <span class="ruby-identifier">str</span> = <span class="ruby-identifier">number_to_currency</span>(<span class="ruby-identifier">fo</span>.<span class="ruby-identifier">price</span>)
+91:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fo</span>.<span class="ruby-identifier">price</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span><span class="ruby-value">.0</span>
+92:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">str</span>
+93:     <span class="ruby-keyword kw">else</span>
+94:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;$12 NI, $20 SI.&quot;</span>
+95:     <span class="ruby-keyword kw">end</span>  
+96:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000237" class="method-detail">
+        <a name="M000237"></a>
+
+        <div class="method-heading">
+          <a href="#M000237" class="method-signature">
+          <span class="method-name">show_island</span><span class="method-args">(value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000237-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000237-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 98</span>
+ 98:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_island</span>(<span class="ruby-identifier">value</span>)
+ 99:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;1&quot;</span>
+100:       <span class="ruby-value str">&quot;North Island&quot;</span>
+101:     <span class="ruby-keyword kw">else</span>
+102:       <span class="ruby-value str">&quot;South Island&quot;</span>
+103:     <span class="ruby-keyword kw">end</span>    
+104:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000238" class="method-detail">
+        <a name="M000238"></a>
+
+        <div class="method-heading">
+          <a href="#M000238" class="method-signature">
+          <span class="method-name">show_isrural</span><span class="method-args">(value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000238-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000238-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 105</span>
+105:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_isrural</span>(<span class="ruby-identifier">value</span>)
+106:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;1&quot;</span>
+107:       <span class="ruby-value str">&quot;Yes&quot;</span>
+108:     <span class="ruby-keyword kw">else</span>
+109:       <span class="ruby-value str">&quot;No&quot;</span>
+110:     <span class="ruby-keyword kw">end</span>    
+111:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000240" class="method-detail">
+        <a name="M000240"></a>
+
+        <div class="method-heading">
+          <a href="#M000240" class="method-signature">
+          <span class="method-name">show_price</span><span class="method-args">(product, account)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000240-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000240-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 121</span>
+121:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_price</span>(<span class="ruby-identifier">product</span>, <span class="ruby-identifier">account</span>)
+122:     
+123:     <span class="ruby-comment cmt">#price = price * (1 - discount_percentage.to_f/100)</span>
+124:     
+125:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">account</span>.<span class="ruby-identifier">nil?</span>
+126:       <span class="ruby-comment cmt"># Show price including Tax</span>
+127:       
+128:       <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Shop</span>.<span class="ruby-identifier">is_tax_incl</span>
+129:         <span class="ruby-identifier">price</span> = <span class="ruby-identifier">product</span>.<span class="ruby-identifier">price</span>
+130:       <span class="ruby-keyword kw">else</span>
+131:         <span class="ruby-identifier">price</span> = <span class="ruby-identifier">product</span>.<span class="ruby-identifier">price</span> <span class="ruby-operator">*</span> (<span class="ruby-value">1</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Shop</span>.<span class="ruby-identifier">tax_rate</span><span class="ruby-operator">/</span><span class="ruby-value">100</span>)
+132:       <span class="ruby-keyword kw">end</span>
+133: 
+134:     <span class="ruby-keyword kw">else</span>
+135:       <span class="ruby-comment cmt">#pricelevel = account.pricelevel</span>
+136:       
+137:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">account</span>.<span class="ruby-identifier">price_level_id</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">1</span>
+138:         <span class="ruby-comment cmt">#retail price account, excl GST</span>
+139:         <span class="ruby-comment cmt">#price = product.price</span>
+140:         
+141:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Shop</span>.<span class="ruby-identifier">is_tax_incl</span>
+142:           <span class="ruby-identifier">price</span> = <span class="ruby-identifier">product</span>.<span class="ruby-identifier">price</span>
+143:         <span class="ruby-keyword kw">else</span>
+144:           <span class="ruby-identifier">price</span> = <span class="ruby-identifier">product</span>.<span class="ruby-identifier">price</span> <span class="ruby-operator">*</span> (<span class="ruby-value">1</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Shop</span>.<span class="ruby-identifier">tax_rate</span><span class="ruby-operator">/</span><span class="ruby-value">100</span>)
+145:         <span class="ruby-keyword kw">end</span>
+146:       <span class="ruby-keyword kw">else</span>
+147:         <span class="ruby-identifier">pricelevelsmatrix</span> = <span class="ruby-constant">Pricelevelsmatrix</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:first</span>, 
+148:           <span class="ruby-identifier">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-value str">&quot;pricelevel_id = ? and product_id = ?&quot;</span>, 
+149:             <span class="ruby-identifier">account</span>.<span class="ruby-identifier">price_level_id</span>, 
+150:             <span class="ruby-identifier">product</span>.<span class="ruby-identifier">id</span>])
+151:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pricelevelsmatrix</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword kw">nil</span>
+152:           <span class="ruby-comment cmt">#price = pricelevelsmatrix.price</span>
+153:           
+154:           <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Shop</span>.<span class="ruby-identifier">is_tax_incl</span>
+155:             <span class="ruby-identifier">price</span> = <span class="ruby-identifier">pricelevelsmatrix</span>.<span class="ruby-identifier">price</span>
+156:           <span class="ruby-keyword kw">else</span>
+157:             <span class="ruby-identifier">price</span> = <span class="ruby-identifier">pricelevelsmatrix</span>.<span class="ruby-identifier">price</span> <span class="ruby-operator">*</span> (<span class="ruby-value">1</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Shop</span>.<span class="ruby-identifier">tax_rate</span><span class="ruby-operator">/</span><span class="ruby-value">100</span>)
+158:           <span class="ruby-keyword kw">end</span>
+159:           
+160:         <span class="ruby-keyword kw">else</span>
+161:           <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Shop</span>.<span class="ruby-identifier">is_tax_incl</span>
+162:             <span class="ruby-identifier">price</span> = <span class="ruby-identifier">product</span>.<span class="ruby-identifier">price</span>
+163:           <span class="ruby-keyword kw">else</span>
+164:             <span class="ruby-identifier">price</span> = <span class="ruby-identifier">product</span>.<span class="ruby-identifier">price</span> <span class="ruby-operator">*</span> (<span class="ruby-value">1</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Shop</span>.<span class="ruby-identifier">tax_rate</span><span class="ruby-operator">/</span><span class="ruby-value">100</span>)
+165:           <span class="ruby-keyword kw">end</span>
+166:         <span class="ruby-keyword kw">end</span>    
+167:         
+168:       <span class="ruby-keyword kw">end</span>
+169:     <span class="ruby-keyword kw">end</span>    
+170:     
+171:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">number_to_currency</span>(<span class="ruby-identifier">price</span>)
+172:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000233" class="method-detail">
+        <a name="M000233"></a>
+
+        <div class="method-heading">
+          <a href="#M000233" class="method-signature">
+          <span class="method-name">show_price_editor</span><span class="method-args">(pricelevel, product)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000233-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000233-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 29</span>
+29:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_price_editor</span>(<span class="ruby-identifier">pricelevel</span>, <span class="ruby-identifier">product</span>)
+30:     <span class="ruby-identifier">price_set</span> = <span class="ruby-keyword kw">true</span>
+31:     <span class="ruby-identifier">price_set</span> = <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Pricelevelsmatrix</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-value str">&quot;pricelevel_id = ? and product_id = ?&quot;</span>, <span class="ruby-identifier">pricelevel</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">product</span>.<span class="ruby-identifier">id</span>]).<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+32:     
+33:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">price_set</span>
+34:       <span class="ruby-identifier">pricematrix</span> = <span class="ruby-constant">Pricelevelsmatrix</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:first</span>, <span class="ruby-identifier">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-value str">&quot;pricelevel_id = ? and product_id = ?&quot;</span>, <span class="ruby-identifier">pricelevel</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">product</span>.<span class="ruby-identifier">id</span>])
+35:       
+36:       <span class="ruby-node">&quot;&lt;span id=edit-pricelevel-#{pricelevel.id}-#{product.id}&gt;#{pricematrix.price}&lt;/span&gt;&lt;br/&gt;
+37:       &lt;script&gt;
+38:         new Ajax.InPlaceEditor('edit-pricelevel-#{pricelevel.id}-#{product.id}', 
+39:                         '#{Shop.install_dir_name}/admin/update_ajax_price_matrix', 
+40:                         { callback: function(form, value) { 
+41:                                 return 'pricelevel_id=#{pricelevel.id}&amp;product_id=#{product.id}&amp;field=price&amp;nvalue=' + escape(value) },
+42:                                 size:8});
+43:       &lt;/script&gt;&quot;</span>
+44:       
+45:     <span class="ruby-keyword kw">else</span>
+46:       <span class="ruby-identifier">newpricematrix</span> = <span class="ruby-constant">Pricelevelsmatrix</span>.<span class="ruby-identifier">new</span>
+47:       <span class="ruby-identifier">newpricematrix</span>.<span class="ruby-identifier">pricelevel_id</span> = <span class="ruby-identifier">pricelevel</span>.<span class="ruby-identifier">id</span>
+48:       <span class="ruby-identifier">newpricematrix</span>.<span class="ruby-identifier">product_id</span> = <span class="ruby-identifier">product</span>.<span class="ruby-identifier">id</span>
+49:       <span class="ruby-identifier">newpricematrix</span>.<span class="ruby-identifier">price</span> = <span class="ruby-value">0</span><span class="ruby-value">.0</span>
+50:       
+51:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">newpricematrix</span>.<span class="ruby-identifier">save</span>
+52:         <span class="ruby-node">&quot;&lt;span id=edit-pricelevel-#{pricelevel.id}-#{product.id}&gt;#{newpricematrix.price}&lt;/span&gt;&lt;br/&gt;
+53:         &lt;script&gt;
+54:                 new Ajax.InPlaceEditor('edit-pricelevel-#{pricelevel.id}-#{product.id}', 
+55:                                 '#{Shop.install_dir_name}/admin/update_ajax_price_matrix', 
+56:                                 { callback: function(form, value) { 
+57:                                         'pricelevel_id=#{pricelevel.id}&amp;product_id=#{product.id}&amp;field=price&amp;nvalue=' + escape(value) },
+58:                                         size:8});
+59:         &lt;/script&gt;&quot;</span>
+60:       <span class="ruby-keyword kw">else</span>
+61:         <span class="ruby-value str">&quot;Error&quot;</span>
+62:       <span class="ruby-keyword kw">end</span>    
+63:     <span class="ruby-keyword kw">end</span>
+64:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000234" class="method-detail">
+        <a name="M000234"></a>
+
+        <div class="method-heading">
+          <a href="#M000234" class="method-signature">
+          <span class="method-name">show_price_level</span><span class="method-args">(account)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000234-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000234-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 66</span>
+66:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_price_level</span>(<span class="ruby-identifier">account</span>)
+67:     <span class="ruby-identifier">size</span> = <span class="ruby-constant">Pricelevel</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-value str">&quot;id = ?&quot;</span>, <span class="ruby-identifier">account</span>.<span class="ruby-identifier">price_level_id</span>]).<span class="ruby-identifier">size</span>
+68:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+69:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Pricelevel</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">account</span>.<span class="ruby-identifier">price_level_id</span>).<span class="ruby-identifier">title</span>
+70:     <span class="ruby-keyword kw">else</span>
+71:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;Unknown&quot;</span>
+72:     <span class="ruby-keyword kw">end</span>    
+73:     
+74:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000244" class="method-detail">
+        <a name="M000244"></a>
+
+        <div class="method-heading">
+          <a href="#M000244" class="method-signature">
+          <span class="method-name">show_product_condition</span><span class="method-args">(product)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000244-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000244-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 245</span>
+245:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_product_condition</span>(<span class="ruby-identifier">product</span>)
+246:     
+247:     <span class="ruby-identifier">c</span> = <span class="ruby-constant">Productcondition</span>.<span class="ruby-identifier">find_all_by_id</span>(<span class="ruby-identifier">product</span>.<span class="ruby-identifier">condition_id</span>)
+248:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+249:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">c</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">condition</span>
+250:     <span class="ruby-keyword kw">else</span>
+251:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;Unknown&quot;</span>
+252:     <span class="ruby-keyword kw">end</span>    
+253:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000243" class="method-detail">
+        <a name="M000243"></a>
+
+        <div class="method-heading">
+          <a href="#M000243" class="method-signature">
+          <span class="method-name">show_product_delivery</span><span class="method-args">(product)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000243-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000243-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 237</span>
+237:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_product_delivery</span>(<span class="ruby-identifier">product</span>)
+238:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">product</span>.<span class="ruby-identifier">delivery</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+239:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;Yes&quot;</span>
+240:     <span class="ruby-keyword kw">else</span>
+241:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;No&quot;</span>
+242:     <span class="ruby-keyword kw">end</span>    
+243:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000242" class="method-detail">
+        <a name="M000242"></a>
+
+        <div class="method-heading">
+          <a href="#M000242" class="method-signature">
+          <span class="method-name">show_product_image</span><span class="method-args">(product, size)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000242-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000242-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 222</span>
+222:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_product_image</span>(<span class="ruby-identifier">product</span>, <span class="ruby-identifier">size</span>)
+223:     
+224:     <span class="ruby-identifier">numImages</span> = <span class="ruby-identifier">product</span>.<span class="ruby-identifier">images</span>.<span class="ruby-identifier">size</span>
+225:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">numImages</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+226:       <span class="ruby-identifier">img</span> = <span class="ruby-identifier">product</span>.<span class="ruby-identifier">images</span>[<span class="ruby-value">0</span>]
+227:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">image_tag</span>(<span class="ruby-identifier">url_for_file_column</span>(<span class="ruby-identifier">img</span>, <span class="ruby-value str">&quot;image&quot;</span>, <span class="ruby-identifier">size</span>),<span class="ruby-identifier">:alt=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">&quot;Click to view large picture&quot;</span>,<span class="ruby-identifier">:style=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">&quot;border:solid 0px #cccccc;&quot;</span>), <span class="ruby-identifier">:action=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'product'</span> , <span class="ruby-identifier">:controller=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'go'</span>, <span class="ruby-identifier">:id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">product</span>.<span class="ruby-identifier">id</span>)
+228:     <span class="ruby-keyword kw">else</span>
+229:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;thumb&quot;</span>
+230:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">image_tag</span>(<span class="ruby-value str">&quot;/images/no-image-32.gif&quot;</span>)
+231:       <span class="ruby-keyword kw">else</span>
+232:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">image_tag</span>(<span class="ruby-value str">&quot;/images/no-image.gif&quot;</span>)
+233:       <span class="ruby-keyword kw">end</span>    
+234:     <span class="ruby-keyword kw">end</span>    
+235:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000245" class="method-detail">
+        <a name="M000245"></a>
+
+        <div class="method-heading">
+          <a href="#M000245" class="method-signature">
+          <span class="method-name">show_product_warranty</span><span class="method-args">(product)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000245-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000245-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 255</span>
+255:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_product_warranty</span>(<span class="ruby-identifier">product</span>)
+256:     <span class="ruby-identifier">c</span> = <span class="ruby-constant">Productwarranty</span>.<span class="ruby-identifier">find_all_by_id</span>(<span class="ruby-identifier">product</span>.<span class="ruby-identifier">warranty_id</span>)
+257:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+258:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">c</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">warranty</span>
+259:     <span class="ruby-keyword kw">else</span>
+260:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;Unknown&quot;</span>
+261:     <span class="ruby-keyword kw">end</span>    
+262:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000246" class="method-detail">
+        <a name="M000246"></a>
+
+        <div class="method-heading">
+          <a href="#M000246" class="method-signature">
+          <span class="method-name">show_sub_categories</span><span class="method-args">(category, level)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000246-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000246-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 264</span>
+264:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_sub_categories</span>(<span class="ruby-identifier">category</span>, <span class="ruby-identifier">level</span>)
+265:     <span class="ruby-identifier">script</span> = <span class="ruby-node">&quot;&lt;script language='JavaScript' type='text/javascript'&gt;
+266:                 var ajax = new Ajax.InPlaceEditor('edit-category-name-#{category.id}', 
+267:                                 '#{Shop.install_dir_name}/admin/update_ajax_category_name', 
+268:                                 { callback: function(form, value) { 
+269:                                         return 'id=#{category.id}&amp;field=name&amp;nvalue=' + escape(value) }, size:16 });
+270:         &lt;/script&gt;&quot;</span>
+271:         
+272:     <span class="ruby-identifier">html</span> = <span class="ruby-identifier">level</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;&lt;span id='edit-category-name-#{category.id}'&gt;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;/span&gt; (&quot;</span> <span class="ruby-operator">+</span>
+273:       <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">image_tag</span>(<span class="ruby-value str">&quot;/images/trash.gif&quot;</span>), { <span class="ruby-identifier">:controller=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'categories'</span>, <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'delete'</span>, <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">id</span>}, 
+274:       <span class="ruby-identifier">:confirm</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Do you want to delete category &lt;'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">name</span>  <span class="ruby-operator">+</span>  <span class="ruby-value str">'&gt;? This operation will move all products in this category to root category.'</span>, <span class="ruby-identifier">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'post'</span>) <span class="ruby-operator">+</span> 
+275:       <span class="ruby-value str">&quot;)&lt;br/&gt;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">script</span>
+276:         
+277: 
+278:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">number_of_sub_categories</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+279:       
+280:       <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">sub</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">sub_categories</span>
+281:         <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">show_sub_categories</span>(<span class="ruby-identifier">sub</span>, <span class="ruby-identifier">level</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">level</span>)
+282:       <span class="ruby-keyword kw">end</span>
+283:     <span class="ruby-keyword kw">end</span>
+284:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">html</span>
+285:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000247" class="method-detail">
+        <a name="M000247"></a>
+
+        <div class="method-heading">
+          <a href="#M000247" class="method-signature">
+          <span class="method-name">show_sub_categories_for_fontpage_darken</span><span class="method-args">(category, level, query)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000247-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000247-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 287</span>
+287:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_sub_categories_for_fontpage_darken</span>(<span class="ruby-identifier">category</span>, <span class="ruby-identifier">level</span>, <span class="ruby-identifier">query</span>)
+288:     <span class="ruby-identifier">category_name</span> = <span class="ruby-identifier">category</span>.<span class="ruby-identifier">name</span>
+289:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">label</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">query</span>)
+290:       
+291:     <span class="ruby-keyword kw">else</span>
+292:       <span class="ruby-identifier">category_name</span> = <span class="ruby-value str">&quot;&lt;span class='darken'&gt;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">category_name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;/span&gt;&quot;</span>
+293:     <span class="ruby-keyword kw">end</span>
+294:     
+295:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">is_top_level_sub_categories</span>
+296:       <span class="ruby-identifier">html</span> = <span class="ruby-identifier">level</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-value str">&quot;&lt;span class='top_category_title'&gt;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">category_name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;/span&gt;&quot;</span>, <span class="ruby-identifier">:action=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'category'</span>, <span class="ruby-identifier">:id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">category</span>, <span class="ruby-identifier">:controller=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'go'</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;br/&gt;&quot;</span>
+297:     <span class="ruby-keyword kw">else</span>
+298:       <span class="ruby-identifier">html</span> = <span class="ruby-identifier">level</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">category_name</span>, <span class="ruby-identifier">:action=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'category'</span>, <span class="ruby-identifier">:id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">category</span>, <span class="ruby-identifier">:controller=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'go'</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;br/&gt;&quot;</span>
+299:     <span class="ruby-keyword kw">end</span>    
+300:     
+301:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">number_of_sub_categories</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+302:       
+303:       <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">sub</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">sub_categories</span>
+304:         <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">show_sub_categories_for_fontpage_darken</span>(<span class="ruby-identifier">sub</span>, <span class="ruby-identifier">level</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">level</span>, <span class="ruby-identifier">query</span>)
+305:       <span class="ruby-keyword kw">end</span>
+306:     <span class="ruby-keyword kw">end</span>
+307:       
+308:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">html</span>
+309:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000248" class="method-detail">
+        <a name="M000248"></a>
+
+        <div class="method-heading">
+          <a href="#M000248" class="method-signature">
+          <span class="method-name">show_sub_categories_for_fontpage_no_darken</span><span class="method-args">(category, level)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000248-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000248-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 311</span>
+311:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_sub_categories_for_fontpage_no_darken</span>(<span class="ruby-identifier">category</span>, <span class="ruby-identifier">level</span>)
+312:     
+313:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">is_top_level_sub_categories</span>
+314:       <span class="ruby-identifier">html</span> = <span class="ruby-identifier">level</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-value str">&quot;&lt;span class='top_category_title'&gt;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;/span&gt;&quot;</span>, <span class="ruby-identifier">:action=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'category'</span>, <span class="ruby-identifier">:id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">category</span>, <span class="ruby-identifier">:controller=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'go'</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;br/&gt;&quot;</span>
+315:     <span class="ruby-keyword kw">else</span>
+316:       <span class="ruby-identifier">html</span> = <span class="ruby-identifier">level</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">category</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">:action=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'category'</span>, <span class="ruby-identifier">:id=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">category</span>, <span class="ruby-identifier">:controller=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">'go'</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;&lt;br/&gt;&quot;</span>
+317:     <span class="ruby-keyword kw">end</span>    
+318:     
+319:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">number_of_sub_categories</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+320:       
+321:       <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">sub</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">sub_categories</span>
+322:         <span class="ruby-identifier">html</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">show_sub_categories_for_fontpage_no_darken</span>(<span class="ruby-identifier">sub</span>, <span class="ruby-identifier">level</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">level</span>)
+323:       <span class="ruby-keyword kw">end</span>
+324:     <span class="ruby-keyword kw">end</span>
+325:       
+326:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">html</span>
+327:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000232" class="method-detail">
+        <a name="M000232"></a>
+
+        <div class="method-heading">
+          <a href="#M000232" class="method-signature">
+          <span class="method-name">show_tax_setting_for_frontend</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000232-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000232-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 13</span>
+13:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_tax_setting_for_frontend</span>
+14:     <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Shop</span>.<span class="ruby-identifier">is_tax_incl</span>
+15:       <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Shop</span>.<span class="ruby-identifier">tax_code_name</span>.<span class="ruby-identifier">blank?</span>
+16:         <span class="ruby-value str">&quot;&quot;</span>
+17:       <span class="ruby-keyword kw">else</span>
+18:         <span class="ruby-node">&quot;(#{Shop.tax_code_name} incl.)&quot;</span>
+19:       <span class="ruby-keyword kw">end</span>
+20:     <span class="ruby-keyword kw">else</span>
+21:       <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Shop</span>.<span class="ruby-identifier">tax_code_name</span>.<span class="ruby-identifier">blank?</span>
+22:         <span class="ruby-value str">&quot;&quot;</span>
+23:       <span class="ruby-keyword kw">else</span>
+24:         <span class="ruby-node">&quot;(#{Shop.tax_code_name} excl.)&quot;</span>
+25:       <span class="ruby-keyword kw">end</span>
+26:     <span class="ruby-keyword kw">end</span>
+27:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000251" class="method-detail">
+        <a name="M000251"></a>
+
+        <div class="method-heading">
+          <a href="#M000251" class="method-signature">
+          <span class="method-name">text_with_br</span><span class="method-args">(txt)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000251-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000251-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 356</span>
+356:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">text_with_br</span>(<span class="ruby-identifier">txt</span>)
+357:     <span class="ruby-identifier">t</span> = <span class="ruby-identifier">txt</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/\n/</span>,<span class="ruby-value str">'W2Y_Br'</span>)
+358:     <span class="ruby-identifier">t</span> = <span class="ruby-identifier">t</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'&amp;'</span>,<span class="ruby-value str">'&amp;amp;'</span>)
+359:     <span class="ruby-identifier">t</span> = <span class="ruby-identifier">t</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'W2Y_Br'</span>, <span class="ruby-value str">'&lt;br/&gt;'</span>)
+360:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">t</span>
+361:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

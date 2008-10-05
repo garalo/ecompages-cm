@@ -1,0 +1,246 @@
+.header_div {
+	background:#CDEB8B;
+	color:#006E2E;
+	padding:3px;
+	font-size:13px;
+	font-weight:bold;
+        border:2px solid #CDEB8B;
+}
+
+.explaination {
+	padding:5px;border:2px solid #ffd700;background:#ffffdd;
+}
+
+.ajax_value_area {
+	border:1px solid #eaeaea; 
+	background:#ffffcc;
+	font-size:11px;
+}
+
+.big_span {
+	font-size:16px;
+	font-weight:bold;
+}
+
+
+.category_list {
+	margin-top:5px;
+	margin-bottom:5px;
+	
+	text-align:left;
+	background:#fff;
+	padding:2px;
+	font-size:11px;
+}
+
+.hr_div {
+	margin-top:5px;
+	margin-bottom:5px;
+
+	text-align:right;
+	
+	padding:2px;
+	font-size:10px;
+}
+.small_ui {
+	font-size:10px;
+}
+
+legend {
+	font-size:13px;
+}
+
+img {
+	border:0px;
+}
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid #c00;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #FFFF88;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+div.uploadStatus {
+  margin: 5px;
+}
+
+div.progressBar {
+  margin: 5px;
+}
+
+div.progressBar div.border {
+  background-color: #fff;
+  border: 1px solid grey;
+  width: 100%;
+}
+
+div.progressBar div.background {
+  background-color: #333;
+  height: 18px;
+  width: 0%;
+}
+
+
+.message{
+	
+	text-align:center;
+	font-weight:bold;
+	font-size:13px;
+	padding:5px;
+	border:2px solid #ffd700;
+	background:#ffffdd;
+}
+
+
+
+
+/*- Menu Tabs --------------------------- */
+
+#tabs {
+background:#000066;
+font-size:11px;
+font-weight: 600;
+line-height: 1.2em;
+border:0px solid #666;
+vertical-align:bottom;
+margin-bottom:0;
+height:auto;
+}
+#tabs ul {
+margin:0;
+padding:10px 10px 0 0px;
+list-style:none; 
+}
+#tabs li {
+display:inline;
+margin:0;
+padding:0;
+}
+#tabs a {
+float:left;
+background:url("../images/tableft.gif") no-repeat left top;
+margin:0;
+padding:0 0 0 4px;
+text-decoration:none;  
+}
+#tabs a span {
+float:left;
+display:block;
+background:url("../images/tabright.gif") no-repeat right top;
+padding:5px 15px 4px 6px;
+color:#555; 
+}
+
+#tabs a span {float:none;}
+
+#tabs a:hover span {
+color:#FFF;
+}
+#tabs a:hover {
+background-position:0% -42px;
+}
+#tabs a:hover span {
+background-position:100% -42px;
+}
+
+#tabs #current a {
+background-position:0% -42px; 
+}
+#tabs #current a span {
+background-position:100% -42px;
+}
+
+
+/*Credits: Dynamic Drive CSS Library */
+/*URL: http://www.dynamicdrive.com/style/ */
+
+.ddoverlap{
+border-bottom: 1px solid #ccc;
+}
+
+.ddoverlap ul{
+padding: 0;
+margin: 0;
+font: bold 120% Arial;
+list-style-type: none;
+}
+
+.ddoverlap li{
+display: inline;
+margin: 0;
+}
+
+.ddoverlap li a{
+padding: 3px 7px;
+text-decoration: none;
+padding-right: 32px; /*extra right padding to account for curved right edge of tab image*/
+color: #666;
+background: transparent url(../images/righttabdefault.gif) 100% 1px no-repeat; /*give illusion of shifting 1px down vertically*/
+border-left: 1px solid #ccc;
+position: relative;
+display: block;
+float: left;
+margin-left: -20px; /*shift tabs 20px to the left so they overlap*/
+left: 20px;
+}
+
+.ddoverlap li a:visited{
+color: #666;
+}
+
+.ddoverlap li a:hover{
+text-decoration: none;
+}
+
+.ddoverlap li.selected a{ /*selected tab style*/
+color: black;
+z-index: 100; /*higher z-index so selected tab is topmost*/
+top: 1px; /*Shift tab 1px down so the border beneath it is covered*/
+background: transparent url(../images/righttabselected.gif) 100% 0 no-repeat;
+}
+
+.ddoverlap li.selected a:hover{
+text-decoration: none;
+}
+
+
+
+<!--[if IE]>
+
+.ddoverlap{
+height: 1%;  /*Apply Holly 3px jog hack to get IE to position bottom border correctly beneath the menu*/
+}
+
+<![endif]-->
+
+

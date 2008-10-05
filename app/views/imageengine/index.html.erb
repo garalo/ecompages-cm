@@ -1,0 +1,18 @@
+<h3>Adding Image</h3>
+<p>
+<% form_tag( { :action => 'add_image'}, :multipart => true ) do %> 
+	<%= text_field 'imageobject', 'name' %> <br/>
+		<%= file_column_field "imageobject", "image" %> <br/>
+		<%= submit_tag "Upload" %> 
+<% end %>
+</p>
+
+<h3>Listing Images</h3>
+<% for img in @images %>
+
+<%= img.name %> | 
+<%= image_tag(url_for_file_column(img, "image"),:alt=>"Click to view large picture",:style=>"border:solid 1px #cccccc;") %> | 
+	
+<%= link_to image_tag("/images/trash.gif"), { :action => 'delete_image', :id => img }, :confirm => 'Are you sure to remove this image?', :method => :post %> <br/>
+	
+<% end %>

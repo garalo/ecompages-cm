@@ -1,0 +1,10 @@
+<%= error_messages_for 'tab' %>
+
+<!--[form:tab]-->
+<p><label for="tab_name"><strong>Name of Menu Tab</strong></label> <%= text_field 'tab', 'name' , "size"=>8 %></p>
+
+<p><label for="tab_visible"><strong>Visible</strong></label>
+<%= check_box("tab", "visible" , {}, "1", "0") %>
+</p>
+<!--[eoform:tab]-->
+

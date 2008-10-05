@@ -1,0 +1,183 @@
+body{
+	background-color: #fff; color: #333; 
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:13px;
+  	margin:0;
+	padding:0;
+	background:#E8ECDF;
+}
+
+b{font-size: 110%;}
+em{color: red;}
+
+body a:visited{
+color: #333;
+}
+body a:hover{
+text-decoration: none;
+}
+
+#maincontainer{
+width: 840px; /*Width of main container*/
+margin: 0 auto; /*Center container on page*/
+border-bottom:2px solid #ccc;
+border-right:2px solid #ccc;
+border-left:1px solid #ccc;
+background:#fff;
+}
+
+#topsection{
+background: #eaeaea;
+height: 101px; /*Height of top section*/
+
+}
+
+#topsection h1{
+margin: 0;
+padding-top: 15px;
+}
+
+#contentwrapper{
+float: left;
+width: 100%;
+}
+
+#contentcolumn{
+margin-left: 200px; /*Set left margin to LeftColumnWidth*/
+}
+
+#leftcolumn{
+float: left;
+width: 200px; /*Width of left column*/
+margin-left: -840px; /*Set left margin to -(MainContainerWidth)*/
+height:600px;
+
+border-right:1px dashed #eaeaea;
+font-size:12px;
+}
+
+#footer{
+clear: left;
+width: 100%;
+background: #eaeaea;
+color: #666;
+text-align: center;
+padding: 4px 0;
+font-size:10px;
+}
+
+#footer a{
+color: #666;
+}
+
+.innertube{
+margin: 10px; /*Margins for inner DIV inside each column (to provide padding)*/
+margin-top: 0;
+}
+
+
+
+
+/*Credits: Dynamic Drive CSS Library */
+/*URL: http://www.dynamicdrive.com/style/ */
+
+.ddoverlap{
+border-bottom: 1px solid #ccc;
+}
+
+.ddoverlap ul{
+padding: 0;
+margin: 0;
+font: bold 110% Arial;
+list-style-type: none;
+}
+
+.ddoverlap li{
+display: inline;
+margin: 0;
+}
+
+.ddoverlap li a{
+padding: 3px 7px;
+text-decoration: none;
+padding-right: 32px; /*extra right padding to account for curved right edge of tab image*/
+color: #666;
+background: transparent url(../images/righttabdefault.gif) 100% 1px no-repeat; /*give illusion of shifting 1px down vertically*/
+border-left: 1px solid #C0BFB3;
+position: relative;
+display: block;
+float: left;
+margin-left: -20px; /*shift tabs 20px to the left so they overlap*/
+left: 20px;
+}
+
+.ddoverlap li a:visited{
+color: #666;
+}
+
+.ddoverlap li a:hover{
+text-decoration: none;
+}
+
+.ddoverlap li.selected a{ /*selected tab style*/
+color: black;
+z-index: 100; /*higher z-index so selected tab is topmost*/
+top: 1px; /*Shift tab 1px down so the border beneath it is covered*/
+background: transparent url(../images/righttabselected.gif) 100% 0 no-repeat;
+}
+
+.ddoverlap li.selected a:hover{
+text-decoration: none;
+}
+
+
+
+<!--[if IE]>
+
+.ddoverlap{
+height: 1%;  /*Apply Holly 3px jog hack to get IE to position bottom border correctly beneath the menu*/
+}
+
+<![endif]-->
+
+
+.wireframemenu{
+border: 1px solid #C0C0C0;
+background-color: white;
+border-bottom-width: 0;
+width: 170px;
+}
+
+* html .wireframemenu{ /*IE only rule. Original menu width minus all left/right paddings */
+width: 164px;
+}
+
+.wireframemenu ul{
+padding: 0;
+margin: 0;
+list-style-type: none;
+}
+
+.wireframemenu a{
+font: bold 13px Verdana;
+padding: 4px 3px;
+display: block;
+width: 100%; /*Define width for IE6's sake*/
+color: #595959;
+text-decoration: none;
+border-bottom: 1px solid #C0C0C0;
+}
+
+.wireframemenu a:visited{
+color: #595959;
+}
+
+html>body .wireframemenu a{ /*Non IE rule*/
+width: auto;
+}
+
+.wireframemenu a:hover{
+background-color: #F8FBBD;
+color: black;
+}
+

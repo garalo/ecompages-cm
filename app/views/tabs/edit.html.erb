@@ -1,0 +1,9 @@
+<h2>Editing tab</h2>
+<hr/>
+
+<br/>
+
+<% form_tag :action => 'update', :id => @tab do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %> <%= link_to 'Cancel', :action => 'list', :controller => 'tabs' %>
+<% end %>

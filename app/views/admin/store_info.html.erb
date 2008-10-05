@@ -1,0 +1,98 @@
+
+<h2>Business Info</h2>
+<hr/>
+
+<br/>
+
+<% form_tag(:action=>'store_info') do%>
+<table border="0">
+  
+  <tbody>
+    <tr>
+      <td>Store Name</td>
+      <td><%=text_field("store","shop_name" ,"value"=>@store.shop_name)%></td>
+    </tr>
+    <tr>
+      <td>Administrator Email</td>
+      <td><%=text_field("store","admin_email","value"=>@store.admin_email)%></td>
+    </tr>
+    <tr>
+      <td>Company Name</td>
+      <td><%=text_field("store","company_name","value"=>@store.company_name)%></td>
+    </tr>
+    <tr>
+      <td>Business Address</td>
+      <td><%=text_area("store","b_addr", "cols"=>45, "rows"=>4,"value"=>@store.b_addr)%></td>
+    </tr>
+    <tr>
+      <td>Business Phone</td>
+      <td><%=text_field("store","b_phone","value"=>@store.b_phone)%></td>
+    </tr>
+    <tr>
+      <td>Business Mobile Phone</td>
+      <td><%=text_field("store","b_mobile","value"=>@store.b_mobile)%></td>
+    </tr>
+    <tr>
+      <td>Business Bank Account for Customer Payment</td>
+      <td><%=text_field("store","b_bank_acct","value"=>@store.b_bank_acct)%></td>
+    </tr>
+    <tr>
+      <td>Store Domain Name (e.g., http://www.myshop.com)</td>
+      <td><%=text_field("store","b_website","value"=>@store.b_website)%></td>
+    </tr>
+  </tbody>
+</table>
+
+  <%=submit_tag("Save")%>
+<% end %>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<h2>Application Configuration</h2>
+<hr/>
+
+<br/>
+<p>
+Leave blank if you are testing EcomPages on your local machine, such as <span style="color:green;">127.0.0.1:3000</span>. <br/><br/>
+Leave blank if EcomPages can be accessed from <span style="color:green;">www.yourdoamin.com</span>. <br/><br/>
+If EcomPages is accessed from <span style="color:green;">www.yourdoamin.com/shop/</span>, then you need to put <span style="color:green;">/shop</span> into the field below.
+<p>
+<% form_tag(:action=>'install_dir_update') do%>
+<table border="0">
+    <tr>
+      <td>Application directory</td>
+      <td><%=text_field("app","install_dir_name","size"=>8, "value"=>@store.install_dir_name) %></td>
+    </tr>
+    <tr>
+  </table>
+<%=submit_tag("Save")%>
+<% end %>
+
+                
+  <br/>
+<br/>
+<br/>
+<br/>              
+<h2>Tax Configuration</h2>
+
+<hr/>
+
+<br/>
+
+<% form_tag(:action=>'tax') do%>
+  
+  Tax Code (Short Name): <%=text_field("tax", "tax_short_name", "size"=>4, "value"=>"#{Shop.tax_code_name}") %>  e.g., "GST" for New Zealand <br/>
+  
+  Tax Rate: <%=text_field("tax", "tax_rate", "size"=>4, "value"=>"#{Shop.tax_rate}") %>% <br/>
+  
+  I will enter a tax included price when adding a new product  (Tax included for all prices) <%=check_box("tax", "tax_incl", "checked"=>"#{'checked' if Shop.is_tax_incl_when_adding_new_product == 1}") %> <br/>
+
+  
+  <br/>
+  <%=submit_tag("Save")%>
+<% end %>  
+                

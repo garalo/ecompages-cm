@@ -1,0 +1,43 @@
+<h2>Store Template</h2>
+<hr />
+
+<table width="100%">
+  <tr>
+    <td wdith=50% style="text-align:center;">
+      
+      <% tmpl = Shop.def_template_name %>
+
+      <p>
+        <h2>default</h2>
+        <%= image_tag("/images/default/screenshot.png") %> <br/><br/>
+        <% if tmpl == "default" %>
+          <h2>This is the current template</h2>
+        <% else %>	
+                     <% form_tag(:action=>'change_template', :tmpl=>"default") do %>
+                         <%=submit_tag("Apply")%>
+                     <% end %>
+        <% end %>
+      </p>
+    </td>
+    
+    <td style="text-align:center;">
+      <p>
+      <h2>lightblue </h2>
+        <%= image_tag("/images/lightblue/screenshot.png") %> <br/><br/>
+        <% if tmpl == "lightblue" %>
+          <h2>This is the current template</h2>
+        <% else %>	
+                     <% form_tag(:action=>'change_template', :tmpl=>"lightblue") do %>
+                         <%=submit_tag("Apply")%>
+                     <% end %>
+        <% end %>
+      </p>
+      <br/>
+    </td>
+  </tr>
+  
+</table>
+
+
+
+

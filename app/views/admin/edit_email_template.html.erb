@@ -1,0 +1,36 @@
+<h2>Edit Email Template</h2>
+<br/>
+<div class="explaination">
+	Please don't edit content inside < %=... % >, they are source code.</div>
+<br/>
+<% form_tag(:action => 'edit_email_template', :fid=>@code) do %>
+
+<textarea id="rich-editable-page" name="html[code]" rows="30" cols="70">
+	<%= @html %>
+</textarea>
+
+<br/><br/>
+<%= submit_tag 'Save' %> <%= link_to 'Cancel', :action => 'edit_email_templates' %>
+<% end %>
+
+<!--
+<script language="JavaScript">
+  generate_wysiwyg('rich-editable-page');
+</script>
+
+
+<script type="text/javascript">
+var browser = navigator.appName;
+var b_version = navigator.appVersion;
+var version = parseFloat(b_version);
+//alert("Your are using " + browser + ".\nThe Rich-Editor supports IE and Netscape (Firefox, Mozilla) only.");
+if ((browser == "Netscape" || browser=="Microsoft Internet Explorer") && (version >= 4))
+{
+	//alert("Your browser is good enough!");
+}
+else
+{
+	alert("Your browser might not support the rich editor.");
+}
+</script>
+-->

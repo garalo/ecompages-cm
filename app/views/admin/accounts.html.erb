@@ -1,0 +1,41 @@
+<h2>Account Manager</h2>
+<hr />
+
+<br/>
+<fieldset><legend><strong>Summary</strong></legend>
+	There are <%= @accounts.size %> accounts in our database.
+</fieldset>
+
+<br/>
+
+<fieldset><legend><strong>Listing Accounts</strong></legend>
+	
+	<p>(<%= image_tag("/images/edit.gif") %> Edit Account | <%= image_tag("/images/delete.gif") %> Delete Account)</p>
+<table width="100%" class="nice_table" >
+	<tr>
+		<th>Account ID</th>
+		<th>Username</th>
+		<th>Contact Name</th>
+		<th>Status</th>
+		<th>Type</th>
+		<th>Price Level</th>
+		<th>Operations</th>
+	</tr>	
+	
+<% for a in @accounts %>
+	<tr>
+		<td><%=h a.id %></td>
+		<td><%=h a.username %></td>
+		<td><%=h a.contact_name %></td>
+		<td><%= show_suspended_status(a) %></td>
+		<td><%= show_account_type(a) %></td>
+		<td><%= show_price_level(a) %></td>
+		<td><%= link_to image_tag("/images/edit.gif"), :action => 'account',:controller=>'admin',:id=>a %> | 
+			<%= link_to image_tag("/images/delete.gif"), { :action => 'destroy_account', :id => a }, :confirm => 'Are you sure?', :method => :post %>
+			</td>
+	</tr>
+<% end %>
+</table>
+	
+</fieldset>	
+

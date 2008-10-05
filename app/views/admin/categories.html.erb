@@ -1,0 +1,81 @@
+<style>
+  ul#split,ul#split li{margin:0;padding:0;list-style:none}
+  ul#split li{margin:5px 5px 5px 5px}
+  ul#split h3{font: bold 120%/1.3 Arial,sans-serif;margin:0px;padding:5px 0 0;text-align:center;color: #000}
+  ul#split p{margin:0;padding:5px 8px 15px}
+  li#one h3{background: #CDEB8B}
+  ul#split div{background: #FFC}
+  li#one div{border:2px solid #CDEB8B; padding: 5px}
+  li#two h3{background: #FFBD00}
+  li#two div{border:2px solid #FFBD00;padding: 5px}
+  li#three h3{background: #E3A1C4}
+  li#three div{border:2px solid #E3A1C4;padding: 5px}
+  li#four h3{background: #C8C866}
+  li#four div{border:2px solid #C8C866;padding: 5px}
+
+</style>
+
+<h2>Category Manager</h2>
+<br/>
+
+<ul id="split">
+  
+  <li id="one"><h3>New Category</h3>
+    <div>
+<% form_tag :action => 'create', :controller=>'categories' do %>
+      <table border="0">
+
+<tbody>
+<tr>
+<td>Category Name: </td>
+<td><%= text_field 'category', 'name'  %> </td>
+</tr>
+<tr>
+<td>Belongs to: </td>
+<td><%= select("category", "p_id", 
+		Category.find(:all, :order=>"level_num").collect {|p| [ p.print_structure, p.id ] }, 
+									{ :include_blank => false }) %>
+      (<%= link_to("Refresh", :action=>'categories', :controller=>'admin') %>)                                                                
+  </td>
+</tr>
+</tbody>
+</table>
+<br/>
+		<%= submit_tag "Create" %>
+	<% end %>
+
+               </div>
+             </li>
+           </ul>
+
+<ul id="split">
+  
+  <li id="one"><h3>Current Category Structure (Click on category name to edit.)</h3>
+    <div>
+
+
+<b>Home</b> <br/>
+<% for c in Category.find(:all, :conditions=>["p_id = ? and id != ?", 1,1]) %>
+	
+	<%= show_sub_categories(c, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;") %> <br/>
+<% end %>
+
+
+               </div>
+             </li>
+           </ul>
+<p>
+<%= link_to("Click here to re-order top level categories", :action=>'category_sort', :controller=>'admin') %> <br/>
+</p>
+
+
+<script type="text/javascript">
+  
+    Nifty("ul#split h3","top");
+    Nifty("ul#split div","none");
+  
+    </script>
+
+  <br/>
+
+

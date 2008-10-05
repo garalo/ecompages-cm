@@ -1,0 +1,35 @@
+<h2>Charity Manager</h2>
+<hr/>
+
+<h3>Function Status</h3>
+<% if Shop.allow_donation == 1 %>
+	<span style="color:green;">Working</span> <%= link_to "Turn off now", :action=>'set_donation',:controller=>'admin' %>
+<% else %>
+	<span style="color:red;">Stopped</span> <%= link_to "Turn on now", :action=>'set_donation',:controller=>'admin' %>
+<% end %>
+
+<p><br/></p>
+
+<h3>Listing all charities</h3>
+
+<p>
+<%= image_tag("/images/add.gif")%> <%= link_to 'Create a new charity', :action => 'new', :controller=>'charities' %>
+</p>
+<table  class="nice_table">
+  <tr>
+  
+    <th>Title</th>
+  	<th>Operation</th>
+  </tr>
+  
+<% for charity in @charities %>
+  <tr>
+  <% for column in Charity.content_columns %>
+    <td><%=h charity.send(column.name) %></td>
+  <% end %>
+    <td> 
+    <%= link_to(image_tag("/images/edit.gif"), :action => 'edit', :id => charity) %> 
+    <%= link_to(image_tag("/images/trash.gif"), { :action => 'destroy', :id => charity }, :confirm => 'Are you sure?', :method => :post) %></td>
+  </tr>
+<% end %>
+</table>

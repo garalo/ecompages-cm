@@ -1,0 +1,142 @@
+<%= error_messages_for 'account' %>
+
+<!--[form:account]-->
+
+
+	<br/>
+	<table class="nice_table">
+		<tr>
+			<td><strong>Account type</strong></td>
+			<td><%= show_account_type(@account) %></td>
+		</tr>
+		<tr>
+			<td><strong>Username</strong></td>
+			<td><%=h @account.username %></td>
+		</tr>
+		<tr>
+			<td><label for="account_time_created"><strong>Time Created:</strong> </label></td>
+			<td><%= time_ago_in_words(@account.time_created) %> ago</td>
+		</tr>
+		
+		<tr>
+			<td><label for="account_Suspended"><strong>Suspended</strong></label></td>
+			<td>
+			<%= check_box("account", "suspended" , {}, "1", "0") %>
+			(This account <%= show_suspended_status(@account) %>)
+			</td>
+		</tr>
+		
+		<tr>
+			<td><label for="account_password"><strong>Password</strong></label></td>
+			<td><%= text_field 'account', 'password'  %></td>
+		</tr>
+		
+		<tr>
+			<td><label for="account_price_level"><strong>Set Price Level</strong></label></td>
+			<td><%= select("account", "price_level_id", Pricelevel.find(:all).collect {|l| [ l.title, l.id ] }, { :include_blank => true }) %></td>
+		</tr>
+		
+		<tr>
+			<td><label for="account_note"><strong>Additional note</strong></label></td>
+			<td><%= text_area 'account', 'note' ,"cols"=>45, "rows"=>4  %></td>
+		</tr>
+		
+		<tr>
+			<td><label for="account_contact_name"><strong>Contact person's name</strong></label></td>
+			<td><%= text_field 'account', 'contact_name'  %></td>
+		</tr>
+		
+		<tr>
+			<td><label for="account_email"><strong>Email</strong></label></td>
+			<td><%= text_field 'account', 'email'  %></td>
+		</tr>
+		<% if @account.account_type == 0 %>
+		<tr>
+			<td><label for="account_business_name"><strong>Business name</strong></label></td>
+			<td><%= text_field 'account', 'business_name'  %></td>
+		</tr>
+		
+		<tr>
+			<td><label for="account_business_address"><strong>Business address</strong></label></td>
+			<td><%= text_area 'account', 'business_address',"cols"=>45, "rows"=>4 %></td>
+		</tr>
+		
+		<tr>
+			<td><label for="account_website"><strong>GST Number</strong></td>
+			<td><%= text_field 'account', 'gst_number' %></td>
+		</tr>
+		
+		<tr>
+			<td><label for="account_website"><strong>Fax</strong></label></td>
+			<td><%= text_field 'account', 'fax_number' %></td>
+		</tr>
+		
+		<tr>
+			<td><label for="account_website"><strong>Website</strong></label></td>
+			<td><%= text_field 'account', 'website' %></td>
+		</tr>
+		<% end %>
+		
+		<% if @account.account_type == 1 %>
+		<tr>
+			<td><label for="account_business_address"><strong>Address</strong></label></td>
+			<td><%= text_area 'account', 'business_address',"cols"=>45, "rows"=>4 %></td>
+		</tr>
+		<% end %>
+		
+		<tr>
+			<td><label for="account_shipping_address"><strong>Shipping address</strong></label></td>
+			<td><%= text_area 'account', 'shipping_address' ,"cols"=>45, "rows"=>4 %></td>
+		</tr>
+		
+		<tr>
+			<td><label for="account_phone"><strong>Contact Phone</strong></label></td>
+			<td><%= text_field 'account', 'phone'  %></td>
+		</tr>
+		
+		<tr>
+			<td><label for="account_cellphone"><strong>Mobile Number</strong></label></td>
+			<td><%= text_field 'account', 'cellphone'  %></td>
+		</tr>
+		
+		<tr>
+			<td><label for="account_country"><strong>Country</strong></label> </td>
+			<td><%= text_field 'account', 'country'  %></td>
+		</tr>
+		
+		<tr>
+			<td><strong>Accept Special Offers</strong></td>
+			<td><%= check_box("account", "special_offers" , {}, "1", "0") %></td>
+		</tr>
+		<% if @account.account_type == 0 %>
+		<tr>
+			<td><label for="account_bartercard"><strong>I use Bartercard</strong></label></td>
+			<td><p>
+	<%= radio_button( :account, :bartercard, 1 )%> Yes &nbsp;&nbsp;
+	<%= radio_button( :account, :bartercard, 0 )%> No &nbsp;&nbsp;
+	<%= radio_button( :account, :bartercard, -1 )%> Never heard of Bartercard
+	</p></td>
+		</tr>
+		
+		<tr>
+			<td><label for="account_bbx"><strong>I use BBX</strong></label></td>
+			<td><p>
+	<%= radio_button( :account, :bbx, 1 )%> Yes &nbsp;&nbsp;
+	<%= radio_button( :account, :bbx, 0 )%> No &nbsp;&nbsp;
+	<%= radio_button( :account, :bbx, -1 )%> Never heard of BBX
+	</p></td>
+		</tr>
+		
+		<tr>
+			<td><label for="account_ebank"><strong>I use Ebank</strong></label></td>
+			<td><p>
+	<%= radio_button( :account, :ebank, 1 )%> Yes &nbsp;&nbsp;
+	<%= radio_button( :account, :ebank, 0 )%> No &nbsp;&nbsp;
+	<%= radio_button( :account, :ebank, -1 )%> Never heard of Ebank
+	</p></td>
+		</tr>
+		<% end %>	
+	</table>
+
+<!--[eoform:account]-->
+

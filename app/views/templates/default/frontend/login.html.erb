@@ -1,0 +1,33 @@
+<div style="padding:15px;">
+<h2>User Login</h2>
+
+<% form_tag(:action=> "login") do%>
+<table>
+	<tr>
+    <td>Username:</td><td> <%= text_field("account","username", "id"=>"uname","size"=>"20")%></td>
+	</tr>
+	<tr>
+    <td>Password:</td><td><%= password_field("account","password", "id"=>"upass","size"=>"20")%></td>
+  	</tr>
+</table>
+    <input type="submit" name="login" value="Login" />
+<% end %>
+<p>
+<br/>
+</p>
+<div>
+	<br/>
+	<br/>
+	<%= link_to "Register now to get a username and password", 
+				:action=>'registration', 
+				:controller=>'go' %>
+	<br/>
+	<br/>
+	<%= link_to "Lost password retrieval", 
+				:action=>'password_resend', 
+				:controller=>'go' %>
+	
+</div>
+
+</div>
+

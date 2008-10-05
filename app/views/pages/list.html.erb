@@ -1,0 +1,91 @@
+<style type="text/css">
+  
+  body{background: #FFF;color:#333;
+    font: 76% Arial,sans-serif}
+  
+  ul#split,ul#split li{margin:0;padding:0;list-style:none}
+  ul#split li{width:700px;margin:0 10px 10px 0}
+  ul#split h3{font: bold 120%/1.3 Arial,sans-serif;margin:0px;padding:5px 0 0;text-align:center;color: #000}
+  ul#split p{margin:0;padding:5px 8px 15px}
+  li#one h3{background: #CDEB8B}
+  ul#split div{background: #FFC}
+  li#one div{border:2px solid #CDEB8B; padding: 5px}
+  li#two h3{background: #FFBD00}
+  li#two div{border:2px solid #FFBD00;padding: 5px}
+  li#three h3{background: #E3A1C4}
+  li#three div{border:2px solid #E3A1C4;padding: 5px}
+  li#four h3{background: #C8C866}
+  li#four div{border:2px solid #C8C866;padding: 5px}
+  </style>
+
+<h2>Listing Pages</h2>
+<hr/>
+<br/>
+
+<ul id="split">
+  
+  <li id="one"><h3>Default Pages</h3>
+    <div>
+
+<table  class="nice_table" width="100%">
+<% for page in @def_pages %>
+  <tr>
+    <td width="80%"><%=h page.title %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => page %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+</li>
+</ul>
+
+<ul id="split">
+  
+  <li id="one"><h3>Create a new Page (Blog)</h3>
+    <div>
+
+<% form_tag(:action=>"create", :controller=>"pages") do %>
+	<b>Page Title:</b> <%=text_field 'page', 'title', "size"=>45 %> 
+	<%=submit_tag "Create Page"%>
+<% end %>
+
+</div>
+</li>
+</ul>
+
+
+<ul id="split">
+  
+  <li id="one"><h3>Customized Pages (Blogs)</h3>
+    <div>
+
+<table  class="nice_table" width="100%">
+<% for page in @cus_pages %>
+  <tr>
+    <td width="60%"><b><%=h page.title %></b></td>
+	<td>Last update: <%= time_ago_in_words(page.created_at) %></td>
+    <td><%= link_to('View', {:controller=>'go', :action => 'page', :id => page}, 
+										"target"=>"_blank") %> 
+		<%= link_to 'Edit', :action => 'edit', :id => page %> 
+		<%= link_to 'Remove', { :action => 'destroy', :id => page }, :confirm => 'Are you sure?', :method => :post %>
+		</td>
+  </tr>
+<% end %>
+</table>
+
+</div>
+</li>
+</ul>
+
+
+
+<script type="text/javascript">
+  
+  Nifty("ul#split h3","top");
+  Nifty("ul#split div","none");
+  
+  </script>
+
+<br/>
+
+

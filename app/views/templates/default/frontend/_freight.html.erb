@@ -1,0 +1,44 @@
+<table class=carttable>
+	<tr>
+		<th><strong>Freight Option</strong></th>
+		<th><strong>Cost</strong></th>
+		<th></th>
+		<th>Product</th>
+	</tr>
+	<% session[:freight_suggests] = "" %>
+	<% session[:freight_cost] = 0.0 %>
+<% for item in @cart.items %>
+	<% p = Product.find(item.product_id) %>
+	<% fo = p.freightoption %>
+	<% cost = fo.price %>
+	<% extra_cost = 0.0 %>
+	
+	<% if @island == "North" and fo.name.include?("icket") %>
+		<% cost = 12.0 %>
+		<% extra_cost = 4.0 if @rural == "Yes" %>
+	<% end %>
+	<% if @island == "South" and fo.name.include?("icket") %>
+		<% cost = 20.0 %>
+		<% extra_cost = 5.0 if @rural == "Yes" %>
+	<% end %>
+	
+	<tr>
+		<td>Use <%= item.quantity %> <%= fo.name %> (s) </td>
+		<td><%=number_to_currency(cost + extra_cost) %> each</td>
+		<td>x <%= item.quantity %></td>
+		<td><%= p.title %></td>
+	</tr>
+	<% session[:freight_suggests] += "Use #{fo.name} [#{number_to_currency(cost + extra_cost)} * #{item.quantity}] x #{item.quantity} #{p.title} <br>" %>
+	<% session[:freight_cost] += (cost + extra_cost) * item.quantity %>	
+<% end %>
+
+</table>
+<br/>
+<p><font style="color:green;">Estimated freight: <%= number_to_currency session[:freight_cost] %></font> (Our staff will calculate the correct freight for you)</p>
+
+<% total = @cart.total + session[:freight_cost] %>
+
+<p style="color:green;">Total for your order = Total for product(s) + Estimated Freight =
+<%= number_to_currency @cart.total %> + <%= number_to_currency session[:freight_cost] %> = 
+<%=number_to_currency total %>
+</p>

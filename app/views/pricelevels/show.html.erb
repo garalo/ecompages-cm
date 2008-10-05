@@ -1,0 +1,8 @@
+<% for column in Pricelevel.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @pricelevel.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @pricelevel %> |
+<%= link_to 'Back', :action => 'list' %>

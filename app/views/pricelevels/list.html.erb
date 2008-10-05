@@ -1,0 +1,29 @@
+<h2>Listing Price Levels</h2>
+<hr />
+<p>
+	<%= image_tag("/images/add.gif")%> <%= link_to 'Add a new Price Level', :action => 'new' %>
+</p>	
+
+<table class="nice_table">
+  <tr>
+  
+    <th>Name</th>
+  	
+	<th>Note</th>
+	<th>Admin</th>
+  </tr>
+  
+<% for pricelevel in @pricelevels %>
+  <tr>
+  
+    <td><%=h pricelevel.title %></td>
+	
+	<td><%=h pricelevel.note %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => pricelevel %> 
+    <%= link_to 'Remove', { :action => 'destroy', :id => pricelevel }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+
+

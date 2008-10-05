@@ -1,0 +1,62 @@
+<div style="padding:15px;">
+<h1>heading 1</h1>
+<br/>
+<table width="100%">
+	<tr>
+		<td width="45%">
+			<% test_p = Product.find(1) %>
+			<%= show_product_image(test_p, "large") %>
+		</td>
+		<td valign="top">
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi ut velit. Maecenas scelerisque, diam quis condimentum pellentesque, turpis nulla suscipit ipsum, vitae ullamcorper ligula diam a lorem. Maecenas bibendum. Morbi mollis, velit non sodales fringilla, ipsum orci mattis augue, eu malesuada diam massa vel diam. Pellentesque a tortor in dui placerat cursus. Proin accumsan pretium massa. Aliquam sed lectus. Duis id metus at ipsum interdum adipiscing. Nullam convallis massa vel lectus. Ut varius nunc nec mauris. Vivamus eu risus eget sapien fermentum imperdiet. Fusce nisi nibh, feugiat ac, bibendu.
+		</td>
+	</tr>	
+</table>	
+
+
+</div>
+<% if @products.size > 2 %>
+
+<% end_number = @products.size + (@current_page_number.to_i - 1) * 10 %>
+<% start_number = end_number - (@products.size - 1) %>
+
+<div class = "hr_div" style="text-align:left;padding:15px;">
+	Sort by: 
+	<%= link_to("Latest listings",:action=>'index',:sort=>'latest')%> | 
+	<%= link_to("Lowest price",:action=>'index',:sort=>'lprice')%> | 
+	<%= link_to("Highest price",:action=>'index',:sort=>'hprice')%> | 
+	<%= link_to("Title",:action=>'index',:sort=>'title')%>
+	
+</div>
+<% end %>
+
+<div style="padding:15px;">
+<table width="100%">
+<% i = 1 %>
+<tr>
+
+
+<% for p in @products %>
+	<td width="25%" valign="top" align="left">
+		<br/>
+	  <%= show_product_image(p, "medium") %> <br/><br/>
+	<%=link_to(truncate(p.title, 20, ""), :action=>'product',:id=>p) %> <br/>
+	<%= show_price(p, @account) %> 
+	
+	<br/>
+	</td>
+	<% if i%4 == 0 %>	
+		</tr>
+		<tr>	
+	<% end %>
+	
+	<% i = i + 1 %>
+<% end %>
+<td></td><td></td><td></td><td></td>
+</tr>
+</table>
+</div>
+
+
+
+<h3><%= will_paginate(@products)%></h3>

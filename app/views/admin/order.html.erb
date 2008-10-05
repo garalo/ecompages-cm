@@ -1,0 +1,283 @@
+<script language="JavaScript" type="text/javascript">
+function update_ajax_optionbox(attri, order_id){
+	var value = $(attri).value;
+	$('feedback').innerHTML = "Updating...";
+	new Ajax.Updater('feedback', 
+		'<%= Shop.install_dir_name %>/admin/update_ajax_optionbox/?attri=' + attri + "&value=" + value + "&order_id=" + order_id,
+		{method:'post',
+		onComplete: function(){ new Effect.Highlight(attri);},
+		asynchronous:true, 
+		evalScripts:true});
+}
+</script>
+<h2>Order ID: <%= @order.id %>
+(<strong>Time Created:</strong> <%= @order.time_created.to_s(:short) %>, about <%= time_ago_in_words @order.time_created %> ago)
+</h2><hr/>
+
+<br/>
+
+<p>
+<%= image_tag "/images/ajax-area.gif"%> Text fields in yellow support in-place editing.
+</p>
+
+<% customer = @order.customer %>
+<div class="header_div">Customer Info</div>
+
+<table class="nice_table">
+	<tr>
+		<td width="50%" valign="top">
+			<h3>Invoice Address</h3>
+			<%= @order.customer.contact_name %> <%= link_to(image_tag("/images/accounts.gif"), {:action=>'account',:id=>@order.customer_id}, "target"=>'_blank') %> <br/>
+			<%=text_with_br customer.business_address %>
+			<h3>Contact Information</h3>
+			Tel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= customer.phone %> <br/>
+			Mobile:&nbsp;&nbsp;<%= customer.cellphone %> <br/>
+			Email:&nbsp;&nbsp;&nbsp;&nbsp;<%= customer.email %> <br/>
+		</td>
+		<td width="50%" valign="top">
+			<h3>Delivery Address</h3>
+			
+			<% if customer.shipping_address.blank? %>
+				<%=text_with_br customer.business_address %>
+			<% else %>
+				<%=text_with_br customer.shipping_address %>
+			<% end %>
+			<br/>
+			<%=h @order.postcode%>
+			
+			<h3>Customer Comments</h3>
+			<div class=ajax_value_area style="height:90px;">
+			<%= "<span id=edit-order-note-#{@order.id}>#{text_with_br @order.note}</span>"%><br/>
+			<script language="JavaScript" type="text/javascript">
+				new Ajax.InPlaceEditor('edit-order-note-<%= @order.id %>', 
+						'<%= Shop.install_dir_name %>/admin/update_ajax_order_note', 
+						{ callback: function(form, value) { 
+							return 'id=<%= @order.id %>&field=note&nvalue=' + escape(value) },
+							rows:3, 
+							cols:40});
+			</script>
+			</div>
+			
+		</td>
+	</tr>	
+</table>
+<br/>
+
+
+
+<div class="header_div">Order Summary</div>
+
+<table class="nice_table">
+	<tr>
+		<th>ID</th>
+		<th width="50%">Title</th>
+		<th>Quantity</th>
+		<th>Shipped</th>
+		<th>Back Order</th>
+		<th>Price</th>
+	</tr>
+<% for item in @order.items %>
+	<tr>
+		<td><%= item.product.id %></td>
+		<td><%= item.product.title %></td>
+		<td><%= item.quantity %></td>
+		<td>
+			<div class=ajax_value_area>
+			<%= "<span id=edit-order-quantity-shipped-#{item.id}>#{item.quantity_shipped}</span>"%>
+			<script language="JavaScript" type="text/javascript">
+				new Ajax.InPlaceEditor('edit-order-quantity-shipped-<%= item.id %>', 
+						'<%= Shop.install_dir_name %>/admin/update_ajax_order_quantity_shipped', 
+						{ callback: function(form, value) { 
+							return 'id=<%= item.id %>&field=quantity_shipped&nvalue=' + escape(value) },
+							rows:1, 
+							cols:2});
+			</script>
+			</div>
+		</td>
+		<td><%= (item.quantity - item.quantity_shipped) %> <%= link_to image_tag("/images/refresh.gif", :alt=>"Click to correct the number of back-order"), :action=>'order',:controller=>'admin',:id=>@order.id %></td>
+		<td><%= number_to_currency(item.price_in_order * item.quantity) %> (<%= number_to_currency(item.price_in_order) %> x <%= item.quantity %>)</td>
+	</tr>
+<% end %>
+
+<tr>
+	<td colspan=5> </td>
+</tr>
+
+<tr>
+	<td colspan=4>Sub total</td>
+	<td><span><%= number_to_currency @order.sub_total %></span>
+	</td>
+</tr>
+<tr>
+	<td colspan=4><%= Shop.tax_code_name %></td>
+	<td><span><%= number_to_currency @order.tax %></span>
+	</td>
+</tr>
+<tr>
+	<td colspan=4>Total for product(s)</td>
+	<td><span><%= number_to_currency @order.total %></span>
+	</td>
+</tr>
+</table>
+<br/>
+
+
+<div class="header_div">Charitable Donation</div>
+
+<table class="nice_table">
+
+<tbody>
+<tr>
+<td width="50%"><b>User selected donee:</b></td>
+<td><%=h @order.donee%></td>
+</tr>
+<tr>
+<td>Total donation amount:</td>
+<td><%=number_to_currency @order.total_donation %></td>
+</tr>
+</tbody>
+</table>
+
+
+<div class="header_div">Order Status</div>
+
+<table class="nice_table">
+	<tr>
+		<td><strong>Ship Date (dd/mm/yyyy)</strong></td>
+		
+		<td>
+			<div class=ajax_value_area>
+			<%= "<span id=edit-order-date-shipped-#{@order.id}>#{@order.date_shipped}</span>"%> 
+			<script language="JavaScript" type="text/javascript">
+				new Ajax.InPlaceEditor('edit-order-date-shipped-<%= @order.id %>', 
+						'<%= Shop.install_dir_name %>/admin/update_ajax_order_date_shipped', 
+						{ callback: function(form, value) { 
+							return 'id=<%= @order.id %>&field=date_shipped&nvalue=' + escape(value) },
+							rows:1, 
+							cols:10});
+			</script>
+			</div>
+			
+		</td>
+	</tr>
+	
+	<tr>
+		<td><strong>Estimated Date of Arrival (dd/mm/yyyy)</strong></td>
+		
+		<td>
+			<div class=ajax_value_area>
+			<%= "<span id=edit-order-arrival-date-#{@order.id}>#{@order.arrival_date}</span>"%> 
+			<script type="text/javascript">
+				new Ajax.InPlaceEditor('edit-order-arrival-date-<%= @order.id %>', 
+						'<%= Shop.install_dir_name %>/admin/update_ajax_order_arrival_date', 
+						{ callback: function(form, value) { 
+							return 'id=<%= @order.id %>&field=arrival_date&nvalue=' + escape(value) },
+							rows:1, 
+							cols:10});
+			</script>
+			</div>
+			
+		</td>
+	</tr>
+	
+	<tr>
+		<td width="50%"><strong>Serial/Track Number(s)</strong></td>
+		<td>
+			<div class=ajax_value_area style="height:60px;">
+			<%= "<span id=edit-order-serial-#{@order.id}>#{text_with_br @order.track_numbers}</span>"%><br/>
+			<script type="text/javascript">
+				new Ajax.InPlaceEditor('edit-order-serial-<%= @order.id %>', 
+						'<%= Shop.install_dir_name %>/admin/update_ajax_order_serial', 
+						{ callback: function(form, value) { 
+							return 'id=<%= @order.id %>&field=track_numbers&nvalue=' + escape(value) },
+							rows:2, 
+							cols:25});
+			</script>
+			</div>
+			
+		</td>
+	</tr>
+	
+	<tr>
+		<td width="30%"><strong>Order Status</strong></td>
+		<td><select id='order-status' onchange=update_ajax_optionbox('order-status','<%= @order.id %>');>
+<option value='New' <%= "selected=selected" if @order.status == "New" %> >New</option>
+<option value='Processing' <%= "selected=selected" if @order.status == "Processing" %> >Processing</option>
+<option value='Waiting for Payment' <%= "selected=selected" if @order.status == "Waiting for Payment" %>>Waiting for Payment</option>
+<option value='Paid and Preparing Shipping' <%= "selected=selected" if @order.status == "Paid and Preparing Shipping" %>>Paid and Preparing Shipping</option>
+<option value='Paid and in Shipping' <%= "selected=selected" if @order.status == "Paid and in Shipping" %>>Paid and In Shipping</option>
+<option value='On hold' <%= "selected=selected" if @order.status == "On hold" %>>On hold</option>
+<option value='Pending' <%= "selected=selected" if @order.status == "Pending" %>>Pending</option>
+<option value='Completed' <%= "selected=selected" if @order.status == "Completed" %>>Completed</option>
+</select>
+<span id=feedback><%= render :partial=>'feedback'%></span></td>
+	</tr>
+	
+		
+</table>
+<br/>
+
+<div class="header_div">Shipping & Freight Costs</div>
+
+
+<table class="nice_table">
+	
+	<tr>
+		<td width="50%"><strong>System suggested freight options:</strong></td>
+		<td>
+		
+			<div class=ajax_value_area  style="height:90px;">
+			<%= "<span id=edit-order-suggested-freight-options-#{@order.id}>#{text_with_br @order.suggested_freight_options}</span>"%><br/>
+			<script language="JavaScript" type="text/javascript">
+				new Ajax.InPlaceEditor('edit-order-suggested-freight-options-<%= @order.id %>', 
+						'<%= Shop.install_dir_name %>/admin/update_ajax_order_suggested_freight_options', 
+						{ callback: function(form, value) { 
+							return 'id=<%= @order.id %>&field=suggested_freight_options&nvalue=' + escape(value) },
+							rows:3, 
+							cols:40});
+			</script>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><strong>System suggested freight cost:</strong></td>
+		<td>
+				<div class=ajax_value_area>
+				$ <%= "<span id=edit-order-suggested-freight-cost-#{@order.id}>#{@order.suggested_freight_cost}</span>"%><br/>
+				<script language="JavaScript" type="text/javascript">
+					new Ajax.InPlaceEditor('edit-order-suggested-freight-cost-<%= @order.id %>', 
+							'<%= Shop.install_dir_name %>/admin/update_ajax_order_suggested_freight_cost', 
+							{ callback: function(form, value) { 
+								return 'id=<%= @order.id %>&field=suggested_freight_cost&nvalue=' + escape(value) },
+								rows:1, 
+								cols:10});
+				</script>
+				</div>
+			
+		</td>
+	</tr>
+</table>	
+
+
+<br/>
+<hr/>
+<br/>
+
+<h2>Update</h2>
+<br/>
+<p>
+<strong>Total:</strong> <%= number_to_currency @order.total_with_freight %> <%= link_to image_tag("/images/refresh.gif", :alt=>"Click to correct the total"), :action=>'order',:controller=>'admin',:id=>@order.id %>
+
+<br/>
+
+	<% form_tag :action=>'update_order_status',:oid=>@order.id do %>
+	
+		<p>
+			<b>Inform customer by email:</b> <input name="status[inform]" type="checkbox" value="1" /><input name="status[inform]" type="hidden" value="0" />
+			<br/>
+			(With this checked and click the 'save' button below, then the customer is notified of order status change by email.)
+		</p>
+		
+		<%= submit_tag "Save"%> 
+	<% end %>
+</p>	

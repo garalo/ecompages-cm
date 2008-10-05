@@ -1,0 +1,66 @@
+<h2>Admin</h2>
+<hr/>
+<br/>
+
+<table width="100%">
+  <tr>
+
+ 
+    <td valign="top"  width="25%">
+      <h3>Summary</h3>
+      <table  style="width:150px;">
+        <tr>
+          <td>No. Orders:</td><td><%= Order.count %></td>
+        </tr>
+        <tr>
+          <td>No. Accounts:</td><td><%= Account.count %></td>
+        </tr>
+        <tr>
+          <td>No. Products:</td><td><%= Product.count %></td>
+        </tr>
+        <tr>
+          <td>No. Categories:</td><td><%= Category.count - 1 %></td>
+        </tr>
+        <tr>
+          <td>No. Price Levels:</td><td><%= Pricelevel.count %></td>
+        </tr>
+        <tr>
+          <td>No. Menu Tabs:</td><td><%= Tab.count %></td>
+        </tr>
+        <tr>
+          <td>No. Blogs:</td><td><%= Page.count-4 %></td>
+        </tr>
+      </table>	
+      
+    </td>
+    
+    <td valign="top">
+			<h3>Quick Links</h3>
+                        <%= link_to("Store Config", :action=>'store_info', :controller=>'admin') %> <br/><br/>
+			<%= link_to("Add a Product", :action=>'new', :controller=>'products') %> <br/><br/>
+			<%= link_to("Edit Products", :action=>'list', :controller=>'products') %> <br/><br/>
+			
+			<%= link_to("View Orders", :action=>'orders', :controller=>'admin') %>
+			<% neworders =  Order.find_all_by_status("New").size %>
+			<% if neworders > 0 %>
+			(<font color="green"><%= image_tag "/images/new.gif"%> <%= Order.find_all_by_status("New").size %></font>)
+			<% end %>
+			
+			<br/><br/>
+			<%= link_to("Send Newsletter", :action=>'sendemails', :controller=>'admin') %> <br/><br/>
+			<%= link_to("Edit Categories", :action=>'categories', :controller=>'admin') %> <br/><br/>
+			<%= link_to("Change Store Template", :action=>'change_template', :controller=>'admin') %> <br/><br/>
+			<%= link_to("Logout", :action=>'logout', :controller=>'admin') %> <br/><br/>
+	</td>	
+
+    <td valign="top" align="center" width="55%">
+      
+      <img src="./admin/stats_img1/code_stats.png">
+    </td>
+   	
+    
+  </tr>
+  
+</table>	
+
+

@@ -1,0 +1,28 @@
+<h2>Listing Freight Options</h2>
+<hr />
+
+<br/>
+
+<p> <%= image_tag("/images/add.gif")%> <%= link_to 'Add a new freight option', :action => 'new' %>
+</p>
+<table  class="nice_table">
+  <tr>
+  
+    <th width="15%">Name</th>
+  	<th width="15%">Price</th>
+	<th>Note</th>
+	<th width="15%">Operations</th>
+  </tr>
+  
+<% for freightoption in @freightoptions %>
+  <tr>
+  
+    <td><%=h freightoption.name %></td>
+  	<td><%=number_to_currency freightoption.price %></td>
+	<td><%=h freightoption.note %></td>
+    <td>
+    <%= link_to 'Edit', :action => 'edit', :id => freightoption %> | 
+    <%= link_to 'Remove', { :action => 'destroy', :id => freightoption }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>

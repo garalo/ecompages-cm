@@ -1,0 +1,20 @@
+<h2>New Account (Field with * is required)</h2>
+<hr />
+<p>
+  
+</p>
+<% form_tag :action => 'create' do %>
+
+
+           <% if session[:account_type] == 0 %>
+                     <%= render :partial=>"templates/#{Shop.def_template_name}/accounts/dealer" %>
+                
+           <% else %>
+                 
+                    <%= render :partial=>"templates/#{Shop.def_template_name}/accounts/directbuyer" %>
+           <% end %>
+         
+         
+  <br/>
+  <%= submit_tag "Register" %>
+<% end %>

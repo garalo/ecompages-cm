@@ -1,0 +1,77 @@
+
+<% if @products.size > 2 %>
+
+<% end_number = @products.size + (@current_page_number.to_i - 1) * 10 %>
+<% start_number = end_number - (@products.size - 1) %>
+
+<div class = "hr_div" > <%= Product.count %> listings, showing <%= start_number %> to <%= end_number %>
+	(Sort by: 
+	<%= link_to("Latest listings",:action=>'index',:sort=>'latest')%> | 
+	<%= link_to("Lowest price",:action=>'index',:sort=>'lprice')%> | 
+	<%= link_to("Highest price",:action=>'index',:sort=>'hprice')%> | 
+	<%= link_to("Title",:action=>'index',:sort=>'title')%>
+	)
+</div>
+<% end %>
+
+
+
+<div style="padding:15px;">
+<table width="100%">
+<% i = 1 %>
+<tr>
+
+
+<% for p in @products %>
+	<td width="25%" valign="top" align="left">
+		<br/>
+	  <%= show_product_image(p, "medium") %> <br/><br/>
+	<%=link_to(truncate(p.title, 20, ""), :action=>'product',:id=>p) %> <br/>
+	<%= show_price(p, @account) %> 
+	
+	<br/>
+	</td>
+	<% if i%4 == 0 %>	
+		</tr>
+		<tr>	
+	<% end %>
+	
+	<% i = i + 1 %>
+<% end %>
+<td></td><td></td><td></td><td></td>
+</tr>
+</table>
+</div>
+
+
+
+<!--
+<table width="100%" cellspacing="0" cellpadding="0">
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+<% for p in @products %>
+	
+	
+		<tr>
+	
+		<td width="130px;">
+			<div class="product_listing_image">
+			<%= show_product_image(p, "medium") %>
+			</div>
+		</td>
+			
+		<td width="70%">
+			<p class="product_listing_title"><%=link_to p.title, :action=>'product',:id=>p %>
+			</p>
+		</td>
+		
+		<td><p class="product_listing_price"><%= show_price(p, @account) %> </p></td>
+	</tr>
+	<% i+=1 %>
+<% end %>
+</table>
+-->
+<h3><%= will_paginate(@products)%></h3>

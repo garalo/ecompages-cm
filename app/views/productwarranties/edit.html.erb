@@ -1,0 +1,6 @@
+<h2>Editing Product Warranty Label</h2>
+<hr>
+<% form_tag :action => 'update', :id => @productwarranty do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %> <%= link_to 'Cancel', :action => 'list' %>
+<% end %>

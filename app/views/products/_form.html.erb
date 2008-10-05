@@ -1,0 +1,114 @@
+<script type="text/javascript">
+  function add_label(label){
+    var txt_labels = $('labels').value;
+    if (txt_labels.indexOf(label) == -1){
+      txt_labels += "[" + label + "]";
+      $('labels').value = txt_labels;
+    }
+  }
+  </script>
+
+<%= error_messages_for 'product' %>
+
+<!--[form:product]-->
+
+<p>
+  <% for img in @product.images %>
+
+      <%= link_to image_tag(url_for_file_column(img, "image", "medium"),:alt=>"Click to view large picture",:style=>"border:solid 1px #cccccc;"), :action=>'show' , :controller=>'products', :id=>@product %>
+
+  <% end %>
+</p>
+
+<table border="0">
+  <thead>
+    <tr>
+      <th><p><label for="product_price"><strong>Title</strong></label>
+      </p></th>
+      <th><%= text_field 'product', 'title' , "size"=>45 %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p><label for="product_price"><strong>Retail Price</strong>  </label>
+        </p>
+      </td>
+      <td><%= text_field 'product', 'price' , "size"=>4  %>$ <%=show_tax_code_name(Shop.tax_code_name, Shop.tax_rate, Shop.is_tax_incl)%></td>
+      </tr>
+      <tr>
+        <td><p><label for="product_donation"><strong>Charitable Donation</strong></label>
+          </p>
+        </td>
+        <td><%= text_field 'product', 'donation', "size"=>4 %>$</td>
+      </tr>
+      <tr>
+        <td> <p><strong>Belongs to Category: </strong>
+          </p>
+        </td>
+        <td><%= select("product", "category_id", Category.find(:all).collect {|c| [ c.print_structure, c.id ] }, { :include_blank => false }) %></td>
+      </tr>
+      <tr>
+        <td><p><strong>Belongs to Category: </strong>
+          </p>
+        </td>
+        <td><%= select("product", "category_id_fix_1", Category.find(:all).collect {|c| [ c.print_structure, c.id ] }, { :include_blank => true }) %> (Optional)</td>
+      </tr>
+      <tr>
+        <td>
+        
+          <p><strong>Belongs to Category: </strong>
+          </p>
+        </td>
+        <td><%= select("product", "category_id_fix_2", Category.find(:all).collect {|c| [ c.print_structure, c.id ] }, { :include_blank => true }) %> (Optional)</td>
+      </tr>
+      <tr>
+        <td> <p><label for="product_condition_id"><strong>Condition</strong></label>
+          </p>
+        </td>
+        <td><%= select("product", "condition_id", Productcondition.find(:all).collect {|c| [ c.condition, c.id ] }, { :include_blank => true }) %> </td>
+      </tr>
+      <tr>
+        <td>
+          <p><label for="product_condition_id"><strong>Warranty</strong></label>
+          
+        </p></td>
+        <td><%= select("product", "warranty_id", Productwarranty.find(:all).collect {|w| [ w.warranty,w.id ] }, { :include_blank => true }) %></td>
+      </tr>
+      <tr>
+        <td><p><label for="product_stock_level"><strong>Stock</strong></label>
+          </p>
+        </td>
+        <td><%= text_field 'product', 'stock_level', "size"=>4 %></td>
+      </tr>
+      <tr>
+        <td><p><label for="product_delivery"><strong>Deliverable</strong></label>
+        </p></td>
+        <td><%= check_box("product", "delivery" , {}, "1", "0") %></td>
+      </tr>
+      <tr>
+        <td><p><strong>Preferred freight option:</strong>
+          </p>
+        </td>
+        <td><%= select("product", "freightoption_id", Freightoption.find(:all).collect {|c| [ c.name, c.id ] }, { :include_blank => false }) %> </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <p><label for="product_details"><strong>Details</strong></label> (HTML enable)<br/>
+  <%= text_area 'product', 'details' ,"cols"=>70,"rows"=>15 %></p>
+
+  <p><label for="product_labels"><strong>Tab labels</strong> (Click to add)</label><br/>
+    
+    <% for tab in Tab.find(:all, :order => 'position') %>
+      <a href=#add.label# onclick="add_label('<%=h tab.name %>');">'<%=h tab.name %>'</a> <%=blank_space(2)%>
+      
+    <% end %>
+
+    <br/><br/>
+    <%= text_area 'product', 'labels' ,"cols"=>70,"rows"=>3, "id"=>"labels", "style"=>""%> <br/>
+    (Product with Tab labels above will be displayed under listings of a font-page Tab(Menu) which contains those labels)
+  </p>
+  <br/>
+  <!--[eoform:product]-->
+

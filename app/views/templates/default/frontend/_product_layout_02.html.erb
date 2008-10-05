@@ -1,0 +1,88 @@
+<div style="padding:5px;">
+  <h2><%= @product.title %></h2>
+  <hr/>
+  
+  
+  <table width="100%">
+    
+    <tr>
+      <td colspan="2">
+        
+        
+        
+        <% form_tag(:action=> "add_to_cart",:pid=>@product.id, :ui=>"1") do %>
+
+  <%= image_tag "cart.gif"%> <strong>Quantity:</strong> <%= text_field("cart","quantity", "value"=>"1", "size"=>"2")%>  
+  <%= submit_tag "Add to Cart" %> 
+        <% end %>
+        
+      </td>
+    </tr>	
+    
+    
+    <tr>
+      <td valign="top" width="45%">
+        <br/><br/>
+        
+        <% for img in @product.images %>
+          <%=link_to ( image_tag(url_for_file_column(img, "image", "medium")),
+                                                            {:action=>'view_image', :controller=>'go', :id=>img.id},
+                                    :popup=>[@product.title, 'width=640,height=480'])
+          %>
+        
+        <% end %><br/>
+        <span style="font-size:10px;">Click to see large image</span> 
+        
+        <p><br/></p>
+        
+        <table width="100%">
+          <tr>
+            <td><strong>In stock</strong></td>
+            <td><%= @product.stock_level %></td>
+          </tr>
+          <tr>
+            <td><strong>Our price</strong></td>
+            <td>
+              
+                <%= show_price(@product, @account) %> <%= show_tax_setting_for_frontend%>
+             
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Condition</strong></td>
+            <td><%= show_product_condition(@product) %></td>
+          </tr>
+          <tr>
+            <td><strong>Warranty</strong></td>
+            <td><%= show_product_warranty(@product) %></td>
+          </tr>
+          <tr>
+            <td><strong>Deliverable</strong></td>
+            <td><%= show_product_delivery(@product) %></td>
+          </tr>
+          <tr>
+            <td><strong>Estimated Freight</strong></td>
+            <td><%= show_freight_option(@product) %></td>
+          </tr>	
+          <% if @product.donation > 0 and Shop.allow_donation == 1 %>
+            <tr>
+          
+            <td colspan="2">
+              <i>A charitable donation of <%=number_to_currency @product.donation %> will be made on purchasing of this product.</i>
+            </td>
+            <tr>
+          <% end %>
+        </table>
+      </td>
+      
+      <td valign="top">
+        <h2>Description:</h2>
+        <%= text_with_br @product.details %>
+      </td>
+      
+    </tr>
+    
+  </table>
+  
+</div>
+

@@ -1,0 +1,65 @@
+WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library is not suited for production. Please install the C-based MySQL library instead (gem install mysql).
+  [4;36;1mSQL (0.000218)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000177)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.000576)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001293)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.003802)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mSQL (0.003484)[0m   [0mdescribe `accounts`[0m
+  [4;36;1mSQL (0.001575)[0m   [0;1mSHOW KEYS FROM `accounts`[0m
+  [4;35;1mSQL (0.001762)[0m   [0mSHOW FIELDS FROM `administrators`[0m
+  [4;36;1mSQL (0.001677)[0m   [0;1mdescribe `administrators`[0m
+  [4;35;1mSQL (0.001625)[0m   [0mSHOW KEYS FROM `administrators`[0m
+  [4;36;1mSQL (0.001954)[0m   [0;1mSHOW FIELDS FROM `categories`[0m
+  [4;35;1mSQL (0.001946)[0m   [0mdescribe `categories`[0m
+  [4;36;1mSQL (0.001478)[0m   [0;1mSHOW KEYS FROM `categories`[0m
+  [4;35;1mSQL (0.001502)[0m   [0mSHOW FIELDS FROM `charities`[0m
+  [4;36;1mSQL (0.001477)[0m   [0;1mdescribe `charities`[0m
+  [4;35;1mSQL (0.001593)[0m   [0mSHOW KEYS FROM `charities`[0m
+  [4;36;1mSQL (0.001786)[0m   [0;1mSHOW FIELDS FROM `freightoptions`[0m
+  [4;35;1mSQL (0.001890)[0m   [0mdescribe `freightoptions`[0m
+  [4;36;1mSQL (0.050100)[0m   [0;1mSHOW KEYS FROM `freightoptions`[0m
+  [4;35;1mSQL (0.002034)[0m   [0mSHOW FIELDS FROM `imageobjects`[0m
+  [4;36;1mSQL (0.001851)[0m   [0;1mdescribe `imageobjects`[0m
+  [4;35;1mSQL (0.001615)[0m   [0mSHOW KEYS FROM `imageobjects`[0m
+  [4;36;1mSQL (0.002083)[0m   [0;1mSHOW FIELDS FROM `orderitems`[0m
+  [4;35;1mSQL (0.002037)[0m   [0mdescribe `orderitems`[0m
+  [4;36;1mSQL (0.001736)[0m   [0;1mSHOW KEYS FROM `orderitems`[0m
+  [4;35;1mSQL (0.003597)[0m   [0mSHOW FIELDS FROM `orders`[0m
+  [4;36;1mSQL (0.003423)[0m   [0;1mdescribe `orders`[0m
+  [4;35;1mSQL (0.001639)[0m   [0mSHOW KEYS FROM `orders`[0m
+  [4;36;1mSQL (0.001784)[0m   [0;1mSHOW FIELDS FROM `pages`[0m
+  [4;35;1mSQL (0.001850)[0m   [0mdescribe `pages`[0m
+  [4;36;1mSQL (0.001762)[0m   [0;1mSHOW KEYS FROM `pages`[0m
+  [4;35;1mSQL (0.001883)[0m   [0mSHOW FIELDS FROM `pricelevels`[0m
+  [4;36;1mSQL (0.001775)[0m   [0;1mdescribe `pricelevels`[0m
+  [4;35;1mSQL (0.001528)[0m   [0mSHOW KEYS FROM `pricelevels`[0m
+  [4;36;1mSQL (0.001763)[0m   [0;1mSHOW FIELDS FROM `pricelevels_matrix`[0m
+  [4;35;1mSQL (0.001751)[0m   [0mdescribe `pricelevels_matrix`[0m
+  [4;36;1mSQL (0.001671)[0m   [0;1mSHOW KEYS FROM `pricelevels_matrix`[0m
+  [4;35;1mSQL (0.002271)[0m   [0mSHOW FIELDS FROM `product_condition_relation`[0m
+  [4;36;1mSQL (0.001776)[0m   [0;1mdescribe `product_condition_relation`[0m
+  [4;35;1mSQL (0.001584)[0m   [0mSHOW KEYS FROM `product_condition_relation`[0m
+  [4;36;1mSQL (0.002275)[0m   [0;1mSHOW FIELDS FROM `product_warranty_relation`[0m
+  [4;35;1mSQL (0.001815)[0m   [0mdescribe `product_warranty_relation`[0m
+  [4;36;1mSQL (0.001628)[0m   [0;1mSHOW KEYS FROM `product_warranty_relation`[0m
+  [4;35;1mSQL (0.001564)[0m   [0mSHOW FIELDS FROM `productconditions`[0m
+  [4;36;1mSQL (0.001487)[0m   [0;1mdescribe `productconditions`[0m
+  [4;35;1mSQL (0.001513)[0m   [0mSHOW KEYS FROM `productconditions`[0m
+  [4;36;1mSQL (0.001591)[0m   [0;1mSHOW FIELDS FROM `productimages`[0m
+  [4;35;1mSQL (0.001700)[0m   [0mdescribe `productimages`[0m
+  [4;36;1mSQL (0.001568)[0m   [0;1mSHOW KEYS FROM `productimages`[0m
+  [4;35;1mSQL (0.003102)[0m   [0mSHOW FIELDS FROM `products`[0m
+  [4;36;1mSQL (0.003180)[0m   [0;1mdescribe `products`[0m
+  [4;35;1mSQL (0.001594)[0m   [0mSHOW KEYS FROM `products`[0m
+  [4;36;1mSQL (0.001609)[0m   [0;1mSHOW FIELDS FROM `productwarranties`[0m
+  [4;35;1mSQL (0.001515)[0m   [0mdescribe `productwarranties`[0m
+  [4;36;1mSQL (0.001646)[0m   [0;1mSHOW KEYS FROM `productwarranties`[0m
+  [4;35;1mSQL (0.001901)[0m   [0mSHOW FIELDS FROM `sessions`[0m
+  [4;36;1mSQL (0.002023)[0m   [0;1mdescribe `sessions`[0m
+  [4;35;1mSQL (0.004378)[0m   [0mSHOW KEYS FROM `sessions`[0m
+  [4;36;1mSQL (0.003355)[0m   [0;1mSHOW FIELDS FROM `shops`[0m
+  [4;35;1mSQL (0.003195)[0m   [0mdescribe `shops`[0m
+  [4;36;1mSQL (0.001549)[0m   [0;1mSHOW KEYS FROM `shops`[0m
+  [4;35;1mSQL (0.001868)[0m   [0mSHOW FIELDS FROM `tabs`[0m
+  [4;36;1mSQL (0.001754)[0m   [0;1mdescribe `tabs`[0m
+  [4;35;1mSQL (0.001511)[0m   [0mSHOW KEYS FROM `tabs`[0m

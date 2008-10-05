@@ -1,0 +1,117 @@
+
+<%= error_messages_for 'account' %>
+
+<!--[form:account]-->
+
+<table>
+  <tr>
+    <td>
+      <label for="account_username"><strong>Username *</strong></label> <br/>(Any combination of letters or numbers without spaces)
+    </td>
+    <td>
+      <%= text_field 'account', 'username' , "size"=>12 %> 
+    </td>
+  </tr>
+<tr>
+    <td>
+      <label for="account_password"><strong>Password *</strong></label>
+    </td>
+    <td>
+      <%= text_field 'account', 'password' , "size"=>12 %>
+    </td>
+  </tr>
+
+<tr>
+    <td>
+      <label for="account_password2"><strong>Re-enter Password *</strong></label>
+    </td>
+    <td>
+      <%= password_field 'account', 'password_confirmation', "size"=>12%>
+    </td>
+  </tr>
+
+<tr>
+    <td>
+      <label for="account_contact_name"><strong>Contact Name *</strong></label>
+    </td>
+    <td>
+      <%= text_field 'account', 'contact_name'  %>
+    </td>
+  </tr>
+<tr>
+    <td>
+      <label for="account_email"><strong>Email *</strong></label>
+    </td>
+    <td>
+      <%= text_field 'account', 'email'  %>
+    </td>
+  </tr>
+<tr>
+    <td>
+      <label for="account_business_address"><strong>Full Address *</strong></label>
+    </td>
+    <td>
+      <%= text_area 'account', 'business_address',"cols"=>45, "rows"=>3 %>
+    </td>
+  </tr>
+<tr>
+    <td>
+      <label for="account_shipping_address"><strong>Shipping Address (if different from address above)</strong></label>
+    </td>
+    <td>
+      <%= text_area 'account', 'shipping_address' ,"cols"=>45, "rows"=>3 %>
+    </td>
+  </tr>
+<tr>
+    <td>
+      <label for="account_postcode"><strong>Post Code</strong></label>
+    </td>
+    <td>
+      <%= text_field 'account', 'postcode'  %> 
+    </td>
+  </tr>
+<tr>
+    <td>
+      <label for="account_country"><strong>Country *</strong></label>
+    </td>
+    <td>
+      <%= country_select 'account', 'country'  %>
+    </td>
+  </tr>
+<tr>
+    <td>
+      <label for="account_phone"><strong>Telephone Phone</strong></label>
+    </td>
+    <td>
+      <%= text_field 'account', 'phone'  %>
+    </td>
+  </tr>
+<tr>
+    <td>
+      <label for="account_cellphone"><strong>Mobile Phone</strong></label>
+    </td>
+    <td>
+      <%= text_field 'account', 'cellphone'  %>
+    </td>
+  </tr>
+<tr>
+    <td>
+      <strong>Tick if you would like to receive special offers</strong>
+    </td>
+    <td>
+      <%= check_box("account", "special_offers" , {}, "1", "0") %>
+    </td>
+  </tr>
+<tr>
+    <td>
+      <strong>I agree with the terms and conditions (<%= link_to "click here to read", {:action=>'terms_conditions', :controller=>'go'}, :target=>'_blank'%>)</strong>
+    </td>
+    <td>
+      <%= check_box("account", "agree_terms" , {}, "1", "0") %>
+    </td>
+  </tr>
+
+</table>
+
+<!--[eoform:account]-->
+

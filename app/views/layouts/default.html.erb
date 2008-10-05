@@ -1,0 +1,215 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title><%=h Shop.shop_name %> - <%= @page_title %></title>
+    <%= stylesheet_link_tag 'default' %>
+	<%= stylesheet_link_tag 'common' %>
+
+	<%= javascript_include_tag "application" %>
+	<%= javascript_include_tag "prototype" %>
+	<%= javascript_include_tag "scriptaculous" %>
+	<%= javascript_include_tag "effects" %>
+        
+    <%= stylesheet_link_tag 'niftyCorners' %>
+    <%= stylesheet_link_tag 'niftyPrint' %>
+    <%= javascript_include_tag "niftycube" %>
+    
+
+  </head>
+  <body>
+
+
+    <div id="menu">
+
+        <div style="text-align:center;">
+            <%= Shop.header_message %> 
+          </div>
+          <br/>
+
+      <ul id="nav">
+            <li id="tab1" <%= "class='activelink'" if session[:label] == 'index' %>>
+                <%= link_to "Home",:action=>'index',:controller=>'go'%> </li>
+
+
+                <% for tab in Tab.find(:all, :conditions=>["visible = ?", 1], :order => 'position') %>
+					<li id="tab" <%= "class='activelink'" if session[:label] == tab.name %>>
+					<%= link_to "#{tab.name}",:action=>'search',:label=>tab.name,:controller=>'go'%>
+					</li>
+                <% end %>	
+                
+
+
+                   <li id="tab" <%= "class='activelink'" if session[:label] == "blog" %>>
+					<%= link_to "Blog",:action=>'pages',:controller=>'go'%>
+					</li>
+							
+
+        <% if @account.blank? %>
+							
+							
+						<% if controller.action_name == "registration" %>
+						<li class="activelink">
+						<%= link_to "Register",:action=>'registration',:controller=>'go'%></li>
+						<% else %>
+							<li>
+							<%= link_to "Register",:action=>'registration',:controller=>'go'%></li>
+						<% end %>
+						
+						<% if controller.action_name == "login" %>
+						<li class="activelink">
+						<%= link_to "Login",:action=>'login',:controller=>'go'%></li>
+						<% else %>
+							<li>
+							<%= link_to "Login",:action=>'login',:controller=>'go'%></li>
+						<% end %>
+						
+							
+                                         <% elsif @account.id.blank? != true %>
+							<li <%= "class='activelink'" if session[:label] == "my-acct" %>><%= link_to "My Account",:action=>'account',:controller=>'go'%></li>
+							<li><%= link_to "Logout",:action=>'logout',:controller=>'go'%></li>
+							
+					<% else %>		
+							<li><%= link_to "Register",:action=>'registration',:controller=>'go'%></li>
+							<li><%= link_to "Login",:action=>'login',:controller=>'go'%></li>
+					<% end %>
+
+        
+      </ul>
+    </div>
+
+<script type="text/javascript">
+      Nifty("ul#nav a","small transparent top");
+</script>
+    
+ <div>
+&nbsp; <br/>
+
+<% if not flash[:notice].blank? %>
+	<p style="text-align:center;padding:5px;border:0px solid #ffd700;background:#ffff88;font-size:15px;color:#003;">
+		<%= flash[:notice] %>
+	</p>
+<% end %>
+    </div>
+
+<div style="text-align:right;padding-right:15px;">
+<% fix = true %>
+		<% if session[:cart].blank? %>
+			<% fix = false %>
+		<% else %>
+			<% fix = false if session[:cart].size == 0 %>
+		<% end %>
+		<% if controller.action_name != "view_cart" and fix %>
+                        <%= image_tag "/images/cart.gif"%>  <%=link_to("View Cart", :action=>'view_cart', :controller=>'go') %>
+                        
+		<% end %>
+</div>
+
+<div id="container">
+    <div id="content">
+		
+		<%= yield  %>
+                
+
+                <div class="footer">
+		<p><br/></p>
+		<p><br/></p>
+                <p><br/></p>
+		<p><br/></p>
+	<%= link_to "Contact Us" , :action=>'contact_us', :controller=>'go' %> | 
+	<%= link_to "About Us" , :action=>'about_us', :controller=>'go' %> | 
+	<%= link_to "Terms and Conditions" , :action=>'terms_conditions', :controller=>'go' %> | 
+<%= link_to "Product Refunds and Specifications" , :action=>'product_refunds_specifications', :controller=>'go' %> | 
+	&copy; 2008 <%= Shop.shop_name %>
+                </div>
+
+
+    </div>
+    <div id="menu-left">
+        <div style="padding:5px;">
+			
+		<% if not controller.action_name.eql?("login") %>
+			
+			<% form_tag :action => 'search' do %> 
+			  <%= text_field 'search','query',"size"=>10 %> <%= submit_tag 'Search' %> 
+			<% end %>
+		<% end %>	
+			
+			<!-- TODO: add category line-height style to theme stylesheet -->
+			
+			<% shouldDarken = true if controller.action_name == "search" and params[:darken] %>
+			
+			<% if shouldDarken %>
+				<% query = session[:label] %>
+				<% query = "XYZA" if query.blank? %>
+		<div id="loader"><%= image_tag("/images/loading.gif")%> Highlighting Categories with label '<%= query %>'</div>
+			<% end %>
+			
+			<p id="main-menu" style="line-height: 150%; <%= "display:none;" if shouldDarken %>">
+			<%= link_to "<span class='top_category_title'>Home</span>", :action=>'index', :controller=>'go' %><br/>
+			
+			
+			<% if shouldDarken %>
+					
+					
+					<% for c in Category.top_level_categories %>
+						<%= show_sub_categories_for_fontpage_darken(c, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",query.downcase) %>
+					<% end %>
+					
+			<% else %>
+				
+				<% for c in Category.top_level_categories %>
+					<%= show_sub_categories_for_fontpage_no_darken(c, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;") %>
+				<% end %>
+			<% end %>
+			
+			
+			<!--
+			<%= link_to "<span class='top_category_title'>Home</span>", :action=>'index', :controller=>'go' %><br/>
+			
+			<% for c in Category.top_level_categories %>
+				<%= show_sub_categories_for_fontpage_no_darken(c, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;") %>
+			<% end %>
+			
+			<p><br/></p>
+			-->	
+			</p>
+			
+			
+			<% if shouldDarken %>
+					<script type="text/javascript">
+						
+						function appear(){
+							Element.hide('loader');
+							Effect.Appear('main-menu');
+						}
+						
+						setTimeout("appear()", 1000);
+						
+					</script>
+			<% end %>
+			
+			
+			<p><br/></p>
+			<p><br/></p>
+		</div>	
+		
+    </div>
+    
+</div>
+
+
+<script type="text/javascript">
+    Nifty("div#content,div#menu-left","same-height");
+</script>
+
+
+
+    
+  </body>
+</html>
+

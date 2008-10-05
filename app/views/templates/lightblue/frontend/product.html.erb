@@ -1,0 +1,83 @@
+<div style="padding:5px;">
+  <%= show_category_structure_with_link(@product.category) %> 
+  <br/>  <br/>
+  <h2><%= @product.title %></h2>
+  <br/>
+  <% form_tag(:action=> "add_to_cart",:pid=>@product.id, :ui=>"1") do %>
+  
+    <%= image_tag "cart.gif"%> <strong>Quantity:</strong> <%= text_field("cart","quantity", "value"=>"1", "size"=>"2")%>  
+    <%= submit_tag "Add to Cart" %> 
+  <% end %>
+  <br/>
+  <table width="100%">
+    
+    <tr>
+      <td width="50%" valign="top">
+        
+        <table>
+          <tr>
+            <td><strong>In stock:</strong></td>
+            <td><%= @product.stock_level %></td>
+          </tr>
+          <tr>
+            <td><strong>Our price:</strong></td>
+            <td>
+              <%= show_price(@product, @account) %> <%= show_tax_setting_for_frontend%>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Condition:</strong></td>
+            <td><%= show_product_condition(@product) %></td>
+          </tr>
+          <tr>
+            <td><strong>Warranty:</strong></td>
+            <td><%= show_product_warranty(@product) %></td>
+          </tr>
+          <tr>
+            <td><strong>Deliverable:</strong></td>
+            <td><%= show_product_delivery(@product) %></td>
+          </tr>
+          <tr>
+            <td><strong>Estimated Freight:</strong></td>
+            <td><%= show_freight_option(@product) %></td>
+          </tr>	
+          <% if @product.donation > 0 and Shop.allow_donation == 1 %>
+            <tr>
+          
+            <td colspan="2">
+              <i>A charitable donation of <%=number_to_currency @product.donation %> will be made on purchasing of this product.</i>
+            </td>
+            <tr>
+          <% end %>
+        </table>
+        
+        <br/>
+        <h2>Specifications:</h2>
+        <br/>
+        <%= text_with_br @product.details %>
+      </td>
+      
+      
+      <td width="50%" valign="top">
+        <div id= "large-image" style="height:220px;text-align:left;padding-left:5px;">
+          <%= show_first_image(@product) %>
+        </div>
+        
+        <div style="text-align:left;padding-left:5px;">
+          <% for img in @product.images %>
+            <a href="#show.change#"  onclick="show_image('<%= img.id %>', '<%=Shop.install_dir_name %>');">
+  <%= image_tag(url_for_file_column(img, "image", "medium"),:alt=>"Click to view large picture",:style=>"border:solid 1px #cccccc;")%></a> 
+<% end %>
+          <br/>
+          <% if @product.images.length > 1 %>
+            <span style="font-size:10px;">Click to see larger image</span> <br/>
+          <% end %>
+        </div>
+        
+      </td>
+      
+    </tr>
+    
+  </table>
+  
+</div>

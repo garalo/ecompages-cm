@@ -1,0 +1,27 @@
+<h1>Listing administrators</h1>
+
+<table>
+  <tr>
+  <% for column in Administrator.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for administrator in @administrators %>
+  <tr>
+  <% for column in Administrator.content_columns %>
+    <td><%=h administrator.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => administrator %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => administrator %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => administrator }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @administrator_pages.current.previous } if @administrator_pages.current.previous %>
+<%= link_to 'Next page', { :page => @administrator_pages.current.next } if @administrator_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New administrator', :action => 'new' %>

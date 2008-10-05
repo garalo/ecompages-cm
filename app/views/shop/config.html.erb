@@ -1,0 +1,32 @@
+<p><br/></p>
+<p><br/></p>
+<p><br/></p>
+<div  id="login" class="login_page">
+  <div  style="text-align:center;"><h2>EcomPages installation page</h2></div>
+
+	<p style="color:red;text-align:center;">
+		<%= flash[:notice]%>
+		<br/>
+	</p>
+	
+	<div   id="login2" style="background:#F9F7ED;padding:15px;">
+		
+
+<%=link_to("Open Store", {:controller=>'go', :action=>'index'}, :target=>"blank")%> <br/><br/>
+
+<%=link_to("Admin", {:controller=>'admin', :action=>'index'}, :target=>"blank")%> <br/>
+default username: admin <br/>
+password: admin
+	</div>
+	
+	<br/>
+	<div style="text-align:right;font-size:11px;"><%= Shop.powered_by_message %></div>
+</div>
+<script type="text/javascript">
+  
+  Nifty("div#login","big");
+  Nifty("div#login2","big");
+  </script>
+
+
+

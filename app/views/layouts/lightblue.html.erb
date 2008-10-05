@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    
+    <title><%=h Shop.shop_name %> - <%= @page_title %></title>
+    <%= stylesheet_link_tag 'lightblue' %>
+    <%= stylesheet_link_tag 'common' %>
+
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "prototype" %>
+    <%= javascript_include_tag "scriptaculous" %>
+    <%= javascript_include_tag "effects" %>
+  </head>
+  <body>
+    
+    <table width="960" border="0" align="center" cellpadding="0" cellspacing="0" id="container">
+      <tr>
+        <td valign="top">
+          
+          <table width="960" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td id="banner">&nbsp;</td>
+            </tr>
+            <tr>
+              <td id="content">
+                
+                <table border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" id="catnav">
+                  <tr>
+                    <td height="15" valign="bottom" class="navmedium"></td>
+                    <td height="15" valign="bottom" class="navmedium"></td>
+                    <td height="15" colspan="6" valign="bottom"></td>
+                  </tr>
+                  <tr>
+                    <td valign="bottom" class="navmedium"><img src="../images/lightblue/spacer.gif" width="20" height="1" /></td>
+                    <td valign="bottom"><img src="../images/lightblue/bodyback.gif" width="180" height="1" /></td>
+                    
+                    
+                    <td valign="bottom" class="catnavitems">
+                      <%= link_to("Home", :action=>'index', :controller=>'go')%>
+                    </td>
+                    
+                      <% for tab in Tab.find(:all, :conditions=>["visible = ?", 1], :order => 'position') %>
+                      <td class="catnavitems">
+                        <%= link_to "<span>#{tab.name}</span>",:action=>'search',:label=>tab.name,:controller=>'go'%>
+                      </td>
+                    <% end %>	
+   
+                  </tr>
+                </table>
+                
+              </td>
+            </tr>
+          </table>
+          
+          <table width="960" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="200" valign="top">
+                
+                <table width="200" border="0" cellspacing="0" cellpadding="0" id="prodnav">
+                  
+                  <tr>
+                    <td width="15" rowspan="9" valign="bottom"><img src="images/lightblue/spacer.gif" width="20" height="1" /></td>
+                    <td height="30" class="prodnavfirstitem">&nbsp;</td>
+                  </tr>
+                  
+        
+                                 <% for c in Category.top_level_categories %>
+                    <tr><td class="prodnavitems">
+                        <%= link_to c.name, :controller=>'go', :action=>'category', :id=>c.id %> <br/>
+                      </td>
+                    </tr>
+                  <% end %>
+                  <% for sub_c in c.sub_categories %>
+                    <tr><td class="prodnavitems">
+                        <%= link_to sub_c.name, :controller=>'go', :action=>'category', :id=>sub_c.id %> <br/>
+                      </td>
+                    </tr>
+                  <% end %>
+                  
+   
+                  <tr>
+                    <td bgcolor="#FFFFFF" class="search">
+                      <% if not controller.action_name.eql?("login") %>
+     
+                                                            <% form_tag :action => 'search' do %> 
+                                                                            <%= text_field 'search','query',"size"=>18,"class"=>"textbox" %> <%= submit_tag('Search',"id"=>"button", "class"=>"button")  %> 
+                                                            <% end %>
+                                      <% end %>          
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    
+                    
+                    <td class="prodnavitems">
+                      
+                              <% if @account.blank? %>
+                                              
+                                              
+                                                    <% if controller.action_name == "registration" %>
+                                      
+                                                                  <%= link_to "<span>Register</span>",:action=>'registration',:controller=>'go'%>
+                                                    <% else %>
+                                      
+                                                                          <%= link_to "<span>Register</span>",:action=>'registration',:controller=>'go'%>
+                                                    <% end %>
+                                      
+                        <br/>
+                      
+                                    <% if controller.action_name == "login" %>
+                      
+                                                  <%= link_to "<span>Login</span>",:action=>'login',:controller=>'go'%>
+                                    <% else %>
+                              
+                                                          <%= link_to "<span>Login</span>",:action=>'login',:controller=>'go'%>
+                                    <% end %>
+                      
+                              
+              <% elsif @account.id.blank? != true %>
+                                            <%= link_to "<span style='color:#183D92;'><strong>My Account</strong></span>",:action=>'account',:controller=>'go'%> <br/>
+                                            <%= link_to "<span>Logout</span>",:action=>'logout',:controller=>'go'%>
+                              
+              <% else %>		
+                                    <%= link_to "<span>Register</span>",:action=>'registration',:controller=>'go'%> <br/>
+                                    <%= link_to "<span>Login</span>",:action=>'login',:controller=>'go'%>
+              <% end %>
+              
+                      <br/>
+                      
+                      <%= link_to "<span>Blogs</span>",:action=>'pages',:controller=>'go'%>
+                    </td>
+                  </tr>
+                  
+                </table>
+                
+              </td>
+              <td valign="top">
+                
+                  
+                  
+                    <% if not flash[:notice].blank? %>
+                  <p style="text-align:center;padding:5px;border:0px solid #ffd700;background:#ffff88;font-size:15px;color:#003;">
+                    <%= flash[:notice] %>
+                  </p>
+                <% end %>
+                
+                
+<% fix = true %>
+<% if session[:cart].blank? %>
+  <% fix = false %>
+<% else %>
+   <% fix = false if session[:cart].size == 0 %>
+                 <% end %>
+                     
+                     
+                  <% if fix %>
+                  <div style="text-align:right;padding-right:15px;">
+                    <%=image_tag "/images/cart.gif"%> <%=link_to("View Shopping Cart", :action=>'view_cart') %>
+                  </div>
+                <% end %>
+
+                <div style="padding:15px;">
+                  <%= yield  %>
+                </div>
+                
+              </td>
+            </tr>
+          </table>
+          
+        </td>
+      </tr>
+      <tr>
+        <td valign="bottom" height="60">
+          
+          <table width="960" border="0" cellspacing="0" cellpadding="0" id="footer">
+            <tr>
+              <td height="20">
+                
+                
+                <div style="text-align:center;">
+                  
+          <%= link_to "Contact Us" , :action=>'contact_us', :controller=>'go' %> | 
+          <%= link_to "About Us" , :action=>'about_us', :controller=>'go' %> | 
+          <%= link_to "Terms and Conditions" , :action=>'terms_conditions', :controller=>'go' %> | 
+ <%= link_to "Product Refunds and Specifications" , :action=>'product_refunds_specifications', :controller=>'go' %> | 
+                  &copy; 2008 <%= Shop.shop_name %>
+                </div>
+                
+                
+              </td>
+            </tr>
+          </table>
+          
+        </td>
+      </tr>
+    </table>
+    
+    
+    
+    
+  </body>
+</html>

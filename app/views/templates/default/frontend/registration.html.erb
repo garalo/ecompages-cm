@@ -1,0 +1,13 @@
+<div style="padding:15px;">
+<h3>Please select the type of account you require:</h3>
+<%= link_to "Direct Buyer Account", 
+			:action=>'registration', 
+			:controller=>'go', 
+			:type=>'direct-buyer' %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			
+<%= link_to "Business Account", 
+			:action=>'registration', 
+			:controller=>'go', 
+			:type=>'dealer' %>
+</div>

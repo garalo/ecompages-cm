@@ -1,0 +1,96 @@
+
+<style>
+  ul#split,ul#split li{margin:0;padding:0;list-style:none}
+  ul#split li{margin:5px 5px 5px 5px}
+  ul#split h3{font: bold 120%/1.3 Arial,sans-serif;margin:0px;padding:5px 0 0;text-align:center;color: #000}
+  ul#split p{margin:0;padding:5px 8px 15px}
+  li#one h3{background: #CDEB8B}
+  ul#split div{background: #FFF}
+  li#one div{border:2px solid #CDEB8B; padding: 0px}
+  li#two h3{background: #FFBD00}
+  li#two div{border:2px solid #FFBD00;padding: 5px}
+  li#three h3{background: #E3A1C4}
+  li#three div{border:2px solid #E3A1C4;padding: 5px}
+  li#four h3{background: #C8C866}
+  li#four div{border:2px solid #C8C866;padding: 5px}
+
+</style>
+
+<h2>Product Manager</h2>
+
+<br/>
+      
+      <p><%= image_tag("/images/add.gif")%> <%= link_to 'Add a product', :action => 'new' %></p>
+    
+
+<ul id="split">
+  
+  <li id="one"><h3>Listing products in database (Total: <%= Product.count %>)</h3>
+    
+    <div>
+      
+      <br/>
+      
+              <% form_tag(:action=>'list') do %>
+                
+              <%=blank_space(2)%>
+        Column to sort <%= select_tag (:sort_field,
+          options_for_select(%w{id title price stock_level},
+              params[:sort_field])) %>
+        Order by <%= select_tag (:sort_by,
+          options_for_select(%w{asc desc},
+              params[:sort_by])) %>				
+  <%= submit_tag "Sort"%>				
+<% end %>
+
+      <br/>
+      
+      <%=blank_space(2)%> 
+      (<%= image_tag("/images/edit.gif") %> Edit Product | <%= image_tag("/images/delete.gif") %> Delete Product | <%= image_tag("/images/image.gif") %> Add Image)
+      <br/>
+      <br/>
+      
+      <table  class="nice_table">
+        <tr>
+          <th>ID</th>
+          <th width="10%">Thumb(images)</th>
+          <th width="30%">Title</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Category</th>
+          <th width="10%">Admin</th>
+        </tr>
+        <% for p in @products %>
+          <tr>
+            <td><%= p.id %></td>
+            <td><%= show_product_image(p, "thumb") %> (<%= p.images.size %>)</td>
+            <td><%=h p.title %></td>
+            <td><%= number_to_currency(p.price) %></td>
+            <td><%= p.stock_level %></td>
+            <td><%= p.category.print_structure %></td>
+            <td>
+              <%= link_to image_tag("/images/edit.gif"), :action => 'edit',:controller=>'products',:id=>p %> 
+                      <%= link_to image_tag("/images/delete.gif"), { :action => 'destroy', :id => p }, :confirm => 'Are you sure that you want to delete this product?', :method => :post %> 
+              <%= link_to image_tag("/images/image.gif"), :action => 'show',:controller=>'products',:id=>p %>
+
+            </td>
+          </tr>
+        <% end %>
+      </table>
+      <p>
+      <b><%= will_paginate(@products)%></b>
+      </p>
+      
+      </div>
+    </li>
+  </ul>
+
+  <script type="text/javascript">
+  
+    Nifty("ul#split h3","top");
+    Nifty("ul#split div","none");
+  
+    </script>
+
+  <br/>
+

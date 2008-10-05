@@ -1,0 +1,7 @@
+<h2>Change Administrator's password</h2>
+<hr />
+<% form_tag :action => 'update', :id => @administrator do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Update' %>
+<% end %>
+

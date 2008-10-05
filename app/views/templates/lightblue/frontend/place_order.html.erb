@@ -1,0 +1,132 @@
+<style type="text/css">
+ul#split,ul#split li{margin:0;padding:0;list-style:none}
+  ul#split li{width:700px;margin:0 10px 10px 0}
+  ul#split h3{font: bold 120%/1.3 Arial,sans-serif;margin:0px;padding:5px 0 0;text-align:center;color: #000}
+  ul#split p{margin:0;padding:5px 8px 15px;color: #333;}
+  li#one h3{background: #356AA0; color: #fff}
+  ul#split div{background: #fff}
+  li#one div{border:2px solid #356AA0; padding: 0px}
+  li#two h3{background: #FFBD00}
+  li#two div{border:2px solid #FFBD00;padding: 5px}
+  li#three h3{background: #E3A1C4}
+  li#three div{border:2px solid #E3A1C4;padding: 5px}
+  li#four h3{background: #C8C866}
+  li#four div{border:2px solid #C8C866;padding: 5px}
+</style>
+<h2>Place Order</h2>
+  
+<br/>
+
+<ul id="split">
+
+  <li id="one"><h3>Your Shopping Cart </h3> 
+    <div>
+        
+<% if @cart.size > 0 %>
+  <table class="carttable">
+    <tr>
+      <th></th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Remove</th>
+    </tr>
+  
+        <% for item in @cart.items %>
+            <% p = Product.find(item.product_id) %>
+            <% final_price = p.price_for_account(@account) %>
+            <% final_price = final_price * item.quantity %>
+      <tr>
+        <td><%= show_product_image(p, "thumb") %></td>
+        <td><%=p.title %></td>
+        <td><%=link_to(image_tag("/images/increase.gif"),{:action=>'add_to_cart', :pid=>p.id, :ui=>2}, :method => :post) %>  
+          <%=item.quantity.to_s %> 
+             <%=link_to(image_tag("/images/decrease.gif"),{:action=>'decrease_quantity', :pid=>p.id, :ui=>2}, :method => :post) if item.quantity >= 2 %>
+        </td>
+        <td><%=number_to_currency final_price %></td>
+        <td><%= link_to( image_tag("/images/trash.gif"), { :action => 'delete_from_cart', :pid => p.id, :ui=>2 }, :confirm => 'Are you sure to remove this product from your shopping cart?', :method => :post) %></td>
+      </tr>
+    <% end %>
+  
+    <tr><td></td><td>Sub total</td><td></td><td><%=number_to_currency session[:cart].sub_total %></td><td></td></tr>
+    <tr><td></td><td><%= Shop.tax_code_name %></td><td></td><td><%=number_to_currency session[:cart].tax_amount %></td><td></td></tr>
+    <tr><td></td><td>Total</td><td></td><td><%= number_to_currency session[:cart].total %></td><td></td></tr>
+  
+  </table>
+
+<% else%>  
+  Your shopping cart is empty. <br/>
+<% end %>  
+</div>
+</li>
+  
+</ul>
+
+<ul id="split">
+
+  <li id="one"><h3>Estimated Freight</h3> 
+<div>
+     <%= render :partial=>"templates/#{Shop.def_template_name}/frontend/freight" %>
+</div>
+</li>
+</ul>
+
+
+
+  <ul id="split">
+
+  <li id="one"><h3>Shipping Address</h3> 
+    <div>
+
+    <% form_tag(:action => 'place_order') do %>
+      <p>
+        
+        Post Code <%= text_field 'order', 'postcode', "size"=>8  %>
+      </p>
+    
+      <p>
+      Please replace with your shipping address if the address below is not correct: <br/>
+      <%= text_area "order", "shipping_address", "value"=>@account.business_address, "cols"=>45, "rows"=>3%>
+      </p>
+    
+    
+      <% if Shop.allow_donation == 1 %>
+        <p>
+          <span style="color:green;">
+            A charitable donation of certain percentage will be made by us on purchasing of this product
+          </span>
+          <br/>
+          Select a charity agent:
+          <%= select("order", "donee", ["None"] + Charity.find(:all).collect {|c| [ c.title, c.title ] }, { :include_blank => false })
+          %>
+        </p>
+    
+      <% end %>
+    
+      <p>
+        Additional Note: <br/>
+      <%= text_area("order", "note", "value"=>"", "cols"=>45, "rows"=> 3)%> </p>
+        
+          <p><%= submit_tag("Place my Order")%></p>
+    <% end %>
+    </div>
+  </li>
+  </ul>
+
+<ul id="split">
+
+  <li id="four"><h3>Order Process</h3> 
+    <div><p  style="color:green;">
+        Once your order has been submitted, our staff will calculate the necessary 
+ freight based on your order. Then, you will receive an email with an updated amount of total cost and payment instructions.
+        <br/><br/>
+        Your order will be shipped to your address after we have received your payment. 
+
+        <br/><br/>
+            You can also use My Account to check the status of your order. 
+
+        </p>
+
+    </div>
+<li>
+</ul>

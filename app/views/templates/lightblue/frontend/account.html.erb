@@ -1,0 +1,173 @@
+<style type="text/css">
+  
+  body{background: #FFF;color:#333;
+    font: 76% Arial,sans-serif}
+  
+  ul#split,ul#split li{margin:0;padding:0;list-style:none}
+  ul#split li{width:700px;margin:0 10px 10px 0}
+  ul#split h3{font: bold 120%/1.3 Arial,sans-serif;margin:0px;padding:5px 0 0;text-align:center;color: #000}
+  ul#split p{margin:0;padding:5px 8px 15px}
+  li#one h3{background: #CDEB8B}
+  ul#split div{background: #FFC}
+  li#one div{border:2px solid #CDEB8B; padding: 0px}
+  li#two h3{background: #FFBD00}
+  li#two div{border:2px solid #FFBD00;padding: 5px}
+  li#three h3{background: #E3A1C4}
+  li#three div{border:2px solid #E3A1C4;padding: 5px}
+  li#four h3{background: #C8C866}
+  li#four div{border:2px solid #C8C866;padding: 5px}
+  </style>
+
+
+
+
+<h2>My Account</h2>
+<br/>
+<ul id="split">
+  
+  <li id="four"><h3>My Account (<%=show_account_type @account %>)</h3>
+    <div>
+<p><%=image_tag("/images/person.gif")%> Hello <%= @account.username %>!</p>
+<% form_tag(:action=>'update_account_info') do%>
+<table>
+    <tr>
+<tr>
+          <td>
+            Contect Name
+          </td>
+          <td>
+            <%=text_field("account", "contact_name")%>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Address
+          </td>
+          <td>
+            <%=text_area("account", "business_address", "rows"=>4, "cols"=>45)%>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Shipping Address
+          </td>
+          <td>
+            <%=text_area("account", "shipping_address", "rows"=>4, "cols"=>45)%>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Email       
+          </td>
+          <td>
+            <%=text_field("account", "email")%>
+          </td>
+        </tr>
+    </tr>
+</table>
+
+ <%=submit_tag("Update")%> 
+
+<% end %>
+
+
+    </div>
+  </li>
+  
+  
+  <li id="one"><h3>Order History</h3>
+    
+    <div>
+      <% if @orders.length > 0 %>
+    
+        <table class="carttable">
+          <tr>
+            <th>Order and Invoice</th>
+            <th>Created on</th>
+            <th>Status</th>
+            <th>Shipped</th>
+            <th>Estimated Date of Arrival</th>
+            <th>Action</th>
+          </tr>
+        
+              <% for order in @orders %>
+            <tr>
+              <td>
+                <%= link_to(order.id.to_s,{:action=>'invoice',:controller=>'go',:id=>order.id}, :target=>'_blank') %>
+              </td>
+          
+              <td><%= order.time_created.to_date %></td>
+              <td><%= order.status %></td>
+              <td>
+                <% if order.date_shipped.eql?("dd/mm/yyyy")%>
+                  n/a
+                <% else %>
+                              <%=h order.date_shipped %>
+                <% end %>
+
+              </td>
+              <td>
+                <% if order.arrival_date.eql?("dd/mm/yyyy")%>
+                  n/a
+                <% else %>
+                              <%=h order.arrival_date %>
+                <% end %>
+
+              </td>
+              <td><%= image_tag("/images/view.gif") %> <%= link_to("View Details",{:action=>'invoice',:controller=>'go',:id=>order.id}, :target=>'_blank') %></td>
+            </tr>
+          <% end %>
+    
+            
+        </table>
+      
+      
+  <% else %>
+        You haven't placed any order yet.
+      <% end %>
+    </div>
+  </li>
+  <li id="two"><h3>Email Settings</h3>
+    <div>
+      <% form_tag :action => 'change_email_settings' do %>
+       
+        <p>I would like to receive announcements or information emails:
+          <%= check_box("account", "special_offers" , {"value"=>@account.special_offers}, "1", "0" ) %>
+          <br/><br/>
+          <%= submit_tag "Save" %>
+        </p>
+      
+      
+  <% end %>
+    </div>
+    
+  </li>
+  <li id="three"><h3>Change Password</h3>
+    <div>
+      <% form_tag :action => 'change_password' do %>
+        <table>
+          <tr>
+            <td>Current Password:</td><td><%= text_field 'password', 'old', "size"=>10 %></td>
+          </tr>
+          <tr>
+            <td>New Password:</td><td><%= text_field 'password', 'new1' , "size"=>10 %></td>
+          </tr>
+          <tr>
+            <td>Re-type Password:</td><td><%= text_field 'password', 'new2' , "size"=>10%></td>
+          </tr>	
+        </table>
+        <%= submit_tag "Update Password" %>
+<% end %>
+    </div>
+  </li>
+</ul>
+
+<script type="text/javascript">
+  
+  Nifty("ul#split h3","top");
+  Nifty("ul#split div","none");
+  
+  </script>
+
+<br/>

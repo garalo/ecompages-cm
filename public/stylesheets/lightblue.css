@@ -1,0 +1,161 @@
+@charset "utf-8";
+/* CSS Document */
+
+*
+{
+margin:0px;
+padding:0px;
+font-family:Tahoma, Arial, sans-serif;
+}
+
+html
+{
+	height:100%;
+}
+
+body
+{
+height:100%;
+background-color:#efefef;
+
+}
+
+
+a { color: #333; }
+a:visited { color: #333; }
+a:hover { color: #333; background-color:#fff; }
+
+h1
+{
+	font-size:14px;
+	font-weight:bold;
+	color:#006699;
+}
+
+#container
+{
+	font-size:11px;
+	color:#999;
+	line-height:145%;
+	height:100%;
+	background-color:#FFFFFF;
+	margin:auto;
+}
+
+#banner
+{
+	background-color:#356AA0;
+	height:100px;
+}
+
+#catnav
+{
+}
+
+.catnavfirstitem
+{
+	border-bottom: 1px solid #bbb;
+}
+
+.catnavitems
+{
+	padding-left:15px;
+	padding-right:15px;
+	padding-bottom: 7px;
+	padding-top: 3px;
+	border-right: 1px solid #bbb;
+	border-bottom: 1px solid #bbb;
+}
+
+#prodnav
+{
+	text-align:right;
+}
+
+.prodnavfirstitem
+{
+	border-right: 1px solid #bbb;
+	border-bottom: 1px solid #bbb;
+}
+
+.prodnavitems
+{
+	padding-left:10px;
+	padding-right:10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-right: 1px solid #bbb;
+	border-bottom: 1px solid #bbb;
+}
+
+.search
+{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-bottom:1px solid #bbb;
+}
+
+#footer
+{
+	background-color:#efefef;
+}
+
+.textbox
+{
+	border:1px solid #bbb;
+	padding:2px;
+	height:14px;
+	width:120px;
+}
+
+.button
+{
+	width:50px;
+	height:20px;
+	color:#006699;
+	font-size:11px;
+	background-color:#FFFFFF;
+	border:1px solid #cccccc;
+}
+
+.mainpad30l
+{
+	padding-left:40px;
+}
+
+/*-------------------------------------------------
+Cart Table
+-------------------------------------------------*/
+.carttable { 
+  border: 1px solid #eeeeee;
+  border-collapse: collapse; 
+  width: 100%;
+} 
+.carttable td {
+    color: #333; 
+	border: 1px solid #eeeeee;
+	padding: 4px; 
+} 
+.carttable th { 
+        color: #333; 
+	border: 1px solid #eeeeee;
+	background-color: #eeeeee;
+	font-weight: bold; 
+	text-align: left; 
+	padding-left: 4px; 
+} 
+.carttable caption { 
+	  
+	  color: #333;
+	  text-align: left; 
+	  padding-top: 3px; 
+	  padding-bottom: 8px; 
+}
+.carttable tr:hover, .carttable tr.hilite { 
+	  background-color: #FFFF88;
+	  color: #333; 
+}
+fieldset{
+    border:1px solid #eaeaea;
+    padding:3px;
+}

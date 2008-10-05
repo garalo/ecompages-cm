@@ -1,0 +1,11 @@
+<%= error_messages_for 'freightoption' %>
+
+<!--[form:freightoption]-->
+<p><label for="freightoption_name">Name</label> <%= text_field 'freightoption', 'name'  %></p>
+
+<p><label for="freightoption_price">Price</label> $<%= text_field 'freightoption', 'price' , "size"=>4 %></p>
+
+<p><label for="freightoption_note">Note</label><br/>
+<%= text_area 'freightoption', 'note' ,"cols"=>45, "rows"=>4 %></p>
+<!--[eoform:freightoption]-->
+

@@ -1,0 +1,65 @@
+<h2>&nbsp;&nbsp;<%= @header %></h2>
+
+<% if @products.size == 0 %>
+	
+	<div style="padding:15px;">
+		<p>
+		We apologise that there are no search results available at this time. Please feel free to submit an obligation free product quotation request or contact us by phone or email and we will endeavour to assist you as soon as possible.	
+		</p>
+	<h3>Submit Product Quotation Request</h3>
+	<% form_tag(:action=> "contact_us",:controller=>'go') do %>
+	<table>
+		<tr>
+	    <td>Contact Name:</td><td> <%= text_field("contact","name", "size"=>"20")%></td>
+		</tr>
+		<tr>
+	    <td>Email:</td><td><%= text_field("contact","email","size"=>"20")%></td>
+	  	</tr>
+		<tr>
+	    <td>Phone:</td><td><%= text_field("contact","phone","size"=>"20")%> (optional)</td>
+	  	</tr>
+		<tr>
+	    <td>Note:</td><td><%= text_area("contact","note")%></td>
+	  	</tr>
+	</table>
+	    <%= submit_tag "Send"%>
+	<% end %>
+	
+	<br/>
+	<%= link_to("Contact Us", :action=> "contact_us",:controller=>'go')%>
+	
+	</div>
+	
+<% else %>
+
+<% i = 1 %>
+<table width="100%" cellspacing="0" cellpadding="0">
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+<% for p in @products %>
+	
+	<tr>
+	
+		<td width="130px;">
+			<div class="product_listing_image">
+			<%= show_product_image(p, "medium") %>
+			</div>
+		</td>
+			
+		<td width="70%">
+			<p class="product_listing_title"><%=link_to p.title, :action=>'product',:id=>p %>
+			</p>
+		</td>
+		
+		<td><p class="product_listing_price"><%= show_price(p, @account) %> </p></td>
+	</tr>
+	<% i+=1 %>
+<% end %>
+</table>
+
+	<h3><%= will_paginate(@products)%></h3>
+
+<% end %>

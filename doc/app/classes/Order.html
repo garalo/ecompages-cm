@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Order</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Order</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/models/order_rb.html">
+                app/models/order.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                ActiveRecord::Base
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+EcomPages Basic 2.0.2 (Prototype) Author: Robert QS Email:
+robert.q.s@gmail.com URL: <a
+href="http://www.ecompages.com">www.ecompages.com</a>/
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000201">before_destroy</a>&nbsp;&nbsp;
+      <a href="#M000200">clear_items</a>&nbsp;&nbsp;
+      <a href="#M000197">customer</a>&nbsp;&nbsp;
+      <a href="#M000198">email</a>&nbsp;&nbsp;
+      <a href="#M000199">items</a>&nbsp;&nbsp;
+      <a href="#M000206">number_of_orders</a>&nbsp;&nbsp;
+      <a href="#M000202">sub_total</a>&nbsp;&nbsp;
+      <a href="#M000203">tax</a>&nbsp;&nbsp;
+      <a href="#M000204">total</a>&nbsp;&nbsp;
+      <a href="#M000196">total_donation</a>&nbsp;&nbsp;
+      <a href="#M000205">total_with_freight</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000206" class="method-detail">
+        <a name="M000206"></a>
+
+        <div class="method-heading">
+          <a href="#M000206" class="method-signature">
+          <span class="method-name">number_of_orders</span><span class="method-args">(status)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000206-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000206-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/order.rb, line 73</span>
+73:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">number_of_orders</span>(<span class="ruby-identifier">status</span>)
+74:     <span class="ruby-constant">Order</span>.<span class="ruby-identifier">find_all_by_status</span>(<span class="ruby-identifier">status</span>).<span class="ruby-identifier">size</span>
+75:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000201" class="method-detail">
+        <a name="M000201"></a>
+
+        <div class="method-heading">
+          <a href="#M000201" class="method-signature">
+          <span class="method-name">before_destroy</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000201-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000201-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/order.rb, line 37</span>
+37:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">before_destroy</span>
+38:     <span class="ruby-identifier">clear_items</span>
+39:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000200" class="method-detail">
+        <a name="M000200"></a>
+
+        <div class="method-heading">
+          <a href="#M000200" class="method-signature">
+          <span class="method-name">clear_items</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000200-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000200-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/order.rb, line 30</span>
+30:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clear_items</span>
+31:     <span class="ruby-identifier">items_to_remove</span> = <span class="ruby-constant">Orderitem</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-value str">&quot;order_id = ?&quot;</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>])
+32:     <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">itm</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">items_to_remove</span>
+33:       <span class="ruby-identifier">itm</span>.<span class="ruby-identifier">destroy</span>
+34:     <span class="ruby-keyword kw">end</span>  
+35:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000197" class="method-detail">
+        <a name="M000197"></a>
+
+        <div class="method-heading">
+          <a href="#M000197" class="method-signature">
+          <span class="method-name">customer</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000197-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000197-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/order.rb, line 18</span>
+18:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">customer</span>
+19:     <span class="ruby-constant">Account</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">customer_id</span>)
+20:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000198" class="method-detail">
+        <a name="M000198"></a>
+
+        <div class="method-heading">
+          <a href="#M000198" class="method-signature">
+          <span class="method-name">email</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000198-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000198-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/order.rb, line 22</span>
+22:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">email</span>
+23:     <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">customer</span>.<span class="ruby-identifier">email</span>
+24:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000199" class="method-detail">
+        <a name="M000199"></a>
+
+        <div class="method-heading">
+          <a href="#M000199" class="method-signature">
+          <span class="method-name">items</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000199-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000199-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/order.rb, line 26</span>
+26:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">items</span>
+27:     <span class="ruby-constant">Orderitem</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">:conditions=</span><span class="ruby-operator">&gt;</span>[<span class="ruby-value str">&quot;order_id = ?&quot;</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>])
+28:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000202" class="method-detail">
+        <a name="M000202"></a>
+
+        <div class="method-heading">
+          <a href="#M000202" class="method-signature">
+          <span class="method-name">sub_total</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000202-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000202-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/order.rb, line 41</span>
+41:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sub_total</span>
+42:     <span class="ruby-identifier">sum</span> = <span class="ruby-value">0</span><span class="ruby-value">.0</span>
+43:     <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">item</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">items</span>
+44:       <span class="ruby-identifier">sum</span> <span class="ruby-operator">+=</span> (<span class="ruby-identifier">item</span>.<span class="ruby-identifier">price_in_order</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">quantity</span>)
+45:     <span class="ruby-keyword kw">end</span>
+46:     <span class="ruby-comment cmt">#sum = sum * (1 - @discount_percentage.to_f / 100)</span>
+47:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sum</span>
+48:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000203" class="method-detail">
+        <a name="M000203"></a>
+
+        <div class="method-heading">
+          <a href="#M000203" class="method-signature">
+          <span class="method-name">tax</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000203-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000203-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/order.rb, line 50</span>
+50:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tax</span>
+51:     
+52:     <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Shop</span>.<span class="ruby-identifier">is_tax_incl</span>
+53:       <span class="ruby-keyword kw">return</span> (<span class="ruby-identifier">sub_total</span><span class="ruby-operator">/</span>(<span class="ruby-value">1</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Shop</span>.<span class="ruby-identifier">tax_rate</span>))
+54:     <span class="ruby-keyword kw">else</span>
+55:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sub_total</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">*</span> (<span class="ruby-constant">Shop</span>.<span class="ruby-identifier">tax_rate</span><span class="ruby-operator">/</span><span class="ruby-value">100</span>)
+56:     <span class="ruby-keyword kw">end</span>
+57:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000204" class="method-detail">
+        <a name="M000204"></a>
+
+        <div class="method-heading">
+          <a href="#M000204" class="method-signature">
+          <span class="method-name">total</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000204-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000204-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/order.rb, line 59</span>
+59:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">total</span>
+60:     <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Shop</span>.<span class="ruby-identifier">is_tax_incl</span>
+61:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sub_total</span>
+62:     <span class="ruby-keyword kw">else</span>
+63:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sub_total</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">tax</span>
+64:     <span class="ruby-keyword kw">end</span>
+65:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000196" class="method-detail">
+        <a name="M000196"></a>
+
+        <div class="method-heading">
+          <a href="#M000196" class="method-signature">
+          <span class="method-name">total_donation</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000196-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000196-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/order.rb, line 10</span>
+10:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">total_donation</span>
+11:     <span class="ruby-identifier">sum</span> = <span class="ruby-value">0</span><span class="ruby-value">.0</span>
+12:     <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">item</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">items</span>
+13:       <span class="ruby-identifier">sum</span> <span class="ruby-operator">+=</span> (<span class="ruby-identifier">item</span>.<span class="ruby-identifier">product</span>.<span class="ruby-identifier">donation</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">quantity</span>)
+14:     <span class="ruby-keyword kw">end</span>
+15:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sum</span>
+16:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000205" class="method-detail">
+        <a name="M000205"></a>
+
+        <div class="method-heading">
+          <a href="#M000205" class="method-signature">
+          <span class="method-name">total_with_freight</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000205-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000205-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/models/order.rb, line 67</span>
+67:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">total_with_freight</span>
+68:     <span class="ruby-identifier">total</span> <span class="ruby-operator">+</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">suggested_freight_cost</span>
+69:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

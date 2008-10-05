@@ -1,0 +1,6 @@
+<h2>Editing Price Level</h2>
+<hr>
+<% form_tag :action => 'update', :id => @pricelevel do %>
+  <%= render :partial => 'form' %> 
+  <%= submit_tag 'Edit' %> <%= link_to 'Cancel', :action => 'list' %>
+<% end %>

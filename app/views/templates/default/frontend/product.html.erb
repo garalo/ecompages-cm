@@ -1,0 +1,39 @@
+
+
+<% if session[:product_layout] == "def" %>
+	<div style="padding:5px;">
+<table width="100%">
+    <tr>
+        <td width="50%">
+          <%= show_category_structure_with_link(@product.category) %> 
+          </td>
+          <td style="text-align:right;">
+          	<b>Default Layout</b> | <%=link_to "Classic Layout", :action=>'product', :controller=>'go', :id=>@product.id, :layout=>"classic"%>
+	
+          </td>
+    </tr>
+  </table>
+  
+  
+	</div>
+	<%= render :partial=>"templates/#{Shop.def_template_name}/frontend/product_layout_01" %>
+
+<% else %>
+	<div style="padding:5px;">
+
+  <table width="100%">
+    <tr>
+        <td width="50%">
+          <%= show_category_structure_with_link(@product.category) %> 
+          </td>
+          <td style="text-align:right;">
+          <%=link_to "Default Layout", :action=>'product', :controller=>'go', :id=>@product.id, :layout=>"def"%> | <b>Classic Layout</b>
+          </td>
+    </tr>
+  </table>
+  
+	</div>
+
+  
+	<%= render :partial=>"templates/#{Shop.def_template_name}/frontend/product_layout_02" %>
+<% end %>

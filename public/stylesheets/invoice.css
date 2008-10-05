@@ -1,0 +1,45 @@
+body{
+	background-color: #fff; color: #333; 
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+  	margin:0;
+	padding:0;
+	height:100%;
+}
+
+
+
+table { 
+  border: 1px solid #e5e5e5;
+  border-collapse: collapse; 
+  width: 100%;
+} 
+td {
+
+	border: 1px solid #e5e5e5;
+	padding: 4px; 
+} 
+th { 
+
+	border: 1px solid #e5e5e5;
+	background-color: #e5e5e5;
+	font-weight: bold; 
+	text-align: left; 
+	padding-left: 4px; 
+} 
+caption { 
+	  
+	  color: #CCCCCC;
+	  text-align: left; 
+	  padding-top: 3px; 
+	  padding-bottom: 8px; 
+}
+tr:hover, tr.hilite { 
+
+	  color: #000000; 
+}
+.header_div{
+	padding:3px;
+	background:darkblue;
+	color:white;
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title><%=h Shop.shop_name %> - <%= @page_title %></title>
+    <%= stylesheet_link_tag 'admin' %>
+    <%= stylesheet_link_tag 'common' %>
+    
+    <%= stylesheet_link_tag 'niftyCorners' %>
+    <%= stylesheet_link_tag 'niftyPrint' %>
+    
+    <%= stylesheet_link_tag 'tabcontent' %>
+    <%= stylesheet_link_tag 'sddm' %>
+    
+   
+    <%= javascript_include_tag "niftycube" %>
+    <%= javascript_include_tag "tabcontent" %>
+   
+   <%= javascript_include_tag "wysiwyg/wysiwyg" %>
+   
+    <% if controller.action_name != "category_sort" %>
+            <%= javascript_include_tag "prototype" %>
+          <%= javascript_include_tag "scriptaculous" %>
+          <%= javascript_include_tag "effects" %>
+       
+            
+    <% else %>
+                        <%= stylesheet_link_tag 'category_sort' %>
+                        <%= javascript_include_tag "scriptaculous-1-8-0/prototype" %>
+                        <%= javascript_include_tag "scriptaculous-1-8-0/scriptaculous" %>
+                        <%= javascript_include_tag "scriptaculous-1-8-0/effects" %>
+                        <%= javascript_include_tag "scriptaculous-1-8-0/dragdrop" %>
+                        <%= javascript_include_tag "scriptaculous-1-8-0/controls" %>
+            
+    <% end %>
+    
+
+    <style type="text/css">
+      
+      div#menu{float:left;width: 100%;padding-top:80px;background: #BBD9EE}
+      ul#nav,ul#nav li{list-style-type:none;margin:0;padding:0}
+      ul#nav{margin-left: 100px;width:850px}
+      ul#nav li{float:left;margin-right: 3px;text-align: center}
+      ul#nav a{float:left;width: 10em;padding: 5px 0;background: #E7F1F8;text-decoration:none;color: #666}
+      ul#nav a:hover{background: #FFA826;color: #FFF}
+      ul#nav li.activelink a,ul#nav li.activelink a:hover{background: #fff;color: #003}
+      
+      div#container{width:1000px;margin: 0 auto;padding:10px 0;text-align:left}
+      div#menu-right{float:left;width:195px;padding:10px 0;background: #CDEB8B}
+      div#content{float:right;width:800px;padding:10px 0;background: #F9F7ED}
+    </style>
+    
+  </head>
+  <body>
+    
+    <div id="menu">
+      <ul id="nav">
+        <li id="tab1" <%="class='activelink'" if controller.action_name == "index" %>><%= link_to "Admin", :action=>'index',:controller=>'admin'%></li>
+        <li id="tab2" <%="class='activelink'" if controller.action_name == "change_template" %>><%= link_to "Templates", {:action=>'change_template',:controller=>'admin'} %></li>
+        <li id="tab3" <%="class='activelink'" if controller.action_name == "store_info" %>><%= link_to "Store Configuration", {:action=>'store_info',:controller=>'admin'} %></li>
+        
+        <li id="tab4"><%= link_to "Logout", :action=>'logout',:controller=>'admin' %></li>
+        <li id="tab5"><%= link_to "Open Store", {:action=>'index',:controller=>'go'},{:target=>"_blank"} %></li>
+        
+      </ul>
+    </div>
+    
+    <script type="text/javascript">
+      Nifty("ul#nav a","small transparent top");
+    </script>
+    
+    <div>
+      &nbsp; <br/>
+      
+      <% if not flash[:notice].blank? %>
+        <p style="text-align:center;padding:5px;border:0px solid #ffd700;background:#ffff88;font-size:15px;color:#003;">
+          <%= flash[:notice] %>
+        </p>
+      <% end %>
+    </div>
+    
+    <div id="container">
+      <div id="content">
+        
+        <div style="padding:5px;">
+          <%= yield  %>
+        </div>
+      </div>
+      <div id="menu-right">
+        
+        
+        
+        <h2>Products</h2><br/>
+        
+        <p> <%= link_to "Manage Products", :action=>'list',:controller=>'products' %></p>
+        
+        
+        
+        
+        <p><%= link_to "Condition Labels",:action=>'list',:controller=>'productconditions'%></p>
+        
+        <p><%= link_to "Warranty Labels",:action=>'list',:controller=>'productwarranties'%></p>
+        <p> <%= link_to "Freight Options", :action=>'list',:controller=>'freightoptions' %></p>
+        
+        <br/>
+        
+        <h2>Customers</h2><br/>
+        
+        <p> <%= link_to "Accounts", :action=>'accounts',:controller=>'admin' %></p>
+        
+        <p> <%= link_to "Orders", :action=>'orders',:controller=>'admin' %> 
+          
+                                           <% neworders =  Order.find_all_by_status("New").size %>
+                                           <% if neworders > 0 %>
+            (<font color="green"><%= image_tag "/images/new.gif"%> <%= Order.find_all_by_status("New").size %></font>)
+          <% end %>
+
+        </p>
+        <p> <%= link_to "Price Levels", :action=>'list',:controller=>'pricelevels' %></p>
+        <p> <%= link_to "Product-Prices Table", :action=>'price_matrix',:controller=>'products' %></p>		
+        
+        
+        <br/>
+        
+        
+        <h2>Product Categories</h2><br/>
+        <p> <%= link_to "Edit Categories", :action=>'categories',:controller=>'admin' %></p>
+        <p> <%= link_to "Re-order Categories", :action=>'category_sort',:controller=>'admin' %></p>
+        
+        
+        <br/>
+        
+        <h2>Menu Tabs</h2><br/>
+        
+        <p> <%= link_to "Edit Menu Tabs", :action=>'list',:controller=>'tabs' %></p>
+        
+        <br/>
+        
+        <h2>Content Management</h2><br/>
+        
+        <p> <%= link_to "Header Message", :action=>'header_message',:controller=>'admin' %></p>
+        
+        <p> <%= link_to "Edit Pages/Blogs", :action=>'list',:controller=>'pages' %></p>
+        
+        <br/>
+        
+        <h2>Email</h2><br/>
+        <p> <%= link_to "Send Emails", :action=>'sendemails',:controller=>'admin' %></p>
+        
+        <p> <%= link_to "Edit Email Templates", :action=>'edit_email_templates',:controller=>'admin' %></p>
+        
+        
+        <br/>
+        
+        
+        <h2>Others</h2><br/>
+        <p> <%= link_to "Tax Configuration", :action=>'tax',:controller=>'admin' %></p>
+        <p> <%= link_to "Change Admin Password", :action=>'edit',:controller=>'administrators' %></p>
+        <p> <%= link_to "Charity Manager", :action=>'list',:controller=>'charities' %></p>
+        <p> <%= link_to "Category Highlighting", :action=>'index_category_label',:controller=>'admin' %></p>
+        
+        <br/>
+        
+        
+        
+      </div>
+      
+    </div>
+    
+    
+    <script type="text/javascript">
+      Nifty("div#content,div#menu-right","same-height");
+    </script>
+    
+    
+  </body>
+</html>

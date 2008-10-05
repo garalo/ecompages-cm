@@ -1,0 +1,20 @@
+
+<h2>Tax Configuration</h2>
+
+<hr/>
+
+<br/>
+
+<% form_tag(:action=>'tax') do%>
+  
+  Tax Code (Short Name): <%=text_field("tax", "tax_short_name", "size"=>4, "value"=>"#{Shop.tax_code_name}") %>  e.g., "GST" for New Zealand <br/>
+  
+  Tax Rate: <%=text_field("tax", "tax_rate", "size"=>4, "value"=>"#{Shop.tax_rate}") %>% <br/>
+  
+  I will enter a tax included price when adding a new product (Tax included for all prices)
+<%=check_box("tax", "tax_incl", "checked"=>"#{'checked' if Shop.is_tax_incl_when_adding_new_product == 1}") %> <br/>
+
+  
+  <br/>
+  <%=submit_tag("Save")%>
+<% end %>  

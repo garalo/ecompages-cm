@@ -1,0 +1,14 @@
+<h2>Blog Posts</h2>
+<div style="padding:5px;">
+
+<table width="100%">
+<% for page in @pages %>
+  <tr>
+    <td width="40%"><%= link_to(page.title, {:controller=>'go', :action => 'page', :id => page}) %> </td>
+    <td><%= page.created_at.to_s(:short) %></td>
+  </tr>
+<% end %>
+</table>
+
+
+</div>

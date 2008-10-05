@@ -1,0 +1,96 @@
+html,body{margin:0;padding:0}
+body{background: #FFF;font: 70% Arial,sans-serif}
+
+body a:link {
+    color:black ! important;
+}
+
+body a:active {
+    color:black ! important;
+}
+
+body a:visited {
+    color:#333 ! important;
+}
+
+h1,h2{margin: 0;padding: 0 10px;font-weight:100;color: #006E2E}
+h1{font-size: 200%}
+h2{font-size: 170%}
+
+p{margin:0;padding: 0 10px 1em}
+
+
+/*-------------------------------------------------
+Nice Table
+-------------------------------------------------*/
+.nice_table { 
+    border: 1px solid #CDEB8B;
+    border-collapse: collapse; 
+    width: 100%;
+} 
+.nice_table td {
+    
+    border: 1px solid #CDEB8B;
+    padding: 4px; 
+} 
+.nice_table th { 
+    
+    border: 1px solid #CDEB8B;
+    background-color: #CDEB8B;
+    font-weight: bold; 
+    text-align: left; 
+    padding-left: 4px; 
+} 
+.nice_table caption { 
+    
+    color: #CCCCCC;
+    text-align: left; 
+    padding-top: 3px; 
+    padding-bottom: 8px; 
+}
+.nice_table tr:hover, .nice_table tr.hilite { 
+    color: #333333; 
+}
+
+
+/*-------------------------------------------------
+Round DIV
+-------------------------------------------------*/
+
+.rtop, .rbottom{display:block}
+.rtop *, .rbottom *{display: block; height: 1px; overflow: hidden}
+.r1{margin: 0 5px}
+.r2{margin: 0 3px}
+.r3{margin: 0 2px}
+.r4{margin: 0 1px; height: 2px} 
+
+#menu-content {
+    background-color:#f9f9f9;
+    padding-left:3px;
+}
+
+#menu-header {
+    background-color:#eaeaea;
+    padding-left:3px;
+}
+
+#admin-content-r {
+    background-color:#ccc;
+    padding-left:3px;
+}
+
+#notice-message-r {
+    text-align:center;
+    padding:3px;
+    background:#ffd700;
+    
+}
+
+
+fieldset{
+    border:solid 1px #eaeaea;
+}
+hr {
+    height:2px; color:#eee;background:#eaeaea;
+}
+

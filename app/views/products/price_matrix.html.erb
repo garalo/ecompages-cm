@@ -1,0 +1,55 @@
+<div class="explaination">
+	<h3>In-Place Price Editor</h3>
+	There are two methods to edit a price, both require you clicking on the numeric value of a price.<br/><br/>
+	<strong>Method 1:</strong> Enter a price, e.g, 100, then click 'ok'. <br/>
+	<strong>Method 2:</strong> Enter a percentage, e.g., 10%, then click 'ok'. <br/>
+	<strong>RetailPrice:</strong> To edit a retail price, please click on the 'ID' or 'title' of a product, then you will be redirected to the product editor page.
+</div>	
+<br/>
+
+<p>
+	<% form_tag(:action=>'price_matrix') do %>
+		Column to sort <%= select_tag(:sort_field,
+						options_for_select(%w{id title price},
+						params[:sort_field])) %>
+		Order by <%= select_tag(:sort_by,
+						options_for_select(%w{asc desc},
+						params[:sort_by])) %>				
+		<%= submit_tag "Sort"%>				
+	<% end %>	
+</p>
+
+<br/>
+
+<table class="nice_table">
+<tr>
+	<th>ID</th>
+	<th>Product</th>
+	<th>RetailPrice</th>
+	<% for price_level in @pricelevels %>
+		<th style="text-align:right;">Price for <%= price_level.title %></th>
+	<% end %>
+</tr>	
+
+<% for product in @products %>
+	<tr>
+		<td width="5%"><%= link_to product.id, :action=>'edit', :controller=>'products', :id=>product %></td>
+		<td width="20%"><%= link_to product.title, :action=>'edit', :controller=>'products', :id=>product %></td>
+		<td width="10%" style="text-align:right;"><%= number_to_currency product.price %></td>
+		<% for pricelevel in @pricelevels %>
+			<td style="text-align:right;"><%= show_price_editor(pricelevel, product) %></td>
+		<% end %>
+	</tr>
+<% end %>
+
+<tr>
+	<th>ID</th>
+	<th>Product</th>
+	<th>RetailPrice</th>
+	<% for price_level in @pricelevels %>
+		<th  style="text-align:right;">Price for <%= price_level.title %></th>
+	<% end %>
+</tr>
+</table>
+
+<h3><%= will_paginate(@products)%></h3>

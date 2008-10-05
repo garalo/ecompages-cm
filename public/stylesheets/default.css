@@ -1,0 +1,93 @@
+body{
+	background-color: fff;
+	color: #222; 
+	font: 70% Arial, sans-serif;
+  	margin:0;
+	padding:0;
+}
+
+
+a {color:#333;}
+a:visited {color:#333;}
+hr {
+    border:1px solid #ccc;
+}
+fieldset{
+    border:1px solid #ccc;
+}
+div#menu{float:left;width: 100%;padding-top:60px;background: #BBD9EE}
+      ul#nav,ul#nav li{list-style-type:none;margin:0;padding:0}
+      ul#nav{margin-left: 100px;width:850px}
+      ul#nav li{float:left;margin-right: 3px;text-align: center}
+      ul#nav a{float:left;width: 7em;padding: 5px 0;background: #E7F1F8;text-decoration:none;color: #666}
+      ul#nav a:hover{background: #FFA826;color: #FFF}
+      ul#nav li.activelink a,ul#nav li.activelink a:hover{background: #fff;color: #003}
+   
+
+div#container{width:940px;margin: 0 auto;padding:10px 0;text-align:left}
+div#menu-left{float:left;width:195px;padding:10px 0;background: #CDEB8B}
+div#content{float:right;width:740px;padding:10px 0;background: #fff}
+
+.footer {
+    text-align:center;
+}
+
+/*-------------------------------------------------
+Cart Table
+-------------------------------------------------*/
+.carttable { 
+  border: 1px solid #CDEB8B;
+  border-collapse: collapse; 
+  width: 100%;
+} 
+.carttable td {
+
+	border: 1px solid #CDEB8B;
+	padding: 4px; 
+} 
+.carttable th { 
+
+	border: 1px solid #CDEB8B;
+	background-color: #CDEB8B;
+	font-weight: bold; 
+	text-align: left; 
+	padding-left: 4px; 
+} 
+.carttable caption { 
+	  
+	  color: #CCCCCC;
+	  text-align: left; 
+	  padding-top: 3px; 
+	  padding-bottom: 8px; 
+}
+.carttable tr:hover, .carttable tr.hilite { 
+	  background-color: #FFFF88;
+	  color: #000000; 
+}
+
+
+.add_to_cart{
+	font-weight: blod;
+	font-size:16px;
+	
+}
+
+.product_listing_image {
+	margin:5px;
+	width:130px;
+	text-align:center;
+	vertical-align:middle;
+}
+
+.product_listing_title {
+	font-size:11px;font-weight:bold;vertical-align:middle;
+}
+
+.product_listing_price {
+	font-size:11px;vertical-align:middle;
+}
+
+.darken {
+	color:#888;
+}
+

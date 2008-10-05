@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%=h Shop.shop_name %> - <%= @page_title %></title>
+  	<%= stylesheet_link_tag 'invoice' %>
+	
+
+	<%= javascript_include_tag "application" %>
+	<%= javascript_include_tag "prototype" %>
+	<%= javascript_include_tag "scriptaculous" %>
+	<%= javascript_include_tag "effects" %>
+</head>
+<body>
+	<div style="margin:10px;padding:15px;width:800px; border: 9px solid #eaeaea;">
+	<%= yield  %>
+	</div>
+</body>
+</html>

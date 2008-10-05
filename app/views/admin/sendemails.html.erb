@@ -1,0 +1,26 @@
+<h2>Send Email to Customers (Time Now: <%= Time.now.to_s(:short)%>)</h2>
+
+<hr/>
+<br/>
+<% form_tag(:action=> "sendemails") do %>
+<b>Subject:</b> <%= text_field("emails","subject", "size"=>"45")%><br/><br/>
+<b>Send to:</b> 
+	<select name="emails[group]" >
+	<option value='all'>All customers</option>
+	<option value='special'>Customers who accepted to receive special offers</option>
+	</select>
+	<br/><br/>
+		<hr/>
+<br/>
+<%= text_area("emails","body","rows"=>30, "cols"=>60, "id"=>"rich-editable", "value"=>"Edit body message here ...")%></td>
+ 
+<script language="JavaScript">
+  generate_wysiwyg('rich-editable');
+</script>
+
+<br/>
+<br/>
+<br/>
+    <%= submit_tag "Send Now"%>
+<% end %>
+

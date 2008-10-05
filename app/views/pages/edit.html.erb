@@ -1,0 +1,72 @@
+<%= link_to 'Back to page list', :action => 'list' %>
+<br/><br/>
+<h2>Edit Page</h2>
+<hr/>
+<br/>
+<% form_tag :action => 'update', :id => @page do %>
+    <%= render :partial => 'form' %>
+    <%= submit_tag 'Save' %> <%= link_to 'Cancel', :action => 'list' %>
+<% end %>
+
+<br/><br/>
+<h3>Image Resources</h3>
+<ul id="pagetabs" class="shadetabs">
+  <li><a href="#" rel="page1" class="selected">List Images</a></li>
+  <li><a href="#add.image#" rel="page2">Add Image</a></li>
+</ul>
+
+<div style="border:1px solid gray; margin-bottom: 1em; padding: 10px">
+  
+  <div id="page1" class="tabcontent">
+    <h3>Listing Images</h3>
+    
+    <table class="nice_table">
+      <% for img in @images %>
+        <tr>
+        
+          <td><%= img.name %> </td>
+          <td>
+            <%= image_tag(url_for_file_column(img, "image", "thumb"),
+                                      :alt=>"Click to view large picture",
+                                      :style=>"border:solid 1px #cccccc;") %>
+            <br/>
+            Image URL (original):
+            <%= text_field('emb','code', 
+                   "size"=> 65,
+          "value"=>"#{Shop.business_website}#{Shop.install_dir_name}#{url_for_file_column(img, 'image')}") %>
+ 
+          </td>
+          <td>
+          <%= link_to image_tag("/images/trash.gif"), { :controller=>"imageengine",:action => 'delete_image', :id => img, :pid=>@page.id }, :confirm => 'Are you sure to remove this image?', :method => :post %> </td>
+        
+        </tr>	
+      <% end %>
+
+
+
+    </table>
+    
+  </div>
+  
+  <div id="page2" class="tabcontent">
+    <h3>Adding Image</h3>
+    <p>
+      <% form_tag( { :action => 'add_image', :controller=>'imageengine', :page_id=>@page.id}, :multipart => true ) do %> 
+        Image Name: <%= text_field 'imageobject', 'name' %> <br/>
+        Choose a image: <%= file_column_field "imageobject", "image" %> <br/>
+        <br/>
+        <%= submit_tag "Upload" %> 
+<% end %>
+    </p>
+    
+  </div>
+  
+</div>
+
+<script type="text/javascript">
+  var countries = new ddtabcontent("pagetabs");
+  countries.setpersist(true);
+  countries.setselectedClassTarget("link");
+  countries.init();
+</script>
+

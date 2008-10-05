@@ -1,0 +1,31 @@
+<h2>Listing Product Warranty Labels</h2>
+<hr />
+
+<br/>
+
+
+<p>
+<%= image_tag("/images/add.gif")%> <%= link_to 'Add new Warranty Label', :action => 'new' %>
+</p>
+
+<table class="nice_table">
+  <tr>
+  
+    <th>Warranty Label</th>
+  	<th>Admin</th>
+  </tr>
+  
+<% for productwarranty in @productwarranties %>
+  <tr>
+  
+    <td><%=h productwarranty.warranty %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => productwarranty %> 
+    <%= link_to(image_tag("/images/trash.gif"), 
+					{ :action => 'destroy', :id => productwarranty }, 
+					:confirm => 'Are you sure to remove this label?', 
+					:method => :post) %>
+	</td>
+  </tr>
+<% end %>
+</table>
+

@@ -1,0 +1,17 @@
+
+<h2>Editing Product | <%= link_to "Back to Product Manager", :action=>'list',:controller=>'products' %></h2>
+<hr/>
+
+<br/>
+
+<br/>
+
+      <% form_tag :action => 'update', :id => @product do %>
+  <%= render :partial => 'form' %>
+<br/>
+  <%= submit_tag 'Update' %> <%= link_to "Back to Product Manager", :action=>'list',:controller=>'products' %>
+<% end %>
+   
+
+  <br/>
+

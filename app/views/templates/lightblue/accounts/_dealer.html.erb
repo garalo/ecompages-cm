@@ -1,0 +1,86 @@
+
+<%= error_messages_for 'account' %>
+
+<!--[form:account]-->
+<fieldset><legend><strong>Dealer</strong> Account Information</legend>
+	<p><label for="account_username"><strong>Username * </strong></label> <br/>
+	<%= text_field 'account', 'username' , "size"=>12 %> 
+	(Any combination of letters or numbers without spaces, from 3 up to 18 digits and/or letters)
+	</p>
+	<p><label for="account_username2"><strong>Re-enter Username *</strong></label><br/>
+	<%= text_field 'account', 'username_confirmation', "size"=>12%></p>
+	
+	
+	<p><label for="account_password"><strong>Password *</strong></label><br/>
+	<%= text_field 'account', 'password' , "size"=>12 %></p>
+	
+	<p><label for="account_password2"><strong>Re-enter Password *</strong></label><br/>
+	<%= password_field 'account', 'password_confirmation', "size"=>12%></p>
+	
+	<p><label for="account_business_name"><strong>Business Name *</strong></label><br/>
+	<%= text_field 'account', 'business_name'  %></p>
+
+	<p><label for="account_business_address"><strong>Business Address *</strong></label><br/>
+	<%= text_area 'account', 'business_address',"cols"=>45, "rows"=>3 %></p>
+
+	<p><label for="account_shipping_address"><strong>Shipping Address (if different from business address)</strong></label><br/>
+	<%= text_area 'account', 'shipping_address' ,"cols"=>45, "rows"=>3 %></p>
+	
+	<p><label for="account_postcode"><strong>Post Code *</strong></label><br/>
+	<%= text_field 'account', 'postcode'  %>
+	<a href="http://www.nzpost.co.nz/Cultures/en-NZ/OnlineTools/PostCodeFinder/" target="_blank">PostCode Finder</a>
+	</p>
+
+	<p><label for="account_gst_number"><strong>GST Number</strong></label><br/>
+	<%= text_field 'account', 'gst_number'  %></p>
+	
+	<p><label for="account_contact_name"><strong>Contact Name *</strong></label><br/>
+	<%= text_field 'account', 'contact_name'  %></p>
+
+	<p><label for="account_phone"><strong>Telephone Phone *</strong></label><br/>
+	<%= text_field 'account', 'phone'  %> (include area code)</p>
+
+	<p><label for="account_cellphone"><strong>Mobile Phone</strong></label><br/>
+	<%= text_field 'account', 'cellphone'  %></p>
+	
+	<p><label for="account_fax_number"><strong>Fax Number</strong></label><br/>
+	<%= text_field 'account', 'fax_number'  %></p>
+	
+	<p><label for="account_email"><strong>Email *</strong></label><br/>
+	<%= text_field 'account', 'email'  %></p>
+	
+	<p><label for="account_website"><strong>Website</strong></label><br/>
+	<%= text_field 'account', 'website' , "value"=>"http://" %></p>
+
+	<p><label for="account_country"><strong>Country *</strong></label><br/>
+	<%= text_field 'account', 'country'  %></p>
+	
+	<p><strong>Tick if you would like to receive special offers</strong>
+	<%= check_box("account", "special_offers" , {}, "1", "0") %></p>
+	
+	<p  style="color:green;"><strong>I agree with the terms and conditions (<%= link_to "Terms and Conditions", {:action=>'terms_conditions', :controller=>'go'}, :target=>'_blank'%>)</strong>
+	<%= check_box("account", "agree_terms" , {}, "1", "0") %></p>
+	
+	<p><label for="account_bartercard"><strong>I use Bartercard</strong></label>
+	<%= radio_button( :account, :bartercard, 1 )%> Yes &nbsp;&nbsp;
+	<%= radio_button( :account, :bartercard, 0 )%> No &nbsp;&nbsp;
+	<%= radio_button( :account, :bartercard, -1 )%> Never heard of Bartercard
+	</p>
+
+	<p><label for="account_bbx"><strong>I use BBX</strong></label>
+	<%= radio_button( :account, :bbx, 1 )%> Yes &nbsp;&nbsp;
+	<%= radio_button( :account, :bbx, 0 )%> No &nbsp;&nbsp;
+	<%= radio_button( :account, :bbx, -1 )%> Never heard of BBX
+	</p>
+
+	<p><label for="account_ebank"><strong>I use Ebank</strong></label>
+	<%= radio_button( :account, :ebank, 1 )%> Yes &nbsp;&nbsp;
+	<%= radio_button( :account, :ebank, 0 )%> No &nbsp;&nbsp;
+	<%= radio_button( :account, :ebank, -1 )%> Never heard of Ebank
+	</p>
+	
+</fieldset>	
+
+
+<!--[eoform:account]-->
+

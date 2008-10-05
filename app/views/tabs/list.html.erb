@@ -1,0 +1,53 @@
+<h2>Listing tabs</h2>
+<hr/>
+
+<br/>
+
+<p>
+  <%= image_tag("/images/add.gif") %> <%= link_to 'Add a new Tab', :action => 'new' %>
+</p>
+
+<table  class="nice_table">
+  <tr>
+    
+    <th>Tab name</th>
+    <th>Visible</th>
+    <th>Operations</th>
+  </tr>
+  
+  <div class="explaination">
+    <h2>Useage:</h2> <br/>
+    <p>
+      Click <font face='Wingdings 2'><--</font> (move to left) or <font face='Wingdings 2'>--></font> (move to right) to change the position of a tab.
+    </P>
+  </div>
+  <br />
+  
+<% for tab in @tabs %>
+    <tr>
+    
+      <td><%=h tab.name %></td>
+      <td><%= "Yes" if tab.visible == 1 %>
+        <%= "No" if tab.visible == 0 %>
+      </td>
+      <td><%= link_to 'Edit', :action => 'edit', :id => tab %> | 
+        <%= link_to "Remove", { :action => 'destroy', :id => tab }, :confirm => 'Are you sure?', :method => :post %> | 
+             <%= link_to "<font face='Wingdings 2'><--</font>", :action => 'move', :tid => tab , :to =>'up' %> | 
+             <%= link_to "<font face='Wingdings 2'>--></font>", :action => 'move', :tid => tab , :to =>'down' %>
+           
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<br/>
+
+<h2>Preview</h2>
+
+<br/>
+<% for tab in @tabs %>
+  [<%= tab.name %>] 
+<% end %>
+<br/>
+<hr/>
+
